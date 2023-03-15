@@ -3173,6 +3173,15 @@ Table: CRL Fields
 | `signature`                | |
 | Any other value            | NOT RECOMMENDED |
 
+Table: CRL Extensions
+
+| __Extension__                     | __Presence__    | __Critical__          | __Description__ |
+| ----                              | -               | -                     | ----- |
+| `authorityKeyIdentifier`          | MUST            | N                     | MUST be byte-for-byte identical to the Subject Key Identifier in the issuing CA certificate. authorityCertIssuer and authorityCertSerialNumber MUST NOT be populated.      |
+| `CRLNumber`                       | MUST            | N                     | MUST convey a monotonically increasing sequence.       |
+| `IssuingDistributionPoint`        | *           | Y                     | Partitioned CRLs MUST include at least one of the names from the corresponding distributionPoint field of the cRLDistributionPoints extension of every certificate that is within the scope of this CRL. The encoded value MUST be byte-for-byte identical to the encoding used in the distributionPoint field of the certificate. This extension is NOT RECOMMENDED for full and complete CRLs |
+| Any other extension               | NOT RECOMMENDED        | -                     |       |
+
 Table: revokedCertificates Component
 
 | __Component__                     | __Presence__    | __Description__ |
@@ -3187,16 +3196,6 @@ Table: crlEntryExtensions Component
 | ---                       | -              | ------          |
 | `reasonCode`              | *              | See Section 4.9.1.1 for reasonCode requirements.|
 | Any other value | NOT RECOMMENDED | |
-
-Table: CRL Extensions
-
-| __Extension__                     | __Presence__    | __Critical__          | __Description__ |
-| ----                              | -               | -                     | ----- |
-| `authorityKeyIdentifier`          | MUST            | N                     | MUST be byte-for-byte identical to the Subject Key Identifier in the issuing CA certificate. authorityCertIssuer and authorityCertSerialNumber MUST NOT be populated.      |
-| `CRLNumber`                       | MUST            | N                     | MUST convey a monotonically increasing sequence.       |
-| `IssuingDistributionPoint`        | *           | Y                     | Partitioned CRLs MUST include at least one of the names from the corresponding distributionPoint field of the cRLDistributionPoints extension of every certificate that is within the scope of this CRL. The encoded value MUST be byte-for-byte identical to the encoding used in the distributionPoint field of the certificate. This extension is NOT RECOMMENDED for full and complete CRLs |
-| Any other extension               | NOT RECOMMENDED        | -                     |       |
-
 
 ## 7.3 OCSP profile
 
