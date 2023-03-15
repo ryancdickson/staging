@@ -3141,24 +3141,61 @@ The following Certificate Policy identifiers are reserved for use by CAs as an o
 
 ### 7.2.1 Version number(s)
 
+Certificate Revocation Lists MUST be of type X.509 v2.
+
 ### 7.2.2 CRL and CRL entry extensions
 
-1. `reasonCode` (OID 2.5.29.21)
+If the CA asserts compliance with these Baseline Requirements, all CRLs that it issues MUST comply with the following CRL profile, which incorporates, and is derived from [RFC 5280](https://tools.ietf.org/html/rfc5280). Except as explicitly noted, all normative requirements imposed by RFC 5280 shall apply, in addition to the normative requirements imposed by this document. CAs SHOULD examine [RFC 5280, Appendix B](https://tools.ietf.org/html/rfc5280#appendix-B) for further issues to be aware of.
 
-   If present, this extension MUST NOT be marked critical.
+A full and complete CRL is a list of all revoked certificates issued by the CA for any and all reasons.
 
-   If a CRL entry is for a Root CA or Subordinate CA Certificate, including Cross-Certified Subordinate CA Certificates, this CRL entry extension MUST be present.
-   If a CRL entry is for a Certificate not technically capable of causing issuance, this CRL entry extension SHOULD be present, but MAY be omitted, subject to the following requirements.
+A partitioned CRL is a list of revoked certificates issued by the CA for any and all reasons constrained to a specific scope (e.g., temporal sharding).
 
-   The `CRLReason` indicated MUST NOT be unspecified (0). If the reason for revocation is unspecified, CAs MUST omit `reasonCode` entry extension, if allowed by the previous requirements.
-   If a CRL entry is for a Certificate not subject to these Requirements and was either issued on-or-after 2020-09-30 or has a `notBefore` on-or-after 2020-09-30, the `CRLReason` MUST NOT be certificateHold (6).
-   If a CRL entry is for a Certificate subject to these Requirements, the `CRLReason` MUST NOT be certificateHold (6).
+Minimally, CAs MUST issue either a "full and complete" CRL - or "partitioned" (sometimes referred to as "sharded") CRL.
 
-   If a `reasonCode` CRL entry extension is present, the `CRLReason` MUST indicate the most appropriate reason for revocation of the certificate, as defined by the CA within its CP/CPS.
-   
-2. `issuingDistributionPoint` (OID 2.5.29.28)
+If using only partitioned CRLs, the full set of partitioned CRLs MUST cover the complete set of public-key certificates issued by the CA. Thus, the complete set of partitioned CRLs MUST be equivalent to a full CRL for the same set of public-key certificates, if the CA was not using partitioned CRLs. 
 
-   Effective 2023-01-15, if a CRL does not contain entries for all revoked unexpired certificates issued by the CRL issuer, then it MUST contain a critical Issuing Distribution Point extension and MUST populate the `distributionPoint` field of that extension.
+Aside from the presence of the `IssuingDistributionPoint` extension in partitioned CRLs, both CRL formats are syntactically the same from the perspective of this profile.
+
+Table: CRL Fields
+
+| __Field__                  | __Description__ |
+| ---                        | ------          |
+| `tbsCertList`              | |
+|     `version`              | MUST be v2(1) |
+|     `signature`            | See [Section 7.1.3.2](#7132-signature-algorithmidentifier) |
+|     `issuer`               | MUST be byte-for-byte identical to the `subject` field of the Issuing CA. |
+|     `thisUpdate`           | utcTime (YYMMDDHHMMSSZ) MUST be used for dates up to and including 2049. generalTime (YYYYMMDDHHMMSSZ) MUST be used for dates after 2049.|
+|     `nextUpdate`           | utcTime (YYMMDDHHMMSSZ) MUST be used for dates up to and including 2049. generalTime (YYYYMMDDHHMMSSZ) MUST be used for dates after 2049.|
+|     `revokedCertificates`  | MUST only be present if the CA has issued a certificate that is both revoked unexpired. See the "revokedCertificates" table for additional requirements. |
+|     `extensions`        | See below table. |
+| `signatureAlgorithm`       | Encoded value MUST be byte-for-byte identical to the `tbsCertList.signature`. |
+| `signature`                | |
+| Any other value            | NOT RECOMMENDED |
+
+Table: CRL Extensions
+
+| __Extension__                     | __Presence__    | __Critical__          | __Description__ |
+| ----                              | -               | -                     | ----- |
+| `authorityKeyIdentifier`          | MUST            | N                     | MUST be byte-for-byte identical to the Subject Key Identifier in the issuing CA certificate. authorityCertIssuer and authorityCertSerialNumber MUST NOT be populated.      |
+| `CRLNumber`                       | MUST            | N                     | MUST convey a monotonically increasing sequence.       |
+| `IssuingDistributionPoint`        | *           | Y                     | Partitioned CRLs MUST include at least one of the names from the corresponding distributionPoint field of the cRLDistributionPoints extension of every certificate that is within the scope of this CRL. The encoded value MUST be byte-for-byte identical to the encoding used in the distributionPoint field of the certificate. This extension is NOT RECOMMENDED for full and complete CRLs |
+| Any other extension               | NOT RECOMMENDED        | -                     |       |
+
+Table: revokedCertificates Component
+
+| __Component__                     | __Presence__    | __Description__ |
+| ----                              | -               | ----- |
+| `serialNumber`                    | MUST            | MUST be byte-for-byte identical to the serialNumber contained in the revoked certificate.|
+| `revocationDate`                  | MUST            | The date and time which revocation occured. utcTime (YYMMDDHHMMSSZ) MUST be used for dates up to and including 2049. generalTime (YYYYMMDDHHMMSSZ) MUST be used for dates after 2049. | 
+| `crlEntryExtensions`              | *               | See crlEntryExtensions table (below) |
+
+Table: crlEntryExtensions Component 
+
+| __CRL Entry Extension__   | __Presence__  | __Description__ |
+| ---                       | -              | ------          |
+| `reasonCode`              | *              | See Section 4.9.1.1 for reasonCode requirements.|
+| Any other value | NOT RECOMMENDED | |
 
 ## 7.3 OCSP profile
 
