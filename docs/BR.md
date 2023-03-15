@@ -3151,7 +3151,7 @@ A full and complete CRL is a list of all revoked certificates issued by the CA f
 
 A partitioned CRL (sometimes referred to as a "sharded CRL") is a list of revoked certificates issued by the CA for any and all reasons constrained to a specific scope (e.g., temporal sharding).
 
-Minimally, CAs MUST issue either a "full and complete" CRL - or "partitioned" CRLs.
+Minimally, CAs MUST issue either a "full and complete" CRL - or "partitioned" CRLs. CAs MUST NOT issue indirect CRLs (i.e., the issuer of the CRL is not the issuer of all Certificates that are included in the scope of the CRL).
 
 If using only partitioned CRLs, the full set of partitioned CRLs MUST cover the complete set of public-key certificates issued by the CA. Thus, the complete set of partitioned CRLs MUST be equivalent to a full CRL for the same set of public-key certificates, if the CA was not using partitioned CRLs. 
 
@@ -3165,9 +3165,9 @@ Table: CRL Fields
 |     `version`              | MUST be v2(1) |
 |     `signature`            | See [Section 7.1.3.2](#7132-signature-algorithmidentifier) |
 |     `issuer`               | MUST be byte-for-byte identical to the `subject` field of the Issuing CA. |
-|     `thisUpdate`           | utcTime (YYMMDDHHMMSSZ) MUST be used for dates up to and including 2049. generalTime (YYYYMMDDHHMMSSZ) MUST be used for dates after 2049.|
-|     `nextUpdate`           | utcTime (YYMMDDHHMMSSZ) MUST be used for dates up to and including 2049. generalTime (YYYYMMDDHHMMSSZ) MUST be used for dates after 2049.|
-|     `revokedCertificates`  | MUST only be present if the CA has issued a certificate that is both revoked unexpired. See the "revokedCertificates" table for additional requirements. |
+|     `thisUpdate`           | UTCTime (YYMMDDHHMMSSZ) MUST be used for dates up to and including 2049. GeneralizedTime (YYYYMMDDHHMMSSZ) MUST be used for dates after 2049.|
+|     `nextUpdate`           | This field MUST be present. UTCTime (YYMMDDHHMMSSZ) MUST be used for dates up to and including 2049. GeneralizedTime (YYYYMMDDHHMMSSZ) MUST be used for dates after 2049.|
+|     `revokedCertificates`  | MUST only be present if the CA has issued a certificate that is both revoked and unexpired. See the "revokedCertificates" table for additional requirements. |
 |     `extensions`        | See below table. |
 | `signatureAlgorithm`       | Encoded value MUST be byte-for-byte identical to the `tbsCertList.signature`. |
 | `signature`                | |
@@ -3177,9 +3177,9 @@ Table: CRL Extensions
 
 | __Extension__                     | __Presence__    | __Critical__          | __Description__ |
 | ----                              | -               | -                     | ----- |
-| `authorityKeyIdentifier`          | MUST            | N                     | MUST be byte-for-byte identical to the Subject Key Identifier in the issuing CA certificate. authorityCertIssuer and authorityCertSerialNumber MUST NOT be populated.      |
-| `CRLNumber`                       | MUST            | N                     | MUST convey a monotonically increasing sequence.       |
-| `IssuingDistributionPoint`        | *           | Y                     | Partitioned CRLs MUST include at least one of the names from the corresponding distributionPoint field of the cRLDistributionPoints extension of every certificate that is within the scope of this CRL. The encoded value MUST be byte-for-byte identical to the encoding used in the distributionPoint field of the certificate. This extension is NOT RECOMMENDED for full and complete CRLs |
+| `authorityKeyIdentifier`          | MUST            | N                     | The `keyIdentifier` field MUST be included and its value MUST be byte-for-byte identical to the Subject Key Identifier of the Issuing CA's Certificate. The `authorityCertIssuer` and `authorityCertSerialNumber` fields MUST NOT be populated.      |
+| `CRLNumber`                       | MUST            | N                     | MUST contain an INTEGER greater than or equal to 0 and less than 2**159 and convey a monotonically increasing sequence.       |
+| `IssuingDistributionPoint`        | *           | Y                     | Partitioned CRLs MUST include at least one of the names from the corresponding distributionPoint field of the cRLDistributionPoints extension of every certificate that is within the scope of this CRL. The encoded value MUST be byte-for-byte identical to the encoding used in the distributionPoint field of the certificate. The `indirectCRL` and `onlyContainsAttributeCerts` fields MUST be set to `FALSE` (i.e., not asserted). The CA MAY set either of the `onlyContainsUserCerts` and `onlyContainsCACerts` fields to `TRUE`, depending on the scope of the CRL. The CA MUST NOT assert both of the `onlyContainsUserCerts` and `onlyContainsCACerts` fields. The `onlySomeReasons` field SHOULD NOT be included; if included, then the CA MUST provide another CRL whose scope encompasses all revocations regardless of reason code. This extension is NOT RECOMMENDED for full and complete CRLs. |
 | Any other extension               | NOT RECOMMENDED        | -                     |       |
 
 Table: revokedCertificates Component
@@ -3187,7 +3187,7 @@ Table: revokedCertificates Component
 | __Component__                     | __Presence__    | __Description__ |
 | ----                              | -               | ----- |
 | `serialNumber`                    | MUST            | MUST be byte-for-byte identical to the serialNumber contained in the revoked certificate.|
-| `revocationDate`                  | MUST            | The date and time which revocation occured. utcTime (YYMMDDHHMMSSZ) MUST be used for dates up to and including 2049. generalTime (YYYYMMDDHHMMSSZ) MUST be used for dates after 2049. | 
+| `revocationDate`                  | MUST            | The date and time which revocation occured. UTCTime (YYMMDDHHMMSSZ) MUST be used for dates up to and including 2049. GeneralizedTime (YYYYMMDDHHMMSSZ) MUST be used for dates after 2049. | 
 | `crlEntryExtensions`              | *               | See crlEntryExtensions table (below) |
 
 Table: crlEntryExtensions Component 
