@@ -3153,27 +3153,27 @@ A partitioned CRL (sometimes referred to as a "sharded CRL") is a list of revoke
 
 Minimally, CAs MUST issue either a "full and complete" CRL - or "partitioned" CRLs. 
 
-CAs MUST NOT issue indirect CRLs (i.e., the issuer of the CRL is not the issuer of all Certificates that are included in the scope of the CRL).
-
 If using only partitioned CRLs, the full set of partitioned CRLs MUST cover the complete set of public-key certificates issued by the CA. Thus, the complete set of partitioned CRLs MUST be equivalent to a full CRL for the same set of public-key certificates, if the CA was not using partitioned CRLs. 
+
+CAs MUST NOT issue indirect CRLs (i.e., the issuer of the CRL is not the issuer of all Certificates that are included in the scope of the CRL).
 
 Aside from the presence of the `IssuingDistributionPoint` extension in partitioned CRLs, both CRL formats are syntactically the same from the perspective of this profile.
 
 Table: CRL Fields
 
-| __Field__                  | __Description__ |
-| ---                        | ------          |
-| `tbsCertList`              | |
-|     `version`              | MUST be v2(1) |
-|     `signature`            | See [Section 7.1.3.2](#7132-signature-algorithmidentifier) |
-|     `issuer`               | MUST be byte-for-byte identical to the `subject` field of the Issuing CA. |
-|     `thisUpdate`           | UTCTime (YYMMDDHHMMSSZ) MUST be used for dates up to and including 2049. GeneralizedTime (YYYYMMDDHHMMSSZ) MUST be used for dates after 2049.|
-|     `nextUpdate`           | This field MUST be present. UTCTime (YYMMDDHHMMSSZ) MUST be used for dates up to and including 2049. GeneralizedTime (YYYYMMDDHHMMSSZ) MUST be used for dates after 2049.|
-|     `revokedCertificates`  | MUST only be present if the CA has issued a certificate that is both revoked and unexpired. An entry MUST NOT be removed from the CRL until it appears on one regularly scheduled CRL issued beyond the revoked certificate's validity period. See the "revokedCertificates" table for additional requirements. |
-|     `extensions`        | See below table. |
-| `signatureAlgorithm`       | Encoded value MUST be byte-for-byte identical to the `tbsCertList.signature`. |
-| `signature`                | |
-| Any other value            | NOT RECOMMENDED |
+| __Field__                  | __Presence__    | __Description__ |
+| ---                        | ------          | ------          |
+| `tbsCertList`              |                 |                 |
+|     `version`              | MUST     | MUST be v2(1) |
+|     `signature`            | MUST     | See [Section 7.1.3.2](#7132-signature-algorithmidentifier) |
+|     `issuer`               | MUST     | MUST be byte-for-byte identical to the `subject` field of the Issuing CA. |
+|     `thisUpdate`           | MUST     | UTCTime (YYMMDDHHMMSSZ) MUST be used for dates up to and including 2049. GeneralizedTime (YYYYMMDDHHMMSSZ) MUST be used for dates after 2049.|
+|     `nextUpdate`           | MUST     | UTCTime (YYMMDDHHMMSSZ) MUST be used for dates up to and including 2049. GeneralizedTime (YYYYMMDDHHMMSSZ) MUST be used for dates after 2049.|
+|     `revokedCertificates`  | *        | MUST only be present if the CA has issued a certificate that is both revoked and unexpired. An entry MUST NOT be removed from the CRL until it appears on one regularly scheduled CRL issued beyond the revoked certificate's validity period. See the "revokedCertificates" table for additional requirements. |
+|     `extensions`           | MUST     | See below table. |
+| `signatureAlgorithm`       | MUST     | Encoded value MUST be byte-for-byte identical to the `tbsCertList.signature`. |
+| `signature`                | MUST     | - |
+| Any other value            | NOT RECOMMENDED | - |
 
 Table: CRL Extensions
 
