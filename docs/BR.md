@@ -188,7 +188,6 @@ The following Certificate Policy identifiers are reserved for use by CAs to asse
 | 2024-03-15 | 4.9.7 | CAs MUST generate and publish CRLs. |
 | 2024-09-15 | 3.2.2.9 | CAs MUST perform Multi-Perspective Domain Validation. |
 
-
 ## 1.3 PKI Participants
 
 The CA/Browser Forum is a voluntary organization of Certification Authorities and suppliers of Internet browser and other relying-party software applications.
@@ -1045,15 +1044,15 @@ Network Perspectives MUST be spread across a minimum of two distinct continents.
 
 Results or information obtained from one Network Perspective MUST NOT be reused or cached when performing validation through subsequent Network Perspectives (e.g., different Network Perspectives cannot rely on a shared DNS cache to prevent an adversary with control of traffic from one Network Perspective from poisoning the DNS cache used by other Network Perspectives).
 
-In the event that the Primary Domain Validation Determination or Primary CAA Determination is not corroborated as defined in the "# of Network Perspectives and Quorum Requirements" Table, CAs MAY immediately retry using the same validation method or an alternative method (e.g., a CA can immediately retry validation using “Email to DNS TXT Contact” if “Agreed-Upon Change to Website - ACME” does not corroborate the outcome of Multi-Perspective Domain Validation). There is no stipulation regarding the maximum number of validation attempts which may be performed in any period of time.
+In the event that the Primary Domain Validation Determination or Primary CAA Determination is not corroborated as defined in the "# of Network Perspectives and Quorum Requirements" Table, CAs MAY immediately retry using the same validation method or an alternative method (e.g., a CA can immediately retry validation using “Email to DNS TXT Contact” if “Agreed-Upon Change to Website - ACME” does not corroborate the outcome of Multi-Perspective Domain Validation). There is no stipulation regarding the maximum number of validation attempts that may be performed in any period of time.
 
 
 Phased Implementation Timeline:
 - *Effective March 15, 2024*, the CA SHOULD implement Multi-Perspective Domain Validation as described in this section. 
-- *Effective September 15, 2024*, the CA MUST implement Multi-Perspective Domain Validation as described in this section, however, the CA MAY proceed with certificate issuance if the Primary Domain Validation Determination is not corroborated as defined in the "# of Network Perspectives and Quorum Requirements" table.
-- *Effective March 15, 2025*, the CA MUST implement Multi-Perspective Domain Validation as described in this section, however, the CA MUST NOT proceed with certificate issuance if the Primary Domain Validation Determination is not corroborated as defined the in "# of Network Perspectives and Quorum Requirements" table and the "Defining Corroborating CAA Evidence" table.
+- *Effective September 15, 2024*, the CA MUST implement Multi-Perspective Domain Validation as described in this section; however, the CA MAY proceed with certificate issuance if the Primary Domain Validation Determination is not corroborated as defined in the "# of Network Perspectives and Quorum Requirements" table.
+- *Effective March 15, 2025*, the CA MUST implement Multi-Perspective Domain Validation as described in this section; however, the CA MUST NOT proceed with certificate issuance if the Primary Domain Validation Determination is not corroborated as defined in the "# of Network Perspectives and Quorum Requirements" table and the "Defining Corroborating CAA Evidence" table.
 
-Even though the "# of Network Perspectives and Quorum Requirements" table permits issuance when some Network Perspectives do not corroborate the Primary Domain Validation Determination, the set of vantage points that do corroborate the Primary Domain Validation Determination must be spread over two distinct continents for a CA to proceed with certificate issuance after March 15 2026 .
+Even though the "# of Network Perspectives and Quorum Requirements" table permits issuance when some Network Perspectives do not corroborate the Primary Domain Validation Determination, the set of vantage points that do corroborate the Primary Domain Validation Determination must be spread over two distinct continents for a CA to proceed with certificate issuance after March 15, 2026.
 
 Table: # of Network Perspectives and Quorum Requirements
 
@@ -1091,7 +1090,7 @@ Computing systems performing Multi-Perspective Domain Validation:
 
 - SHOULD:
     - Facility & Service Provider Requirements
-      - Be hosted from a ISO/IEC 27001 certified facility, or equivalent. 
+      - Be hosted from an ISO/IEC 27001 certified facility or equivalent. 
       - Rely on services covered in one of the following reports: System and Organization Controls 3 (SOC 3), IASE 3000, ENISA 715, FedRAMP Moderate, C5:2020, CSA STAR CCM, or equivalent.
     - Network Hardening
       - Configure each network boundary control (firewall, switch, router, gateway, or other network control device or system) with rules that support only the services, protocols, ports, and communications identified as necessary to its operations.
