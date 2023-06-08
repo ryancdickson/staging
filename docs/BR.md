@@ -947,6 +947,8 @@ If a Random Value is used, the CA SHALL provide a Random Value unique to the cer
   i. 30 days or
   ii. if the Applicant submitted the certificate request, the time frame permitted for reuse of validated information relevant to the certificate (such as in [Section 4.2.1](#421-performing-identification-and-authentication-functions) of this document).
 
+Validations using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9.
+
 ##### 3.2.2.5.2 Email, Fax, SMS, or Postal Mail to IP Address Contact
 
 Confirming the Applicant's control over the IP Address by sending a Random Value via email, fax, SMS, or postal mail and then receiving a confirming response utilizing the Random Value. The Random Value MUST be sent to an email address, fax/SMS number, or postal mail address identified as an IP Address Contact.
@@ -964,6 +966,8 @@ The Random Value SHALL remain valid for use in a confirming response for no more
 ##### 3.2.2.5.3 Reverse Address Lookup
 
 Confirming the Applicant’s control over the IP Address by obtaining a Domain Name associated with the IP Address through a reverse-IP lookup on the IP Address and then verifying control over the FQDN using a method permitted under [Section 3.2.2.4](#3224-validation-of-domain-authorization-or-control).
+
+Validations using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9.
 
 ##### 3.2.2.5.4 Any Other Method
 
@@ -985,9 +989,13 @@ The Random Value SHALL remain valid for use in a confirming response for no more
 
 Confirming the Applicant's control over the IP Address by performing the procedure documented for an “http-01” challenge in draft 04 of “ACME IP Identifier Validation Extension,” available at <https://tools.ietf.org/html/draft-ietf-acme-ip-04#section-4>.
 
+Validations using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9.
+
 ##### 3.2.2.5.7 ACME “tls-alpn-01” method for IP Addresses
 
 Confirming the Applicant's control over the IP Address by performing the procedure documented for a “tls-alpn-01” challenge in draft 04 of “ACME IP Identifier Validation Extension,” available at <https://tools.ietf.org/html/draft-ietf-acme-ip-04#section-4>.
+
+Validations using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9.
 
 #### 3.2.2.6 Wildcard Domain Validation
 
@@ -1044,7 +1052,7 @@ Network Perspectives MUST be spread across a minimum of two distinct continents.
 
 Results or information obtained from one Network Perspective MUST NOT be reused or cached when performing validation through subsequent Network Perspectives (e.g., different Network Perspectives cannot rely on a shared DNS cache to prevent an adversary with control of traffic from one Network Perspective from poisoning the DNS cache used by other Network Perspectives).
 
-In the event that the Primary Domain Validation Determination or Primary CAA Determination is not corroborated as defined in the "# of Network Perspectives and Quorum Requirements" table, CAs MAY immediately retry using the same validation method or an alternative method (e.g., a CA can immediately retry validation using “Email to DNS TXT Contact” if “Agreed-Upon Change to Website - ACME” does not corroborate the outcome of Multi-Perspective Domain Validation). There is no stipulation regarding the maximum number of validation attempts that may be performed in any period of time.
+In the event that the Primary Domain Validation Determination or Primary CAA Determination is not corroborated as defined in the "# of Network Perspectives and Quorum Requirements" table, CAs MAY immediately retry Multi-Perspective Domain Validation using the same validation method or an alternative method (e.g., a CA can immediately retry validation using “Email to DNS TXT Contact” if “Agreed-Upon Change to Website - ACME” does not corroborate the outcome of Multi-Perspective Domain Validation). There is no stipulation regarding the maximum number of validation attempts that may be performed in any period of time.
 
 Phased Implementation Timeline:
 - *Effective March 15, 2024*, the CA SHOULD implement Multi-Perspective Domain Validation as described in this section. 
@@ -1060,14 +1068,14 @@ Table: # of Network Perspectives and Quorum Requirements
 | 1 | 1 | This configuration MUST NOT be used after 9/15/2025. |
 | 3 | 1 | This configuration MUST NOT be used after 9/15/2026. |
 | 4 | 2 | N/A |
-| N-2 | 2 | Regardless of the number of Network Perspectives used (i.e., “N”), a maximum of two (2) Network Perspectives MAY disagree with the Primary Domain Validation Determination. |
+| N-2 | 2 | When the number of Network Perspectives used (i.e., “N”) is greater than or equal to (>=) six (6), a maximum of two (2) Network Perspectives MAY disagree with the Primary Domain Validation Determination. |
 
 Table: Defining Corroborating Domain Validation Evidence
 
 | Domain Validation Method | Description of Corroborating Evidence |
 |---|---|
 | DNS Change (defined in 3.2.2.4.7) | This method involves observing changes to DNS.<br><br>“Corroborate” means the corresponding challenge information (e.g., Random Value or Request Token) MUST be observed by the required number of Network Perspectives defined in the "# of Network Perspectives and Quorum Requirements" table, otherwise the certificate MUST NOT be issued. |
-| IP Address (defined in 3.2.2.4.8) | This method involves observing A or AAAA records in DNS.<br><br>“Corroborate” means the corresponding challenge information (e.g., Random Value or Request Token) MUST be observed by the required number of Network Perspectives defined in the "# of Network Perspectives and Quorum Requirements" table, otherwise the certificate MUST NOT be issued. |
+| IP Address (defined in 3.2.2.4.8) | This method involves observing A or AAAA records in DNS.<br><br>“Corroborate” means an IP address controlled by the applicant in accordance with Section 3.2.2.5 MUST be observed by the required number of Network Perspectives defined in the "# of Network Perspectives and Quorum Requirements" table, otherwise the certificate MUST NOT be issued. The observed IP address controlled by the applicant does not need to be the same across various Network Perspectives. |
 | Email to DNS CAA Contact (defined in 3.2.2.4.13) | This method involves a DNS lookup to obtain contact information related to a domain.<br><br>“Corroborate” means the selected contact address ultimately used for domain validation MUST have been returned “byte-for-byte” identical by the required number of Network Perspectives defined in the "# of Network Perspectives and Quorum Requirements" table, otherwise the certificate MUST NOT be issued. |
 | Email to DNS TXT Contact (defined in 3.2.2.4.14) | This method involves a DNS lookup to obtain contact information related to a domain.<br><br>“Corroborate” means the selected contact address ultimately used for domain validation MUST have been returned “byte-for-byte” identical by the required number of Network Perspectives defined in the "# of Network Perspectives and Quorum Requirements" table, otherwise the certificate MUST NOT be issued. |
 | Phone Contact with DNS TXT Record Phone Contact (defined in 3.2.2.4.16) | This method involves a DNS lookup to obtain contact information related to a domain.<br><br>“Corroborate” means the selected contact address ultimately used for domain validation MUST have been returned “byte-for-byte” identical by the required number of Network Perspectives defined in the "# of Network Perspectives and Quorum Requirements" table, otherwise the certificate MUST NOT be issued. |
@@ -1075,6 +1083,12 @@ Table: Defining Corroborating Domain Validation Evidence
 | Agreed-Upon Change to Website v2 (defined in 3.2.2.4.18) | This method involves observing changes to website content.<br><br>“Corroborate” means the corresponding challenge information (e.g., Random Value or Request Token) MUST be observed by the required number of Network Perspectives defined in the "# of Network Perspectives and Quorum Requirements" table, otherwise the certificate MUST NOT be issued. |
 | Agreed-Upon Change to Website - ACME (defined in 3.2.2.4.19) | This method involves observing changes to website content.<br><br>“Corroborate” means the corresponding challenge information (e.g., Random Value or Request Token) MUST be observed by the required number of Network Perspectives defined in the "# of Network Perspectives and Quorum Requirements" table, otherwise the certificate MUST NOT be issued. |
 | TLS Using ALPN (defined in 3.2.2.4.20) | This method involves establishing a TLS connection.<br><br>“Corroborate” means the corresponding challenge information (e.g., Random Value or Request Token) MUST be observed by the required number of Network Perspectives defined in the "# of Network Perspectives and Quorum Requirements" table, otherwise the certificate MUST NOT be issued. |
+| Agreed-Upon Change to Website (defined in 3.2.2.5.1) | This method involves observing changes to website content.<br><br>“Corroborate” means the corresponding challenge information (e.g., Random Value or Request Token) MUST be observed by the required number of Network Perspectives defined in the "# of Network Perspectives and Quorum Requirements" table, otherwise the certificate MUST NOT be issued. |
+| Reverse Address Lookup (defined in 3.2.2.5.3) | This method involves a DNS lookup to obtain information about which domain is associated with an IP address.<br><br>“Corroborate” means the domain name retrieved via the reverse DNS lookup MUST be observed by the required number of Network Perspectives defined in the "# of Network Perspectives and Quorum Requirements" table, otherwise the certificate MUST NOT be issued.
+| ACME “http-01” method for IP Addresses (defined in 3.2.2.5.6) | This method involves observing changes to website content<br><br>“Corroborate” means the corresponding challenge information (e.g., Random Value or Request Token) MUST be observed by the required number of Network Perspectives defined in the "# of Network Perspectives and Quorum Requirements" table, otherwise the certificate MUST NOT be issued. |
+| ACME “tls-alpn-01” method for IP Addresses (defined in 3.2.2.5.7) | This method involves establishing a TLS connection.<br><br>
+“Corroborate” means the corresponding challenge information (e.g., Random Value or Request Token) MUST be observed by the required number of Network Perspectives defined in the "# of Network Perspectives and Quorum Requirements" table, otherwise the certificate MUST NOT be issued. |
+
 
 Table: Defining Corroborating CAA Evidence
 
