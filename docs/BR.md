@@ -379,7 +379,7 @@ The Definitions found in the CA/Browser Forum's Network and Certificate System S
 
 **Multi-Perspective Domain Validation**: A process by which the determination made during domain validation (see "Primary Domain Validation Determination") is corroborated from multiple Network Perspectives before subscriber certificate issuance. 
 
-**Network Perspective**: Related to Multi-Perspective Domain Validation. A configuration for sending outbound Internet traffic associated with a domain control validation method. The location of a Network Perspective is determined by the point where unencapsulated outbound Internet traffic is first handed off to the network infrastructure providing Internet connectivity to that perspective. This infrastructure may be administered by the same organization providing the computational services required to operate the perspective. Network Perspectives are considered distinct when the straight-line distance between the two States or Provinces they reside in are separated by a distance of at least 500 km.
+**Network Perspective**: Related to Multi-Perspective Domain Validation. A configuration for sending outbound Internet traffic associated with a domain control validation method. The location of a Network Perspective is determined by the point where unencapsulated outbound Internet traffic is first handed off to the network infrastructure providing Internet connectivity to that perspective.
 
 **Non-Reserved LDH Label**: From RFC 5890 (<http://tools.ietf.org/html/rfc5890>): "The set of valid LDH labels that do not have '`--`' in the third and fourth positions."
 
@@ -1045,6 +1045,10 @@ CAs MUST document potential issuances that were prevented by a CAA record in suf
 #### 3.2.2.9 Multi-Perspective Domain Validation
 
 Multi-Perspective Domain Validation attempts to corroborate the Primary Domain Validation Determination and Primary CAA Determination by re-completing the entirety of the domain validation process from multiple geographic Network Perspectives before subscriber certificate issuance. This process can improve protection against equally-specific prefix Border Gateway Protocol (BGP) attacks or hijacks.
+
+Network Perspectives are considered distinct when the straight-line distance between the two States or Provinces they reside in are separated by a distance of at least 500 km.
+
+The network infrastructure providing Internet connectivity to a Network Perspective MAY be administered by the same organization providing the computational services required to operate the Network Perspective. 
 
 Each Network Perspective MUST independently complete the entirety of the following:
 - the domain validation process used to establish the Primary Domain Validation Determination (i.e., including DNS lookups for A records), and
