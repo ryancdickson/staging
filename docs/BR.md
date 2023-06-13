@@ -1046,7 +1046,7 @@ CAs MUST document potential issuances that were prevented by a CAA record in suf
 
 Multi-Perspective Domain Validation attempts to corroborate the Primary Domain Validation Determination and Primary CAA Determination by re-completing the entirety of the domain validation process from multiple geographic Network Perspectives before subscriber certificate issuance. This process can offer improved protection against equally-specific prefix Border Gateway Protocol (BGP) attacks or hijacks.
 
-Network Perspectives MUST be spread across a minimum of two distinct continents. Each Network Perspective MUST independently complete the entirety of:
+Each Network Perspective MUST independently complete the entirety of:
 - the domain validation process used to establish the Primary Domain Validation Determination (i.e., including DNS lookups for A records), and
 - the CAA record checking process used to establish the Primary CAA Determination. 
 
