@@ -771,7 +771,7 @@ If a Random Value is used, the CA SHALL provide a Random Value unique to the Cer
   i. 30 days or
   ii. if the Applicant submitted the Certificate request, the time frame permitted for reuse of validated information relevant to the Certificate (such as in [Section 4.2.1](#421-performing-identification-and-authentication-functions) of these Guidelines or Section 11.14.3 of the EV Guidelines).
 
-CAs using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9.
+CAs using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9. To count as corroborating, a Network Perspective MUST observe the same challenge information (e.g., Random Value or Request Token) as the Primary Domain Validation Determination.
 
 **Note**: Once the FQDN has been validated using this method, the CA MAY also issue Certificates for other FQDNs that end with all the Domain Labels of the validated FQDN. This method is suitable for validating Wildcard Domain Names.
 
@@ -779,7 +779,7 @@ CAs using this method MUST implement Multi-Perspective Domain Validation as spec
 
 Confirming the Applicant's control over the FQDN by confirming that the Applicant controls an IP address returned from a DNS lookup for A or AAAA records for the FQDN in accordance with [Section 3.2.2.5](#3225-authentication-for-an-ip-address).
 
-CAs using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9.
+CAs using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9. To count as corroborating, a Network Perspective MUST observe the same IP address as the Primary Domain Validation Determination.
 
 **Note**: Once the FQDN has been validated using this method, the CA MUST NOT issue Certificates for other FQDNs that end with all the labels of the validated FQDN unless the CA performs a separate validation for that FQDN using an authorized method. This method is NOT suitable for validating Wildcard Domain Names.
 
@@ -809,7 +809,7 @@ Each email MAY confirm control of multiple FQDNs, provided that each email addre
 
 The Random Value SHALL be unique in each email. The email MAY be re-sent in its entirety, including the re-use of the Random Value, provided that its entire contents and recipient(s) SHALL remain unchanged. The Random Value SHALL remain valid for use in a confirming response for no more than 30 days from its creation. The CPS MAY specify a shorter validity period for Random Values.
 
-CAs using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9.
+CAs using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9. To count as corroborating, a Network Perspective MUST observe the selected contact address used for domain validation observed during the Primary Domain Validation Determination.
 
 **Note**: Once the FQDN has been validated using this method, the CA MAY also issue Certificates for other FQDNs that end with all the Domain Labels of the validated FQDN. This method is suitable for validating Wildcard Domain Names.
 
@@ -821,7 +821,7 @@ Each email MAY confirm control of multiple FQDNs, provided that each email addre
 
 The Random Value SHALL be unique in each email. The email MAY be re-sent in its entirety, including the re-use of the Random Value, provided that its entire contents and recipient(s) SHALL remain unchanged. The Random Value SHALL remain valid for use in a confirming response for no more than 30 days from its creation. The CPS MAY specify a shorter validity period for Random Values.
 
-CAs using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9.
+CAs using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9. To count as corroborating, a Network Perspective MUST observe the selected contact address used for domain validation observed during the Primary Domain Validation Determination. 
 
 **Note**: Once the FQDN has been validated using this method, the CA MAY also issue Certificates for other FQDNs that end with all the Domain Labels of the validated FQDN. This method is suitable for validating Wildcard Domain Names.
 
@@ -847,7 +847,7 @@ In the event of reaching voicemail, the CA may leave the Random Value and the AD
 
 The Random Value SHALL remain valid for use in a confirming response for no more than 30 days from its creation. The CPS MAY specify a shorter validity period for Random Values.
 
-CAs using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9.
+CAs using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9. To count as corroborating, a Network Perspective MUST observe the selected contact address used for domain validation observed during the Primary Domain Validation Determination. 
 
 **Note**: Once the FQDN has been validated using this method, the CA MAY also issue Certificates for other FQDNs that end with all the Domain Labels of the validated FQDN. This method is suitable for validating Wildcard Domain Names.
 
@@ -861,7 +861,7 @@ In the event of reaching voicemail, the CA may leave the Random Value and the AD
 
 The Random Value SHALL remain valid for use in a confirming response for no more than 30 days from its creation. The CPS MAY specify a shorter validity period for Random Values.
 
-CAs using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9.
+CAs using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9. To count as corroborating, a Network Perspective MUST observe the selected contact address used for domain validation observed during the Primary Domain Validation Determination. 
 
 **Note**: Once the FQDN has been validated using this method, the CA MAY also issue Certificates for other FQDNs that end with all the Domain Labels of the validated FQDN. This method is suitable for validating Wildcard Domain Names.
 
@@ -892,7 +892,7 @@ If a Random Value is used, then:
 1. The CA MUST provide a Random Value unique to the certificate request.
 2. The Random Value MUST remain valid for use in a confirming response for no more than 30 days from its creation. The CPS MAY specify a shorter validity period for Random Values, in which case the CA MUST follow its CPS.
 
-CAs using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9.
+CAs using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9. To count as corroborating, a Network Perspective MUST observe the same challenge information (e.g., Random Value or Request Token) as the Primary Domain Validation Determination.
 
 **Note**:
   * The CA MUST NOT issue Certificates for other FQDNs that end with all the labels of the validated FQDN unless the CA performs a separate validation for that FQDN using an authorized method. This method is NOT suitable for validating Wildcard Domain Names.
@@ -913,7 +913,7 @@ If the CA follows redirects, the following apply:
 2. Redirects MUST be to resource URLs with either the "http" or "https" scheme.
 3. Redirects MUST be to resource URLs accessed via Authorized Ports.
 
-CAs using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9.
+CAs using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9. To count as corroborating, a Network Perspective MUST observe the same challenge information (e.g., Random Value or Request Token) as the Primary Domain Validation Determination.
 
 **Note**:
   * The CA MUST NOT issue Certificates for other FQDNs that end with all the labels of the validated FQDN unless the CA performs a separate validation for that FQDN using an authorized method. This method is NOT suitable for validating Wildcard Domain Names.
@@ -924,7 +924,7 @@ Confirming the Applicant's control over a FQDN by validating domain control of t
 
 The token (as defined in RFC 8737, Section 3) MUST NOT be used for more than 30 days from its creation. The CPS MAY specify a shorter validity period for the token, in which case the CA MUST follow its CPS.
 
-CAs using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9.
+CAs using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9. To count as corroborating, a Network Perspective MUST observe the same token as the Primary Domain Validation Determination.
 
 **Note**: Once the FQDN has been validated using this method, the CA MUST NOT issue Certificates for other FQDNs that end with all the labels of the validated FQDN unless the CA performs a separate validation for that FQDN using an authorized method. This method is NOT suitable for validating Wildcard Domain Names.
 
@@ -947,7 +947,7 @@ If a Random Value is used, the CA SHALL provide a Random Value unique to the cer
   i. 30 days or
   ii. if the Applicant submitted the certificate request, the time frame permitted for reuse of validated information relevant to the certificate (such as in [Section 4.2.1](#421-performing-identification-and-authentication-functions) of this document).
 
-CAs using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9.
+CAs using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9. To count as corroborating, a Network Perspective MUST observe the same challenge information (e.g., Random Value or Request Token) as the Primary Domain Validation Determination.
 
 ##### 3.2.2.5.2 Email, Fax, SMS, or Postal Mail to IP Address Contact
 
@@ -967,7 +967,7 @@ The Random Value SHALL remain valid for use in a confirming response for no more
 
 Confirming the Applicant’s control over the IP Address by obtaining a Domain Name associated with the IP Address through a reverse-IP lookup on the IP Address and then verifying control over the FQDN using a method permitted under [Section 3.2.2.4](#3224-validation-of-domain-authorization-or-control).
 
-CAs using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9.
+CAs using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9. To count as corroborating, a Network Perspective MUST observe the same Domain Name as the Primary Domain Validation Determination.
 
 ##### 3.2.2.5.4 Any Other Method
 
@@ -995,7 +995,7 @@ CAs using this method MUST implement Multi-Perspective Domain Validation as spec
 
 Confirming the Applicant's control over the IP Address by performing the procedure documented for a "tls-alpn-01" challenge in draft 04 of "ACME IP Identifier Validation Extension," available at <https://tools.ietf.org/html/draft-ietf-acme-ip-04#section-4>.
 
-CAs using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9.
+CAs using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9. To count as corroborating, a Network Perspective MUST observe the same token as the Primary Domain Validation Determination.
 
 #### 3.2.2.6 Wildcard Domain Validation
 
@@ -1044,15 +1044,19 @@ CAs MUST document potential issuances that were prevented by a CAA record in suf
 
 #### 3.2.2.9 Multi-Perspective Domain Validation
 
-Multi-Perspective Domain Validation attempts to corroborate the Primary Domain Validation Determination and Primary CAA Determination by re-completing the entirety of the domain validation process from multiple geographic Network Perspectives before subscriber certificate issuance. This process can offer improved protection against equally-specific prefix Border Gateway Protocol (BGP) attacks or hijacks.
+Multi-Perspective Domain Validation attempts to corroborate the Primary Domain Validation Determination and Primary CAA Determination by re-completing the entirety of the domain validation process from multiple geographic Network Perspectives before subscriber certificate issuance. This process can improve protection against equally-specific prefix Border Gateway Protocol (BGP) attacks or hijacks.
 
-Each Network Perspective MUST independently complete the entirety of:
+Each Network Perspective MUST independently complete the entirety of the following:
 - the domain validation process used to establish the Primary Domain Validation Determination (i.e., including DNS lookups for A records), and
-- the CAA record checking process used to establish the Primary CAA Determination. 
+- the CAA record-checking process used to establish the Primary CAA Determination. 
 
 Results or information obtained from one Network Perspective MUST NOT be reused or cached when performing validation through subsequent Network Perspectives (e.g., different Network Perspectives cannot rely on a shared DNS cache to prevent an adversary with control of traffic from one Network Perspective from poisoning the DNS cache used by other Network Perspectives).
 
-In the event that the Primary Domain Validation Determination or Primary CAA Determination is not corroborated as defined in the "# of Network Perspectives and Quorum Requirements" table, CAs MAY immediately retry Multi-Perspective Domain Validation using the same validation method or an alternative method (e.g., a CA can immediately retry validation using "Email to DNS TXT Contact" if "Agreed-Upon Change to Website - ACME" does not corroborate the outcome of Multi-Perspective Domain Validation). There is no stipulation regarding the maximum number of validation attempts that may be performed in any period of time.
+[Section 3.2.2.4](#3224-validation-of-domain-authorization-or-control) and [Section 3.2.2.5](#3225-authentication-for-an-ip-address) describe the validation methods that require the use of Multi-Perspective Domain Validation and how a Network Perspective can corroborate the Primary Domain Validation Determination. To corroborate the Primary CAA Determination, a Network Perspective MUST perform a CAA lookup that concludes the CA can issue a certificate to the domain in question.
+
+The "# of Network Perspectives and Quorum Requirements" Table describes quorum requirements related to Multi-Perspective Domain Validation. 
+
+CAs MAY immediately retry Multi-Perspective Domain Validation using the same validation method or an alternative method (e.g., a CA can immediately retry validation using "Email to DNS TXT Contact" if "Agreed-Upon Change to Website - ACME" does not corroborate the outcome of Multi-Perspective Domain Validation). There is no stipulation regarding the maximum number of validation attempts that may be performed in any period of time.
 
 Phased Implementation Timeline:
 - *Effective March 15, 2024*, the CA SHOULD implement Multi-Perspective Domain Validation as described in this section. 
@@ -1069,31 +1073,6 @@ Table: # of Network Perspectives and Quorum Requirements
 | 3 | 1 | This configuration MUST NOT be used after 9/15/2026. |
 | 4 | 2 | N/A |
 | N-2 | 2 | When the number of Network Perspectives used (i.e., "N") is greater than or equal to (>=) six (6), a maximum of two (2) Network Perspectives MAY disagree with the Primary Domain Validation Determination. |
-
-Table: Defining Corroborating Domain Validation Evidence
-
-| Domain Validation Method | Description of Corroborating Evidence |
-|---|---|
-| DNS Change (defined in 3.2.2.4.7) | This method involves observing changes to DNS.<br><br>"Corroborate" means the corresponding challenge information (e.g., Random Value or Request Token) MUST be observed by the required number of Network Perspectives defined in the "# of Network Perspectives and Quorum Requirements" table, otherwise the certificate MUST NOT be issued. |
-| IP Address (defined in 3.2.2.4.8) | This method involves observing A or AAAA records in DNS.<br><br>"Corroborate" means an IP address controlled by the applicant in accordance with Section 3.2.2.5 MUST be observed by the required number of Network Perspectives defined in the "# of Network Perspectives and Quorum Requirements" table, otherwise the certificate MUST NOT be issued. The observed IP address controlled by the applicant does not need to be the same across various Network Perspectives. |
-| Email to DNS CAA Contact (defined in 3.2.2.4.13) | This method involves a DNS lookup to obtain contact information related to a domain.<br><br>"Corroborate" means the selected contact address ultimately used for domain validation MUST have been returned "byte-for-byte" identical by the required number of Network Perspectives defined in the "# of Network Perspectives and Quorum Requirements" table, otherwise the certificate MUST NOT be issued. |
-| Email to DNS TXT Contact (defined in 3.2.2.4.14) | This method involves a DNS lookup to obtain contact information related to a domain.<br><br>"Corroborate" means the selected contact address ultimately used for domain validation MUST have been returned "byte-for-byte" identical by the required number of Network Perspectives defined in the "# of Network Perspectives and Quorum Requirements" table, otherwise the certificate MUST NOT be issued. |
-| Phone Contact with DNS TXT Record Phone Contact (defined in 3.2.2.4.16) | This method involves a DNS lookup to obtain contact information related to a domain.<br><br>"Corroborate" means the selected contact address ultimately used for domain validation MUST have been returned "byte-for-byte" identical by the required number of Network Perspectives defined in the "# of Network Perspectives and Quorum Requirements" table, otherwise the certificate MUST NOT be issued. |
-| Phone Contact with DNS CAA Phone Contact (defined in 3.2.2.4.17) | This method involves a DNS lookup to obtain contact information related to a domain.<br><br>"Corroborate" means the selected contact address ultimately used for domain validation MUST have been returned "byte-for-byte" identical by the required number of Network Perspectives defined in the "# of Network Perspectives and Quorum Requirements" table, otherwise the certificate MUST NOT be issued. |
-| Agreed-Upon Change to Website v2 (defined in 3.2.2.4.18) | This method involves observing changes to website content.<br><br>"Corroborate" means the corresponding challenge information (e.g., Random Value or Request Token) MUST be observed by the required number of Network Perspectives defined in the "# of Network Perspectives and Quorum Requirements" table, otherwise the certificate MUST NOT be issued. |
-| Agreed-Upon Change to Website - ACME (defined in 3.2.2.4.19) | This method involves observing changes to website content.<br><br>"Corroborate" means the corresponding challenge information (e.g., Random Value or Request Token) MUST be observed by the required number of Network Perspectives defined in the "# of Network Perspectives and Quorum Requirements" table, otherwise the certificate MUST NOT be issued. |
-| TLS Using ALPN (defined in 3.2.2.4.20) | This method involves establishing a TLS connection.<br><br>"Corroborate" means the corresponding challenge information (e.g., Random Value or Request Token) MUST be observed by the required number of Network Perspectives defined in the "# of Network Perspectives and Quorum Requirements" table, otherwise the certificate MUST NOT be issued. |
-| Agreed-Upon Change to Website (defined in 3.2.2.5.1) | This method involves observing changes to website content.<br><br>"Corroborate" means the corresponding challenge information (e.g., Random Value or Request Token) MUST be observed by the required number of Network Perspectives defined in the "# of Network Perspectives and Quorum Requirements" table, otherwise the certificate MUST NOT be issued. |
-| Reverse Address Lookup (defined in 3.2.2.5.3) | This method involves a DNS lookup to obtain information about which domain is associated with an IP address.<br><br>"Corroborate" means the domain name retrieved via the reverse DNS lookup MUST be observed by the required number of Network Perspectives defined in the "# of Network Perspectives and Quorum Requirements" table, otherwise the certificate MUST NOT be issued.
-| ACME "http-01" method for IP Addresses (defined in 3.2.2.5.6) | This method involves observing changes to website content<br><br>"Corroborate" means the corresponding challenge information (e.g., Random Value or Request Token) MUST be observed by the required number of Network Perspectives defined in the "# of Network Perspectives and Quorum Requirements" table, otherwise the certificate MUST NOT be issued. |
-| ACME "tls-alpn-01" method for IP Addresses (defined in 3.2.2.5.7) | This method involves establishing a TLS connection.<br><br>"Corroborate" means the corresponding challenge information (e.g., Random Value or Request Token) MUST be observed by the required number of Network Perspectives defined in the "# of Network Perspectives and Quorum Requirements" table, otherwise the certificate MUST NOT be issued. |
-
-
-Table: Defining Corroborating CAA Evidence
-
-| CAA Method | Description of Corroborating Evidence |
-|---|---|
-| Any method | "Corroborate" means the required number of Network Perspectives defined in the "# of Network Perspectives and Quorum Requirements" table MUST have CAA lookup results that permit issuance for the domain in question. |
 
 Computing systems performing Multi-Perspective Domain Validation:
 
@@ -1114,7 +1093,7 @@ Computing systems performing Multi-Perspective Domain Validation:
       - Document and follow a vulnerability correction process that addresses the identification, review, response, and remediation of vulnerabilities.
       - Undergo or perform a Vulnerability Scan at least every 3 months.
       - Undergo a Penetration Test on at least an annual basis
-      - Apply recommended security patches within six (6) months of the security patch’s availability, unless the CA documents that the security patch would introduce additional vulnerabilities or instabilities that outweigh the benefits of applying the security patch.
+      - Apply recommended security patches within six (6) months of the security patch's availability, unless the CA documents that the security patch would introduce additional vulnerabilities or instabilities that outweigh the benefits of applying the security patch.
 
 Beyond the above considerations, computing systems performing Multi-Perspective Domain Validation are considered outside of the audit scope described in Section 8 of this Policy.
 
