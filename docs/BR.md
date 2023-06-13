@@ -1067,12 +1067,13 @@ Even though the "# of Network Perspectives and Quorum Requirements" table permit
 
 Table: # of Network Perspectives and Quorum Requirements
 
-| Minimum # of Network Perspectives that MUST corroborate the Primary Domain Validation Determination and Primary CAA Determination | Maximum # of Network Perspectives that MAY NOT corroborate the Primary Domain Validation Determination and Primary CAA Determination | Description |
-|---|---|---|
-| 1 | 1 | This configuration MUST NOT be used after 9/15/2025. |
-| 3 | 1 | This configuration MUST NOT be used after 9/15/2026. |
-| 4 | 2 | N/A |
-| N-2 | 2 | When the number of Network Perspectives used (i.e., "N") is greater than or equal to (>=) six (6), a maximum of two (2) Network Perspectives MAY disagree with the Primary Domain Validation Determination. |
+| # Network Perspectives used | Description of Configuration and Quorum Requirements | Permitted Use |
+|--- |------------------------------ |------------------------------ |
+| 2  | This configuration relies on two (2) Network Perspectives.<br><br>When this configuration is used, at least one (1) of the Network Perspectives MUST corroborate the Primary Domain Validation Determination and Primary CAA Determination. | This configuration MUST NOT be used after 9/15/2025. |
+| 3  | This configuration relies on three (3) Network Perspectives.<br><br>When this configuration is used, at least two (2) of the Network Perspectives MUST corroborate the Primary Domain Validation Determination and Primary CAA Determination.  | This configuration MUST NOT be used after 9/15/2025. |
+| 4  | This configuration relies on four (4) Network Perspectives.<br><br>When this configuration is used, at least three (3) of the Network Perspectives MUST corroborate the Primary Domain Validation Determination and Primary CAA Determination. |This configuration MUST NOT be used after 9/15/2026. |
+| 5  | This configuration relies on five (5) Network Perspectives.<br><br>When this configuration is used, at least four (4) of the Network Perspectives MUST corroborate the Primary Domain Validation Determination and Primary CAA Determination. | This configuration MUST NOT be used after 9/15/2025. |
+| 6+ | This configuration relies on six (6) or more (i.e., "N") Network Perspectives.<br><br>When this configuration is used, at least N-2 Network Perspectives MUST corroborate the Primary Domain Validation Determination and Primary CAA Determination. | - |
 
 Computing systems performing Multi-Perspective Domain Validation:
 
