@@ -1100,7 +1100,9 @@ Computing systems performing Multi-Perspective Domain Validation:
       - Undergo a Penetration Test on at least an annual basis
       - Apply recommended security patches within six (6) months of the security patch's availability, unless the CA documents that the security patch would introduce additional vulnerabilities or instabilities that outweigh the benefits of applying the security patch.
 
-Beyond the above considerations, computing systems performing Multi-Perspective Domain Validation are considered outside of the audit scope described in Section 8 of this Policy.
+Beyond the above considerations, computing systems performing Multi-Perspective Domain Validation are considered outside of the audit scope described in Section 8 of these Requirements. 
+
+If any of the above considerations are performed by a Delegated Third Party, the CA MAY obtain reasonable evidence from the Delegated Third Party to ascertain assurance that one or more of the above considerations are followed. Delegated Third Parties are not required to be within the audit scope described in Section 8 of these Requirements to satisfy the above considerations.
 
 ### 3.2.3 Authentication of individual identity
 
