@@ -771,7 +771,7 @@ If a Random Value is used, the CA SHALL provide a Random Value unique to the Cer
   i. 30 days or
   ii. if the Applicant submitted the Certificate request, the time frame permitted for reuse of validated information relevant to the Certificate (such as in [Section 4.2.1](#421-performing-identification-and-authentication-functions) of these Guidelines or Section 11.14.3 of the EV Guidelines).
 
-Validations using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9.
+CAs using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9.
 
 **Note**: Once the FQDN has been validated using this method, the CA MAY also issue Certificates for other FQDNs that end with all the Domain Labels of the validated FQDN. This method is suitable for validating Wildcard Domain Names.
 
@@ -779,7 +779,7 @@ Validations using this method MUST implement Multi-Perspective Domain Validation
 
 Confirming the Applicant's control over the FQDN by confirming that the Applicant controls an IP address returned from a DNS lookup for A or AAAA records for the FQDN in accordance with [Section 3.2.2.5](#3225-authentication-for-an-ip-address).
 
-Validations using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9.
+CAs using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9.
 
 **Note**: Once the FQDN has been validated using this method, the CA MUST NOT issue Certificates for other FQDNs that end with all the labels of the validated FQDN unless the CA performs a separate validation for that FQDN using an authorized method. This method is NOT suitable for validating Wildcard Domain Names.
 
@@ -809,7 +809,7 @@ Each email MAY confirm control of multiple FQDNs, provided that each email addre
 
 The Random Value SHALL be unique in each email. The email MAY be re-sent in its entirety, including the re-use of the Random Value, provided that its entire contents and recipient(s) SHALL remain unchanged. The Random Value SHALL remain valid for use in a confirming response for no more than 30 days from its creation. The CPS MAY specify a shorter validity period for Random Values.
 
-Validations using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9.
+CAs using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9.
 
 **Note**: Once the FQDN has been validated using this method, the CA MAY also issue Certificates for other FQDNs that end with all the Domain Labels of the validated FQDN. This method is suitable for validating Wildcard Domain Names.
 
@@ -821,7 +821,7 @@ Each email MAY confirm control of multiple FQDNs, provided that each email addre
 
 The Random Value SHALL be unique in each email. The email MAY be re-sent in its entirety, including the re-use of the Random Value, provided that its entire contents and recipient(s) SHALL remain unchanged. The Random Value SHALL remain valid for use in a confirming response for no more than 30 days from its creation. The CPS MAY specify a shorter validity period for Random Values.
 
-Validations using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9.
+CAs using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9.
 
 **Note**: Once the FQDN has been validated using this method, the CA MAY also issue Certificates for other FQDNs that end with all the Domain Labels of the validated FQDN. This method is suitable for validating Wildcard Domain Names.
 
@@ -847,7 +847,7 @@ In the event of reaching voicemail, the CA may leave the Random Value and the AD
 
 The Random Value SHALL remain valid for use in a confirming response for no more than 30 days from its creation. The CPS MAY specify a shorter validity period for Random Values.
 
-Validations using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9.
+CAs using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9.
 
 **Note**: Once the FQDN has been validated using this method, the CA MAY also issue Certificates for other FQDNs that end with all the Domain Labels of the validated FQDN. This method is suitable for validating Wildcard Domain Names.
 
@@ -861,7 +861,7 @@ In the event of reaching voicemail, the CA may leave the Random Value and the AD
 
 The Random Value SHALL remain valid for use in a confirming response for no more than 30 days from its creation. The CPS MAY specify a shorter validity period for Random Values.
 
-Validations using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9.
+CAs using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9.
 
 **Note**: Once the FQDN has been validated using this method, the CA MAY also issue Certificates for other FQDNs that end with all the Domain Labels of the validated FQDN. This method is suitable for validating Wildcard Domain Names.
 
@@ -892,7 +892,7 @@ If a Random Value is used, then:
 1. The CA MUST provide a Random Value unique to the certificate request.
 2. The Random Value MUST remain valid for use in a confirming response for no more than 30 days from its creation. The CPS MAY specify a shorter validity period for Random Values, in which case the CA MUST follow its CPS.
 
-Validations using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9.
+CAs using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9.
 
 **Note**:
   * The CA MUST NOT issue Certificates for other FQDNs that end with all the labels of the validated FQDN unless the CA performs a separate validation for that FQDN using an authorized method. This method is NOT suitable for validating Wildcard Domain Names.
@@ -913,7 +913,7 @@ If the CA follows redirects, the following apply:
 2. Redirects MUST be to resource URLs with either the "http" or "https" scheme.
 3. Redirects MUST be to resource URLs accessed via Authorized Ports.
 
-Validations using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9.
+CAs using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9.
 
 **Note**:
   * The CA MUST NOT issue Certificates for other FQDNs that end with all the labels of the validated FQDN unless the CA performs a separate validation for that FQDN using an authorized method. This method is NOT suitable for validating Wildcard Domain Names.
@@ -924,7 +924,7 @@ Confirming the Applicant's control over a FQDN by validating domain control of t
 
 The token (as defined in RFC 8737, Section 3) MUST NOT be used for more than 30 days from its creation. The CPS MAY specify a shorter validity period for the token, in which case the CA MUST follow its CPS.
 
-Validations using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9.
+CAs using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9.
 
 **Note**: Once the FQDN has been validated using this method, the CA MUST NOT issue Certificates for other FQDNs that end with all the labels of the validated FQDN unless the CA performs a separate validation for that FQDN using an authorized method. This method is NOT suitable for validating Wildcard Domain Names.
 
@@ -947,7 +947,7 @@ If a Random Value is used, the CA SHALL provide a Random Value unique to the cer
   i. 30 days or
   ii. if the Applicant submitted the certificate request, the time frame permitted for reuse of validated information relevant to the certificate (such as in [Section 4.2.1](#421-performing-identification-and-authentication-functions) of this document).
 
-Validations using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9.
+CAs using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9.
 
 ##### 3.2.2.5.2 Email, Fax, SMS, or Postal Mail to IP Address Contact
 
@@ -967,7 +967,7 @@ The Random Value SHALL remain valid for use in a confirming response for no more
 
 Confirming the Applicant’s control over the IP Address by obtaining a Domain Name associated with the IP Address through a reverse-IP lookup on the IP Address and then verifying control over the FQDN using a method permitted under [Section 3.2.2.4](#3224-validation-of-domain-authorization-or-control).
 
-Validations using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9.
+CAs using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9.
 
 ##### 3.2.2.5.4 Any Other Method
 
@@ -989,13 +989,13 @@ The Random Value SHALL remain valid for use in a confirming response for no more
 
 Confirming the Applicant's control over the IP Address by performing the procedure documented for an "http-01" challenge in draft 04 of "ACME IP Identifier Validation Extension," available at <https://tools.ietf.org/html/draft-ietf-acme-ip-04#section-4>.
 
-Validations using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9.
+CAs using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9.
 
 ##### 3.2.2.5.7 ACME "tls-alpn-01" method for IP Addresses
 
 Confirming the Applicant's control over the IP Address by performing the procedure documented for a "tls-alpn-01" challenge in draft 04 of "ACME IP Identifier Validation Extension," available at <https://tools.ietf.org/html/draft-ietf-acme-ip-04#section-4>.
 
-Validations using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9.
+CAs using this method MUST implement Multi-Perspective Domain Validation as specified in Section 3.2.2.9.
 
 #### 3.2.2.6 Wildcard Domain Validation
 
