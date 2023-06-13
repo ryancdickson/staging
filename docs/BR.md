@@ -1057,7 +1057,7 @@ In the event that the Primary Domain Validation Determination or Primary CAA Det
 Phased Implementation Timeline:
 - *Effective March 15, 2024*, the CA SHOULD implement Multi-Perspective Domain Validation as described in this section. 
 - *Effective September 15, 2024*, the CA MUST implement Multi-Perspective Domain Validation as described in this section; however, the CA MAY proceed with certificate issuance if the Primary Domain Validation Determination is not corroborated as defined in the "# of Network Perspectives and Quorum Requirements" table.
-- *Effective March 15, 2025*, the CA MUST implement Multi-Perspective Domain Validation as described in this section; however, the CA MUST NOT proceed with certificate issuance if the Primary Domain Validation Determination is not corroborated as defined in the "# of Network Perspectives and Quorum Requirements" table and the "Defining Corroborating CAA Evidence" table.
+- *Effective March 15, 2025*, the CA MUST implement Multi-Perspective Domain Validation as described in this section. The CA MUST NOT proceed with certificate issuance if the Primary Domain Validation Determination is not corroborated as defined in the "# of Network Perspectives and Quorum Requirements" table and the "Defining Corroborating CAA Evidence" table.
 
 Even though the "# of Network Perspectives and Quorum Requirements" table permits issuance when some Network Perspectives do not corroborate the Primary Domain Validation Determination, the set of Network Perspectives that do corroborate the Primary Domain Validation Determination MUST be spread over two distinct continents for a CA to proceed with certificate issuance after March 15, 2025.
 
