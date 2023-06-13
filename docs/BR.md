@@ -1634,7 +1634,7 @@ The CA SHALL record at least the following events:
       - an identifier that uniquely identifies the perspective used
       - the attempted domain name
       - the result of the attempt (i.e., "DCV pass/fail, CAA allow/disallow")
-   8. Multi-Perspective Domain Validation quorum results for each attempted domain name represented in a Certificate request (e.g., 3 out of 4 Network Perspectives corroborated the Primary Domain Validation Determination and Primary CAA Determination)
+   8. Multi-Perspective Domain Validation quorum results for each attempted domain name represented in a Certificate request (i.e., "3/4" which should be interpreted as "3 out of 4 attempted Network Perspectives corroborated the Primary Domain Validation Determination and Primary CAA Determination).
 
 3. Security events, including:
    1. Successful and unsuccessful PKI system access attempts;
