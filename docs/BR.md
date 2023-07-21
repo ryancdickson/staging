@@ -1050,7 +1050,7 @@ Network Perspectives are considered distinct when the straight-line distance bet
 
 The network infrastructure providing Internet connectivity to a Network Perspective MAY be administered by the same organization providing the computational services required to operate the Network Perspective. 
 
-Each Network Perspective MUST independently complete the entirety of the following:
+Each primary and corroborating Network Perspective MUST independently complete the entirety of the following:
 - the domain validation process used to establish the Primary Domain Validation Determination (i.e., including DNS lookups for A records), and
 - the CAA record-checking process used to establish the Primary CAA Determination. 
 
