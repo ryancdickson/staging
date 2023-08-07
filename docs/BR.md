@@ -86,7 +86,7 @@ The following Certificate Policy identifiers are reserved for use by CAs to asse
 | 1.4.4 | 193 | 825-day Certificate Lifetimes | 17-Mar-2017 | 1-Mar-2018 |
 | 1.4.5 | 189 | Amend Section 6.1.7 of Baseline Requirements | 14-Apr-2017 | 14-May-2017 |
 | 1.4.6 | 195 | CAA Fixup | 17-Apr-2017 | 18-May-2017 |
-| 1.4.7 | 196 | Define “Audit Period” | 17-Apr-2017 | 18-May-2017 |
+| 1.4.7 | 196 | Define "Audit Period" | 17-Apr-2017 | 18-May-2017 |
 | 1.4.8 | 199 | Require commonName in Root and Intermediate Certificates | 9-May-2017 | 8-June-2017 |
 | 1.4.9 | 204 | Forbid DTPs from doing Domain/IP Ownership | 11-July-2017 | 11-Aug-2017 |
 | 1.5.0 | 212 | Canonicalise formal name of the Baseline Requirements | 1-Sept-2017 | 1-Oct-2017 |
@@ -166,7 +166,7 @@ The following Certificate Policy identifiers are reserved for use by CAs to asse
 | 2018-05-31 | 2.2 | CP and CPS must follow RFC 3647 format |
 | 2018-08-01 | 3.2.2.4.1 and .5 | CAs must stop using domain validation methods BR 3.2.2.4.1 and 3.2.2.4.5, stop reusing validation data from those methods |
 | 2019-01-15 | 7.1.4.2.1 | All certificates containing an underscore character in any dNSName entry and having a validity period of more than 30 days MUST be revoked prior to January 15, 2019 |
-| 2019-05-01 | 7.1.4.2.1 | underscore characters (“_”) MUST NOT be present in dNSName entries |
+| 2019-05-01 | 7.1.4.2.1 | underscore characters ("_") MUST NOT be present in dNSName entries |
 | 2019-06-01 | 3.2.2.4.3 | CAs SHALL NOT perform validations using this method after May 31, 2019. Completed validations using this method SHALL continue to be valid for subsequent issuance per the applicable certificate data reuse periods.
 | 2019-08-01 | 3.2.2.5 | CAs SHALL maintain a record of which IP validation method, including the relevant BR version number, was used to validate every IP Address |
 | 2019-08-01 | 3.2.2.5.4 | CAs SHALL NOT perform validations using this method after July 31, 2019. Completed validations using this method SHALL NOT be re-used for certificate issuance after July 31, 2019. Any certificate issued prior to August 1, 2019 containing an IP Address that was validated using any method that was permitted under the prior version of this Section 3.2.2.5 MAY continue to be used without revalidation until such certificate naturally expires |
@@ -1004,17 +1004,17 @@ In the event of reaching voicemail, the CA may leave the Random Value and the IP
 
 The Random Value SHALL remain valid for use in a confirming response for no more than 30 days from its creation. The CPS MAY specify a shorter validity period for Random Values.
 
-##### 3.2.2.5.6 ACME “http-01” method for IP Addresses
+##### 3.2.2.5.6 ACME "http-01" method for IP Addresses
 
-Confirming the Applicant's control over the IP Address by performing the procedure documented for an “http-01” challenge in draft 04 of “ACME IP Identifier Validation Extension,” available at <https://tools.ietf.org/html/draft-ietf-acme-ip-04#section-4>.
+Confirming the Applicant's control over the IP Address by performing the procedure documented for an "http-01" challenge in draft 04 of "ACME IP Identifier Validation Extension," available at <https://tools.ietf.org/html/draft-ietf-acme-ip-04#section-4>.
 
 CAs using this method MUST implement Multi-Perspective Issuance Corroboration as specified in Section 3.2.2.9. To count as corroborating, a Network Perspective MUST observe:
 - the same token as the Primary Domain Validation Determination; and
 - evidence confirming the CAs authority to issue as determined by the Primary CAA Validation, as specified in Section 3.2.2.8. 
 
-##### 3.2.2.5.7 ACME “tls-alpn-01” method for IP Addresses
+##### 3.2.2.5.7 ACME "tls-alpn-01" method for IP Addresses
 
-Confirming the Applicant's control over the IP Address by performing the procedure documented for a “tls-alpn-01” challenge in draft 04 of “ACME IP Identifier Validation Extension,” available at <https://tools.ietf.org/html/draft-ietf-acme-ip-04#section-4>.
+Confirming the Applicant's control over the IP Address by performing the procedure documented for a "tls-alpn-01" challenge in draft 04 of "ACME IP Identifier Validation Extension," available at <https://tools.ietf.org/html/draft-ietf-acme-ip-04#section-4>.
 
 CAs using this method MUST implement Multi-Perspective Issuance Corroboration as specified in Section 3.2.2.9. To count as corroborating, a Network Perspective MUST observe:
 - the same token as the Primary Domain Validation Determination; and
@@ -1023,7 +1023,7 @@ CAs using this method MUST implement Multi-Perspective Issuance Corroboration as
 #### 3.2.2.6 Wildcard Domain Validation
 
 Before issuing a Wildcard Certificate, the CA MUST establish and follow a documented procedure that determines if the FQDN portion of any
-Wildcard Domain Name in the Certificate is “registry-controlled” or is a “public suffix” (e.g. “\*.com”, “\*.co.uk”, see RFC 6454 Section 8.2 for further explanation).
+Wildcard Domain Name in the Certificate is "registry-controlled" or is a "public suffix" (e.g. "\*.com", "\*.co.uk", see RFC 6454 Section 8.2 for further explanation).
 
 If the FQDN portion of any Wildcard Domain Name is "registry-controlled" or is a "public suffix", CAs MUST refuse issuance unless the Applicant proves its rightful control of the entire Domain Namespace. (e.g. CAs MUST NOT issue "\*.co.uk" or "\*.local", but MAY issue "\*.example.com" to Example Co.).
 
@@ -1415,7 +1415,7 @@ Within twenty-four (24) hours of issuing its first Certificate, the CA MUST gene
 
 CAs issuing Subscriber Certificates:  
 1. MUST update and publish a new CRL at least every: 
-     - seven (7) days if all Certificates include an Authority Information Access extension with an id-ad-ocsp accessMethod (“AIA OCSP pointer”); or
+     - seven (7) days if all Certificates include an Authority Information Access extension with an id-ad-ocsp accessMethod ("AIA OCSP pointer"); or
      - four (4) days in all other cases; 
 2. MUST update and publish a new CRL within twenty-four (24) hours after recording a Certificate as revoked; and
 
@@ -3374,7 +3374,7 @@ Table: CRLReasons
 | certificateHold           | 6    | MUST NOT be included if the CRL entry is for 1) a Certificate subject to these Requirements, or 2) a Certificate not subject to these Requirements and was either A) issued on-or-after 2020-09-30 or B) has a `notBefore` on-or-after 2020-09-30.
 | privilegeWithdrawn        | 9    | Indicates that there has been a subscriber-side infraction that has not resulted in keyCompromise, such as the Certificate Subscriber provided misleading information in their Certificate Request or has not upheld their material obligations under the Subscriber Agreement or Terms of Use. |
 
-The Subscriber Agreement, or an online resource referenced therein, MUST inform Subscribers about the revocation reason options listed above and provide explanation about when to choose each option. Tools that the CA provides to the Subscriber MUST allow for these options to be easily specified when the Subscriber requests revocation of their Certificate, with the default value being that no revocation reason is provided (i.e. the default corresponds to the CRLReason “unspecified (0)” which results in no reasonCode extension being provided in the CRL). 
+The Subscriber Agreement, or an online resource referenced therein, MUST inform Subscribers about the revocation reason options listed above and provide explanation about when to choose each option. Tools that the CA provides to the Subscriber MUST allow for these options to be easily specified when the Subscriber requests revocation of their Certificate, with the default value being that no revocation reason is provided (i.e. the default corresponds to the CRLReason "unspecified (0)" which results in no reasonCode extension being provided in the CRL). 
 
 The privilegeWithdrawn reasonCode SHOULD NOT be made available to the Subscriber as a revocation reason option, because the use of this reasonCode is determined by the CA and not the Subscriber.
 
@@ -3448,7 +3448,7 @@ The CA's audit SHALL be performed by a Qualified Auditor. A Qualified Auditor me
 
 The CA SHALL undergo an audit in accordance with one of the following schemes:
 
-1. “WebTrust for CAs v2.1 or newer” AND “WebTrust for CAs SSL Baseline with Network Security v2.3 or newer”; or
+1. "WebTrust for CAs v2.1 or newer" AND "WebTrust for CAs SSL Baseline with Network Security v2.3 or newer"; or
 2. ETSI EN 319 411-1 v1.2.2, which includes normative references to ETSI EN 319 401 (the latest version of the referenced ETSI documents should be applied); or
 3. If a Government CA is required by its Certificate Policy to use a different internal audit scheme, it MAY use such scheme provided that the audit either
    a. encompasses all requirements of one of the above schemes or
