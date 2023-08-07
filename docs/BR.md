@@ -1,6 +1,6 @@
 ---
 title: Baseline Requirements for the Issuance and Management of Publicly-Trusted Certificates
-subtitle: Version 2.0.1
+subtitle: Version 2.0.X
 author:
   - CA/Browser Forum
 date: [TBD]  
@@ -134,7 +134,7 @@ The following Certificate Policy identifiers are reserved for use by CAs to asse
 | 1.8.7 | SC61  | New CRL entries must have a Revocation Reason Code | 1-Apr-2023 | 15-Jul-2023 |
 | 2.0.0 | SC62  | Certificate Profiles Update | 22-Apr-2023 | 15-Sep-2023 |
 | 2.0.1 | SC63  | Make OCSP optional, require CRLs, and incentivize automation | TBD | 15-Mar-2024 |
-
+| 2.0.X | SCXX  | Require Domain Validation and CAA checks to be Performed from Multiple Network Perspectives | TBD | 15-Mar-2024 |
 
 
 \* Effective Date and Additionally Relevant Compliance Date(s)
@@ -187,6 +187,7 @@ The following Certificate Policy identifiers are reserved for use by CAs to asse
 | 2023-07-15 | 4.9.1.1 and 7.2.2 | New CRL entries MUST have a revocation reason code |
 | 2023-09-15 | Section 7 (and others) | CAs MUST use the updated Certificate Profiles passed in Version 2.0.0 |
 | 2024-03-15 | 4.9.7 | CAs MUST generate and publish CRLs. |
+| 2024-09-15 | 3.2.2.9 | Where specified, CAs MUST corroborate the results of Domain Validation and CAA checks from Multiple Network Perspectives. |
 
 ## 1.3 PKI Participants
 
@@ -377,6 +378,10 @@ The Definitions found in the CA/Browser Forum's Network and Certificate System S
 
 **Legal Entity**: An association, corporation, partnership, proprietorship, trust, government entity or other entity with legal standing in a country's legal system.
 
+**Multi-Perspective Issuance Corroboration**: A process by which the determinations made during domain validation (see "Primary Domain Validation Determination") and CAA checking (see "Primary CAA Determination") are corroborated from multiple Network Perspectives before subscriber certificate issuance. 
+
+**Network Perspective**: Related to Multi-Perspective Issuance Corroboration. A system for sending outbound Internet traffic associated with a domain control validation method and CAA check. The location of a Network Perspective is determined by the point where unencapsulated outbound Internet traffic is first handed off to the network infrastructure providing Internet connectivity to that perspective.
+
 **Non-Reserved LDH Label**: From RFC 5890 (<http://tools.ietf.org/html/rfc5890>): "The set of valid LDH labels that do not have '`--`' in the third and fourth positions."
 
 **Object Identifier**: A unique alphanumeric or numeric identifier registered under the International Organization for Standardization's applicable standard for a specific object or object class.
@@ -390,6 +395,10 @@ The Definitions found in the CA/Browser Forum's Network and Certificate System S
 **Parent Company**: A company that Controls a Subsidiary Company.
 
 **P-Label**: A XN-Label that contains valid output of the Punycode algorithm (as defined in RFC 3492, Section 6.3) from the fifth and subsequent positions.
+
+**Primary CAA Determination**: The basis for which the CA has checked CAA records and determined its authority to issue a certificate for the requested domain.
+
+**Primary Domain Validation Determination**: The basis for which the CA has determined Applicant authority and/or domain authorization or control using one of the methods described in Section 3.2.2.4 of this Policy.
 
 **Private Key**: The key of a Key Pair that is kept secret by the holder of the Key Pair, and that is used to create Digital Signatures and/or to decrypt electronic records or files that were encrypted with the corresponding Public Key.
 
@@ -763,11 +772,19 @@ If a Random Value is used, the CA SHALL provide a Random Value unique to the Cer
   i. 30 days or
   ii. if the Applicant submitted the Certificate request, the time frame permitted for reuse of validated information relevant to the Certificate (such as in [Section 4.2.1](#421-performing-identification-and-authentication-functions) of these Guidelines or Section 11.14.3 of the EV Guidelines).
 
+CAs using this method MUST implement Multi-Perspective Issuance Corroboration as specified in Section 3.2.2.9. To count as corroborating, a Network Perspective MUST observe:
+- the same challenge information (e.g., Random Value or Request Token) as the Primary Domain Validation Determination; and
+- evidence confirming the CAs authority to issue as determined by the Primary CAA Validation, as specified in Section 3.2.2.8. 
+
 **Note**: Once the FQDN has been validated using this method, the CA MAY also issue Certificates for other FQDNs that end with all the Domain Labels of the validated FQDN. This method is suitable for validating Wildcard Domain Names.
 
 ##### 3.2.2.4.8 IP Address
 
 Confirming the Applicant's control over the FQDN by confirming that the Applicant controls an IP address returned from a DNS lookup for A or AAAA records for the FQDN in accordance with [Section 3.2.2.5](#3225-authentication-for-an-ip-address).
+
+CAs using this method MUST implement Multi-Perspective Issuance Corroboration as specified in Section 3.2.2.9. To count as corroborating, a Network Perspective MUST observe:
+- the same IP address as the Primary Domain Validation Determination; and
+- evidence confirming the CAs authority to issue as determined by the Primary CAA Validation, as specified in Section 3.2.2.8. 
 
 **Note**: Once the FQDN has been validated using this method, the CA MUST NOT issue Certificates for other FQDNs that end with all the labels of the validated FQDN unless the CA performs a separate validation for that FQDN using an authorized method. This method is NOT suitable for validating Wildcard Domain Names.
 
@@ -797,6 +814,10 @@ Each email MAY confirm control of multiple FQDNs, provided that each email addre
 
 The Random Value SHALL be unique in each email. The email MAY be re-sent in its entirety, including the re-use of the Random Value, provided that its entire contents and recipient(s) SHALL remain unchanged. The Random Value SHALL remain valid for use in a confirming response for no more than 30 days from its creation. The CPS MAY specify a shorter validity period for Random Values.
 
+CAs using this method MUST implement Multi-Perspective Issuance Corroboration as specified in Section 3.2.2.9. To count as corroborating, a Network Perspective MUST observe:
+- the selected contact address used for domain validation observed during the Primary Domain Validation Determination; and
+- evidence confirming the CAs authority to issue as determined by the Primary CAA Validation, as specified in Section 3.2.2.8.
+
 **Note**: Once the FQDN has been validated using this method, the CA MAY also issue Certificates for other FQDNs that end with all the Domain Labels of the validated FQDN. This method is suitable for validating Wildcard Domain Names.
 
 ##### 3.2.2.4.14 Email to DNS TXT Contact
@@ -806,6 +827,10 @@ Confirming the Applicant's control over the FQDN by sending a Random Value via e
 Each email MAY confirm control of multiple FQDNs, provided that each email address is DNS TXT Record Email Contact for each Authorization Domain Name being validated. The same email MAY be sent to multiple recipients as long as all recipients are DNS TXT Record Email Contacts for each Authorization Domain Name being validated.
 
 The Random Value SHALL be unique in each email. The email MAY be re-sent in its entirety, including the re-use of the Random Value, provided that its entire contents and recipient(s) SHALL remain unchanged. The Random Value SHALL remain valid for use in a confirming response for no more than 30 days from its creation. The CPS MAY specify a shorter validity period for Random Values.
+
+CAs using this method MUST implement Multi-Perspective Issuance Corroboration as specified in Section 3.2.2.9. To count as corroborating, a Network Perspective MUST observe:
+- the selected contact address used for domain validation observed during the Primary Domain Validation Determination; and
+- evidence confirming the CAs authority to issue as determined by the Primary CAA Validation, as specified in Section 3.2.2.8.
 
 **Note**: Once the FQDN has been validated using this method, the CA MAY also issue Certificates for other FQDNs that end with all the Domain Labels of the validated FQDN. This method is suitable for validating Wildcard Domain Names.
 
@@ -843,6 +868,10 @@ In the event of reaching voicemail, the CA may leave the Random Value and the AD
 
 The Random Value SHALL remain valid for use in a confirming response for no more than 30 days from its creation. The CPS MAY specify a shorter validity period for Random Values.
 
+CAs using this method MUST implement Multi-Perspective Issuance Corroboration as specified in Section 3.2.2.9. To count as corroborating, a Network Perspective MUST observe:
+- the selected contact address used for domain validation observed during the Primary Domain Validation Determination; and
+- evidence confirming the CAs authority to issue as determined by the Primary CAA Validation, as specified in Section 3.2.2.8. 
+
 **Note**: Once the FQDN has been validated using this method, the CA MAY also issue Certificates for other FQDNs that end with all the Domain Labels of the validated FQDN. This method is suitable for validating Wildcard Domain Names.
 
 ##### 3.2.2.4.18 Agreed-Upon Change to Website v2
@@ -872,6 +901,10 @@ If a Random Value is used, then:
 1. The CA MUST provide a Random Value unique to the certificate request.
 2. The Random Value MUST remain valid for use in a confirming response for no more than 30 days from its creation. The CPS MAY specify a shorter validity period for Random Values, in which case the CA MUST follow its CPS.
 
+CAs using this method MUST implement Multi-Perspective Issuance Corroboration as specified in Section 3.2.2.9. To count as corroborating, a Network Perspective MUST observe:
+- the same challenge information (e.g., Random Value or Request Token) as the Primary Domain Validation Determination; and
+- evidence confirming the CAs authority to issue as determined by the Primary CAA Validation, as specified in Section 3.2.2.8. 
+
 **Note**:
   * The CA MUST NOT issue Certificates for other FQDNs that end with all the labels of the validated FQDN unless the CA performs a separate validation for that FQDN using an authorized method. This method is NOT suitable for validating Wildcard Domain Names.
 
@@ -891,6 +924,10 @@ If the CA follows redirects, the following apply:
 2. Redirects MUST be to resource URLs with either the "http" or "https" scheme.
 3. Redirects MUST be to resource URLs accessed via Authorized Ports.
 
+CAs using this method MUST implement Multi-Perspective Issuance Corroboration as specified in Section 3.2.2.9. To count as corroborating, a Network Perspective MUST observe:
+- the same challenge information (e.g., Random Value or Request Token) as the Primary Domain Validation Determination; and
+- evidence confirming the CAs authority to issue as determined by the Primary CAA Validation, as specified in Section 3.2.2.8. 
+
 **Note**:
   * The CA MUST NOT issue Certificates for other FQDNs that end with all the labels of the validated FQDN unless the CA performs a separate validation for that FQDN using an authorized method. This method is NOT suitable for validating Wildcard Domain Names.
 
@@ -899,6 +936,10 @@ If the CA follows redirects, the following apply:
 Confirming the Applicant's control over a FQDN by validating domain control of the FQDN by negotiating a new application layer protocol using the TLS Application-Layer Protocol Negotiation (ALPN) Extension [RFC7301] as defined in RFC 8737. The following are additive requirements to RFC 8737.
 
 The token (as defined in RFC 8737, Section 3) MUST NOT be used for more than 30 days from its creation. The CPS MAY specify a shorter validity period for the token, in which case the CA MUST follow its CPS.
+
+CAs using this method MUST implement Multi-Perspective Issuance Corroboration as specified in Section 3.2.2.9. To count as corroborating, a Network Perspective MUST observe:
+- the same token as the Primary Domain Validation Determination; and
+- evidence confirming the CAs authority to issue as determined by the Primary CAA Validation, as specified in Section 3.2.2.8. 
 
 **Note**: Once the FQDN has been validated using this method, the CA MUST NOT issue Certificates for other FQDNs that end with all the labels of the validated FQDN unless the CA performs a separate validation for that FQDN using an authorized method. This method is NOT suitable for validating Wildcard Domain Names.
 
@@ -921,6 +962,10 @@ If a Random Value is used, the CA SHALL provide a Random Value unique to the cer
   i. 30 days or
   ii. if the Applicant submitted the certificate request, the time frame permitted for reuse of validated information relevant to the certificate (such as in [Section 4.2.1](#421-performing-identification-and-authentication-functions) of this document).
 
+CAs using this method MUST implement Multi-Perspective Issuance Corroboration as specified in Section 3.2.2.9. To count as corroborating, a Network Perspective MUST observe:
+- the same challenge information (e.g., Random Value or Request Token) as the Primary Domain Validation Determination; and
+- evidence confirming the CAs authority to issue as determined by the Primary CAA Validation, as specified in Section 3.2.2.8. 
+  
 ##### 3.2.2.5.2 Email, Fax, SMS, or Postal Mail to IP Address Contact
 
 Confirming the Applicant's control over the IP Address by sending a Random Value via email, fax, SMS, or postal mail and then receiving a confirming response utilizing the Random Value. The Random Value MUST be sent to an email address, fax/SMS number, or postal mail address identified as an IP Address Contact.
@@ -934,6 +979,10 @@ The Random Value SHALL be unique in each email, fax, SMS, or postal mail.
 The CA MAY resend the email, fax, SMS, or postal mail in its entirety, including re-use of the Random Value, provided that the communication's entire contents and recipient(s) remain unchanged.
 
 The Random Value SHALL remain valid for use in a confirming response for no more than 30 days from its creation. The CPS MAY specify a shorter validity period for Random Values, in which case the CA MUST follow its CPS.
+
+CAs using this method MUST implement Multi-Perspective Issuance Corroboration as specified in Section 3.2.2.9. To count as corroborating, a Network Perspective MUST observe:
+- the same Domain Name as the Primary Domain Validation Determination; and
+- evidence confirming the CAs authority to issue as determined by the Primary CAA Validation, as specified in Section 3.2.2.8. 
 
 ##### 3.2.2.5.3 Reverse Address Lookup
 
@@ -959,9 +1008,17 @@ The Random Value SHALL remain valid for use in a confirming response for no more
 
 Confirming the Applicant's control over the IP Address by performing the procedure documented for an “http-01” challenge in draft 04 of “ACME IP Identifier Validation Extension,” available at <https://tools.ietf.org/html/draft-ietf-acme-ip-04#section-4>.
 
+CAs using this method MUST implement Multi-Perspective Issuance Corroboration as specified in Section 3.2.2.9. To count as corroborating, a Network Perspective MUST observe:
+- the same token as the Primary Domain Validation Determination; and
+- evidence confirming the CAs authority to issue as determined by the Primary CAA Validation, as specified in Section 3.2.2.8. 
+
 ##### 3.2.2.5.7 ACME “tls-alpn-01” method for IP Addresses
 
 Confirming the Applicant's control over the IP Address by performing the procedure documented for a “tls-alpn-01” challenge in draft 04 of “ACME IP Identifier Validation Extension,” available at <https://tools.ietf.org/html/draft-ietf-acme-ip-04#section-4>.
+
+CAs using this method MUST implement Multi-Perspective Issuance Corroboration as specified in Section 3.2.2.9. To count as corroborating, a Network Perspective MUST observe:
+- the same token as the Primary Domain Validation Determination; and
+- evidence confirming the CAs authority to issue as determined by the Primary CAA Validation, as specified in Section 3.2.2.8. 
 
 #### 3.2.2.6 Wildcard Domain Validation
 
@@ -1007,6 +1064,68 @@ CAs are permitted to treat a record lookup failure as permission to issue if:
 * the domain's zone does not have a DNSSEC validation chain to the ICANN root.
 
 CAs MUST document potential issuances that were prevented by a CAA record in sufficient detail to provide feedback to the CAB Forum on the circumstances, and SHOULD dispatch reports of such issuance requests to the contact(s) stipulated in the CAA iodef record(s), if present. CAs are not expected to support URL schemes in the iodef record other than mailto: or https:.
+
+#### 3.2.2.9 Multi-Perspective Issuance Corroboration
+
+Multi-Perspective Issuance Corroboration attempts to corroborate the Primary Domain Validation Determination and Primary CAA Determination by re-completing the entirety of the domain validation process from multiple additional geographic Network Perspectives before subscriber certificate issuance. This process can improve protection against equally-specific prefix Border Gateway Protocol (BGP) attacks or hijacks.
+
+Network Perspectives are considered distinct when the straight-line distance between the two States, Provinces, or Countries they reside in are separated by a distance of at least 500 km.
+
+The network infrastructure providing Internet connectivity to a Network Perspective MAY be administered by the same organization providing the computational services required to operate the Network Perspective. 
+
+Each primary and corroborating Network Perspective MUST independently complete the entirety of the following:
+- the domain validation process used to establish the Primary Domain Validation Determination (i.e., including DNS lookups for A records), and
+- the CAA record-checking process used to establish the Primary CAA Determination. 
+
+Results or information obtained from one Network Perspective MUST NOT be reused or cached when performing validation through subsequent Network Perspectives (e.g., different Network Perspectives cannot rely on a shared DNS cache to prevent an adversary with control of traffic from one Network Perspective from poisoning the DNS cache used by other Network Perspectives).
+
+[Section 3.2.2.4](#3224-validation-of-domain-authorization-or-control) and [Section 3.2.2.5](#3225-authentication-for-an-ip-address) describe the validation methods that require the use of Multi-Perspective Issuance Corroboration and how a Network Perspective can corroborate the Primary Domain Validation Determination and the Primary CAA Determination. A CA MAY use corroborating evidence for CAA record compliance for a period equal to the period of validity for Validation of Domain Authorization or Control specified in [Section 4.2.1](#421-performing-identification-and-authentication-functions).
+
+The "# of Network Perspectives and Quorum Requirements" Table describes quorum requirements related to Multi-Perspective Issuance Corroboration. 
+
+CAs MAY immediately retry Multi-Perspective Issuance Corroboration using the same validation method or an alternative method (e.g., a CA can immediately retry validation using "Email to DNS TXT Contact" if "Agreed-Upon Change to Website - ACME" does not corroborate the outcome of Multi-Perspective Issuance Corroboration). There is no stipulation regarding the maximum number of validation attempts that may be performed in any period of time.
+
+Phased Implementation Timeline:
+- *Effective March 15, 2024*, the CA SHOULD implement Multi-Perspective Issuance Corroboration as described in this section. 
+- *Effective September 15, 2024*, the CA MUST implement Multi-Perspective Issuance Corroboration as described in this section; however, the CA MAY proceed with certificate issuance if either the Primary Domain Validation Determination or Primary CAA Determination is not corroborated as defined in the "# of Network Perspectives and Quorum Requirements" table.
+- *Effective March 15, 2025*, the CA MUST implement Multi-Perspective Issuance Corroboration as described in this section. The CA MUST NOT proceed with certificate issuance if either the Primary Domain Validation Determination or Primary CAA Determination is not corroborated as defined in the "# of Network Perspectives and Quorum Requirements" table and the "Defining Corroborating CAA Evidence" table.
+
+Even though the "# of Network Perspectives and Quorum Requirements" table permits issuance when some Network Perspectives do not corroborate the Primary Domain Validation Determination and Primary CAA Determination, the set of locations of the Network Perspectives that do corroborate the Primary Domain Validation Determination and Primary CAA Determination MUST full within the service regions of at least two distinct regional Internet registries for a CA to proceed with certificate issuance after September 15, 2025.
+
+Table: # of Network Perspectives and Quorum Requirements
+
+| # Network Perspectives used | Description of Configuration and Quorum Requirements | Permitted Use |
+|--- |------------------------------ |------------------------------ |
+| 2  | This configuration relies on two (2) Network Perspectives.<br><br>When this configuration is used, at least one (1) of the Network Perspectives MUST corroborate the Primary Domain Validation Determination and Primary CAA Determination. | This configuration MUST NOT be used after 9/15/2025. |
+| 3  | This configuration relies on three (3) Network Perspectives.<br><br>When this configuration is used, at least two (2) of the Network Perspectives MUST corroborate the Primary Domain Validation Determination and Primary CAA Determination.  | This configuration MUST NOT be used after 3/15/2026. |
+| 4  | This configuration relies on four (4) Network Perspectives.<br><br>When this configuration is used, at least three (3) of the Network Perspectives MUST corroborate the Primary Domain Validation Determination and Primary CAA Determination. | This configuration MUST NOT be used after 9/15/2026. |
+| 5  | This configuration relies on five (5) Network Perspectives.<br><br>When this configuration is used, at least four (4) of the Network Perspectives MUST corroborate the Primary Domain Validation Determination and Primary CAA Determination. | - |
+| 6+ | This configuration relies on six (6) or more (i.e., "N") Network Perspectives.<br><br>When this configuration is used, at least N-2 Network Perspectives MUST corroborate the Primary Domain Validation Determination and Primary CAA Determination. | - |
+
+Network Perspectives performing Multi-Perspective Issuance Corroboration:
+
+- MUST:
+    - Forward all Internet traffic via a network or set of networks that filter all RPKI-invalid BGP routes as defined by RFC 6811 
+
+- SHOULD:
+    - Facility & Service Provider Requirements
+      - Be hosted from an ISO/IEC 27001 certified facility or equivalent. 
+      - Rely on services covered in one of the following reports: System and Organization Controls 3 (SOC 3), IASE 3000, ENISA 715, FedRAMP Moderate, C5:2020, CSA STAR CCM, or equivalent.
+    - Network Hardening
+      - Configure each network boundary control (firewall, switch, router, gateway, or other network control device or system) with rules that support only the services, protocols, ports, and communications identified as necessary to its operations.
+    - System Hardening
+      - Disable all accounts, applications, services, protocols, and ports that are not used.
+      - Implement multi-factor authentication for all user accounts.
+    - Vulnerability Detection and Patch Management
+      - Implement intrusion detection and prevention controls to protect against common network and system threats.
+      - Document and follow a vulnerability correction process that addresses the identification, review, response, and remediation of vulnerabilities.
+      - Undergo or perform a Vulnerability Scan at least every 3 months.
+      - Undergo a Penetration Test on at least an annual basis
+      - Apply recommended security patches within six (6) months of the security patch's availability, unless the CA documents that the security patch would introduce additional vulnerabilities or instabilities that outweigh the benefits of applying the security patch.
+
+Beyond the above considerations, computing systems performing Multi-Perspective Issuance Corroboration are considered outside of the audit scope described in Section 8 of these Requirements. 
+
+If any of the above considerations are performed by a Delegated Third Party, the CA MAY obtain reasonable evidence from the Delegated Third Party to ascertain assurance that one or more of the above considerations are followed. Delegated Third Parties are not required to be within the audit scope described in Section 8 of these Requirements to satisfy the above considerations.
 
 ### 3.2.3 Authentication of individual identity
 
@@ -1532,6 +1651,11 @@ The CA SHALL record at least the following events:
    4. Issuance of Certificates; 
    5. Generation of Certificate Revocation Lists; and 
    6. Signing of OCSP Responses (as described in [Section 4.9](#49-certificate-revocation-and-suspension) and [Section 4.10](#410-certificate-status-services)).
+   7. Multi-Perspective Issuance Corroboration attempts from each Network Perspective, minimally recording the following information:
+      - an identifier that uniquely identifies the perspective used
+      - the attempted domain name
+      - the result of the attempt (i.e., "DCV pass/fail, CAA allow/disallow")
+   8. Multi-Perspective Issuance Corroboration quorum results for each attempted domain name represented in a Certificate request (i.e., "3/4" which should be interpreted as "3 out of 4 attempted Network Perspectives corroborated the Primary Domain Validation Determination and Primary CAA Determination).
 
 3. Security events, including:
    1. Successful and unsuccessful PKI system access attempts;
