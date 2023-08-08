@@ -134,7 +134,7 @@ The following Certificate Policy identifiers are reserved for use by CAs to asse
 | 1.8.7 | SC61  | New CRL entries must have a Revocation Reason Code | 1-Apr-2023 | 15-Jul-2023 |
 | 2.0.0 | SC62  | Certificate Profiles Update | 22-Apr-2023 | 15-Sep-2023 |
 | 2.0.1 | SC63  | Make OCSP optional, require CRLs, and incentivize automation | TBD | 15-Mar-2024 |
-| 2.0.X | SCXX  | Require Domain Validation and CAA checks to be Performed from Multiple Network Perspectives | TBD | 15-Mar-2024 |
+| 2.0.X | SCXX  | Require domain validation and CAA checks to be performed from multiple Network Perspectives | TBD | 15-Mar-2024 |
 
 
 \* Effective Date and Additionally Relevant Compliance Date(s)
@@ -187,7 +187,7 @@ The following Certificate Policy identifiers are reserved for use by CAs to asse
 | 2023-07-15 | 4.9.1.1 and 7.2.2 | New CRL entries MUST have a revocation reason code |
 | 2023-09-15 | Section 7 (and others) | CAs MUST use the updated Certificate Profiles passed in Version 2.0.0 |
 | 2024-03-15 | 4.9.7 | CAs MUST generate and publish CRLs. |
-| 2024-09-15 | 3.2.2.9 | CAs MUST corroborate the results of Domain Validation and CAA checks from Multiple Network Perspectives where specified. |
+| 2024-09-15 | 3.2.2.9 | CAs MUST corroborate the results of domain validation and CAA checks from multiple Network Perspectives where specified. |
 
 ## 1.3 PKI Participants
 
@@ -378,7 +378,7 @@ The Definitions found in the CA/Browser Forum's Network and Certificate System S
 
 **Legal Entity**: An association, corporation, partnership, proprietorship, trust, government entity or other entity with legal standing in a country's legal system.
 
-**Multi-Perspective Issuance Corroboration**: A process by which the determinations made during domain validation (see "Primary Domain Validation Determination") and CAA checking (see "Primary CAA Determination") are corroborated from multiple Network Perspectives before subscriber certificate issuance. 
+**Multi-Perspective Issuance Corroboration**: A process by which the determinations made during domain validation (see "Primary Domain Validation Determination") and CAA checking (see "Primary CAA Determination") are corroborated from multiple Network Perspectives before Subscriber Certificate issuance. 
 
 **Network Perspective**: Related to Multi-Perspective Issuance Corroboration. A system for sending outbound Internet traffic associated with a domain control validation method and CAA check. The location of a Network Perspective is determined by the point where unencapsulated outbound Internet traffic is first handed off to the network infrastructure providing Internet connectivity to that perspective.
 
@@ -396,7 +396,7 @@ The Definitions found in the CA/Browser Forum's Network and Certificate System S
 
 **P-Label**: A XN-Label that contains valid output of the Punycode algorithm (as defined in RFC 3492, Section 6.3) from the fifth and subsequent positions.
 
-**Primary CAA Determination**: The basis for which the CA has checked CAA records and determined its authority to issue a certificate for the requested domain(s).
+**Primary CAA Determination**: The basis for which the CA has checked CAA records and determined its authority to issue a Certificate for the requested domain(s).
 
 **Primary Domain Validation Determination**: The basis for which the CA has determined Applicant authority and/or domain authorization or control using one of the methods described in Section 3.2.2.4 of this Policy.
 
@@ -816,7 +816,7 @@ The Random Value SHALL be unique in each email. The email MAY be re-sent in its 
 
 CAs using this method MUST implement Multi-Perspective Issuance Corroboration as specified in Section 3.2.2.9. To count as corroborating, a Network Perspective MUST observe:
 - the selected contact address used for domain validation observed during the Primary Domain Validation Determination; and
-- evidence confirming the CAs authority to issue as determined by the Primary CAA Validation, as specified in Section 3.2.2.8.
+- evidence confirming the CA's authority to issue as determined by the Primary CAA Validation, as specified in Section 3.2.2.8.
 
 **Note**: Once the FQDN has been validated using this method, the CA MAY also issue Certificates for other FQDNs that end with all the Domain Labels of the validated FQDN. This method is suitable for validating Wildcard Domain Names.
 
@@ -830,7 +830,7 @@ The Random Value SHALL be unique in each email. The email MAY be re-sent in its 
 
 CAs using this method MUST implement Multi-Perspective Issuance Corroboration as specified in Section 3.2.2.9. To count as corroborating, a Network Perspective MUST observe:
 - the selected contact address used for domain validation observed during the Primary Domain Validation Determination; and
-- evidence confirming the CAs authority to issue as determined by the Primary CAA Validation, as specified in Section 3.2.2.8.
+- evidence confirming the CA's authority to issue as determined by the Primary CAA Validation, as specified in Section 3.2.2.8.
 
 **Note**: Once the FQDN has been validated using this method, the CA MAY also issue Certificates for other FQDNs that end with all the Domain Labels of the validated FQDN. This method is suitable for validating Wildcard Domain Names.
 
@@ -1090,7 +1090,7 @@ Phased Implementation Timeline:
 - *Effective September 15, 2024*, the CA MUST implement Multi-Perspective Issuance Corroboration as described in this section; however, the CA MAY proceed with certificate issuance if either the Primary Domain Validation Determination or Primary CAA Determination is not corroborated as defined in the "# of Network Perspectives and Quorum Requirements" table.
 - *Effective March 15, 2025*, the CA MUST implement Multi-Perspective Issuance Corroboration as described in this section. The CA MUST NOT proceed with certificate issuance if either the Primary Domain Validation Determination or Primary CAA Determination is not corroborated as defined in the "# of Network Perspectives and Quorum Requirements" table and the "Defining Corroborating CAA Evidence" table.
 
-Even though the "# of Network Perspectives and Quorum Requirements" table permits issuance when some Network Perspectives do not corroborate the Primary Domain Validation Determination and Primary CAA Determination, the set of locations of the Network Perspectives that do corroborate the Primary Domain Validation Determination and Primary CAA Determination MUST full within the service regions of at least two distinct regional Internet registries for a CA to proceed with certificate issuance after September 15, 2025.
+Even though the "# of Network Perspectives and Quorum Requirements" table permits issuance when some Network Perspectives do not corroborate the Primary Domain Validation Determination and Primary CAA Determination, the set of locations of the Network Perspectives that do corroborate the Primary Domain Validation Determination and Primary CAA Determination MUST fall within the service regions of at least two (2) distinct regional Internet registries for a CA to proceed with certificate issuance after September 15, 2025.
 
 Table: # of Network Perspectives and Quorum Requirements
 
@@ -1105,7 +1105,7 @@ Table: # of Network Perspectives and Quorum Requirements
 Network Perspectives performing Multi-Perspective Issuance Corroboration:
 
 - MUST:
-    - Forward all Internet traffic via a network or set of networks that filter all RPKI-invalid BGP routes as defined by RFC 6811 
+    - Forward all Internet traffic via a network or set of networks that filter all RPKI-invalid BGP routes as defined by RFC 6811. 
 
 - SHOULD:
     - Facility & Service Provider Requirements
@@ -1120,7 +1120,7 @@ Network Perspectives performing Multi-Perspective Issuance Corroboration:
       - Implement intrusion detection and prevention controls to protect against common network and system threats.
       - Document and follow a vulnerability correction process that addresses the identification, review, response, and remediation of vulnerabilities.
       - Undergo or perform a Vulnerability Scan at least every three (3) months.
-      - Undergo a Penetration Test on at least an annual basis
+      - Undergo a Penetration Test on at least an annual basis.
       - Apply recommended security patches within six (6) months of the security patch's availability, unless the CA documents that the security patch would introduce additional vulnerabilities or instabilities that outweigh the benefits of applying the security patch.
 
 Beyond the above considerations, computing systems performing Multi-Perspective Issuance Corroboration are considered outside of the audit scope described in Section 8 of these Requirements. 
