@@ -925,7 +925,7 @@ If the CA follows redirects, the following apply:
 3. Redirects MUST be to resource URLs accessed via Authorized Ports.
 
 CAs using this method MUST implement Multi-Perspective Issuance Corroboration as specified in Section 3.2.2.9. To count as corroborating, a Network Perspective MUST observe:
-- the same challenge information (e.g., Random Value or Request Token) as the Primary Domain Validation Determination; and
+- the same challenge information (i.e. Random Value or Request Token) as the Primary Domain Validation Determination; and
 - evidence confirming the CA's authority to issue as determined by the Primary CAA Validation, as specified in Section 3.2.2.8. 
 
 **Note**:
