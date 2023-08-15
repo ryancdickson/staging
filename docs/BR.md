@@ -1069,7 +1069,7 @@ CAs MUST document potential issuances that were prevented by a CAA record in suf
 
 Multi-Perspective Issuance Corroboration attempts to corroborate the Primary Domain Validation Determination and Primary CAA Determination by re-completing the entirety of the domain validation process from multiple additional geographic Network Perspectives before subscriber certificate issuance. This process can improve protection against equally-specific prefix Border Gateway Protocol (BGP) attacks or hijacks.
 
-Network Perspectives are considered distinct when the straight-line distance between the two States, Provinces, or Countries they reside in are separated by a distance of at least 500 km.
+Network Perspectives are considered distinct when the straight-line distance between the two States, Provinces, or Countries they reside in is at least 500 km.
 
 The network infrastructure providing Internet connectivity to a Network Perspective MAY be administered by the same organization providing the computational services required to operate the Network Perspective. 
 
