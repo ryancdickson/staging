@@ -1651,9 +1651,9 @@ The CA SHALL record at least the following events:
    6. Signing of OCSP Responses (as described in [Section 4.9](#49-certificate-revocation-and-suspension) and [Section 4.10](#410-certificate-status-services)).
    7. Multi-Perspective Issuance Corroboration attempts from each Network Perspective, minimally recording the following information:
       - an identifier that uniquely identifies the perspective used
-      - the attempted domain name
+      - the attempted domain name or IP address
       - the result of the attempt (i.e., "DCV pass/fail, CAA allow/disallow")
-   8. Multi-Perspective Issuance Corroboration quorum results for each attempted domain name represented in a Certificate request (i.e., "3/4" which should be interpreted as "Three (3) out of four (4) attempted Network Perspectives corroborated the Primary Domain Validation Determination and Primary CAA Determination).
+   8. Multi-Perspective Issuance Corroboration quorum results for each attempted domain name or IP address represented in a Certificate request (i.e., "3/4" which should be interpreted as "Three (3) out of four (4) attempted Network Perspectives corroborated the Primary Domain Validation Determination and Primary CAA Determination).
 
 3. Security events, including:
    1. Successful and unsuccessful PKI system access attempts;
