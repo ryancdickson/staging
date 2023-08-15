@@ -1087,20 +1087,18 @@ CAs MAY immediately retry Multi-Perspective Issuance Corroboration using the sam
 
 Phased Implementation Timeline:
 - *Effective March 15, 2024*, the CA SHOULD implement Multi-Perspective Issuance Corroboration as described in this section. 
-- *Effective September 15, 2024*, the CA MUST implement Multi-Perspective Issuance Corroboration as described in this section; however, the CA MAY proceed with certificate issuance if either the Primary Domain Validation Determination or Primary CAA Determination is not corroborated as defined in the "# of Network Perspectives and Quorum Requirements" table.
-- *Effective March 15, 2025*, the CA MUST implement Multi-Perspective Issuance Corroboration as described in this section. The CA MUST NOT proceed with certificate issuance if either the Primary Domain Validation Determination or Primary CAA Determination is not corroborated as defined in the "# of Network Perspectives and Quorum Requirements" table and the "Defining Corroborating CAA Evidence" table.
+- *Effective September 15, 2024*, the CA MUST implement Multi-Perspective Issuance Corroboration as described in this section. However, the CA MAY proceed with certificate issuance if the number of additional Network Perspectives which do not corroborate either the Primary Domain Validation Determination or Primary CAA Determination is greater than the number allowed in the "Quorum Requirements" table. The CA MUST attempt to corroborate the primary determinations from at least two (2) additional Network Perspectives.
+- *Effective March 15, 2025*, the CA MUST NOT proceed with certificate issuance if the number of additional Network Perspectives which do not corroborate either the Primary Domain Validation Determination or Primary CAA Determination greater than the number allowed in the "Quorum Requirements" table.
+- *Effective September 15, 2025*, the CA MUST attempt to corroborate the primary determinations from at least three (3) additional Network Perspectives. Additionally, the Network Perspectives that do corroborate the primary determinations MUST fall within the service regions of at least two (2) distinct regional Internet registries.
+- *Effective March 15, 2026*, the CA MUST attempt to corroborate the primary determinations from at least four (4) additional Network Perspectives.
+- *Effective September 15, 2026*, the CA MUST attempt to corroborate the primary determinations from at least five (5) additional Network Perspectives.
 
-Even though the "# of Network Perspectives and Quorum Requirements" table permits issuance when some Network Perspectives do not corroborate the Primary Domain Validation Determination and Primary CAA Determination, the set of locations of the Network Perspectives that do corroborate the Primary Domain Validation Determination and Primary CAA Determination MUST fall within the service regions of at least two (2) distinct regional Internet registries for a CA to proceed with certificate issuance after September 15, 2025.
+Table: Quorum Requirements
 
-Table: # of Network Perspectives and Quorum Requirements
-
-| # Network Perspectives used | Description of Configuration and Quorum Requirements | Permitted Use |
-|--- |------------------------------ |------------------------------ |
-| 2  | This configuration relies on two (2) Network Perspectives.<br><br>When this configuration is used, at least one (1) of the Network Perspectives MUST corroborate the Primary Domain Validation Determination and Primary CAA Determination. | This configuration MUST NOT be used after 9/15/2025. |
-| 3  | This configuration relies on three (3) Network Perspectives.<br><br>When this configuration is used, at least two (2) of the Network Perspectives MUST corroborate the Primary Domain Validation Determination and Primary CAA Determination.  | This configuration MUST NOT be used after 3/15/2026. |
-| 4  | This configuration relies on four (4) Network Perspectives.<br><br>When this configuration is used, at least three (3) of the Network Perspectives MUST corroborate the Primary Domain Validation Determination and Primary CAA Determination. | This configuration MUST NOT be used after 9/15/2026. |
-| 5  | This configuration relies on five (5) Network Perspectives.<br><br>When this configuration is used, at least four (4) of the Network Perspectives MUST corroborate the Primary Domain Validation Determination and Primary CAA Determination. | - |
-| 6+ | This configuration relies on six (6) or more (i.e., "N") Network Perspectives.<br><br>When this configuration is used, at least N-2 Network Perspectives MUST corroborate the Primary Domain Validation Determination and Primary CAA Determination. | - |
+| # Network Perspectives used | # of Allowed non-Corroborations |
+| --- | --- |
+| 2-5 |  1  |
+| 6+  |  2  |
 
 Network Perspectives performing Multi-Perspective Issuance Corroboration:
 
