@@ -1067,7 +1067,7 @@ CAs MUST document potential issuances that were prevented by a CAA record in suf
 
 #### 3.2.2.9 Multi-Perspective Issuance Corroboration
 
-Multi-Perspective Issuance Corroboration attempts to corroborate the Primary Domain Validation Determination and Primary CAA Determination by re-completing the entirety of the domain validation process from multiple additional geographic Network Perspectives before subscriber certificate issuance. This process can improve protection against equally-specific prefix Border Gateway Protocol (BGP) attacks or hijacks.
+Multi-Perspective Issuance Corroboration attempts to corroborate the Primary Domain Validation Determination and Primary CAA Determination (jointly referred to as "primary determinations") by re-completing the entirety of the domain validation process from multiple additional geographic Network Perspectives before subscriber certificate issuance. This process can improve protection against equally-specific prefix Border Gateway Protocol (BGP) attacks or hijacks.
 
 Network Perspectives are considered distinct when the straight-line distance between the two States, Provinces, or Countries they reside in is at least 500 km.
 
@@ -1087,15 +1087,15 @@ CAs MAY immediately retry Multi-Perspective Issuance Corroboration using the sam
 
 Phased Implementation Timeline:
 - *Effective March 15, 2024*, the CA SHOULD implement Multi-Perspective Issuance Corroboration as described in this section. 
-- *Effective September 15, 2024*, the CA MUST implement Multi-Perspective Issuance Corroboration as described in this section. However, the CA MAY proceed with certificate issuance if the number of additional Network Perspectives which do not corroborate either the Primary Domain Validation Determination or Primary CAA Determination is greater than the number allowed in the "Quorum Requirements" table. The CA MUST attempt to corroborate the primary determinations from at least two (2) additional Network Perspectives.
-- *Effective March 15, 2025*, the CA MUST NOT proceed with certificate issuance if the number of additional Network Perspectives which do not corroborate either the Primary Domain Validation Determination or Primary CAA Determination greater than the number allowed in the "Quorum Requirements" table.
+- *Effective September 15, 2024*, the CA MUST implement Multi-Perspective Issuance Corroboration as described in this section. However, the CA MAY proceed with certificate issuance if the number of additional Network Perspectives which do not corroborate the primary determinations ("non-corroborations) is greater than the number allowed in the "Quorum Requirements" table. The CA MUST attempt to corroborate the primary determinations from at least two (2) additional Network Perspectives.
+- *Effective March 15, 2025*, the CA MUST NOT proceed with certificate issuance if the number of additional Network Perspectives which do not corroborate the primary determinations is greater than the number allowed in the "Quorum Requirements" table.
 - *Effective September 15, 2025*, the CA MUST attempt to corroborate the primary determinations from at least three (3) additional Network Perspectives. Additionally, the Network Perspectives that do corroborate the primary determinations MUST fall within the service regions of at least two (2) distinct regional Internet registries.
-- *Effective March 15, 2026*, the CA MUST attempt to corroborate the primary determinations from at least four (4) additional Network Perspectives.
-- *Effective September 15, 2026*, the CA MUST attempt to corroborate the primary determinations from at least five (5) additional Network Perspectives.
+- *Effective March 15, 2026*, the CA MUST attempt to corroborate the primary determinations from at least four (4) additional Network Perspectives. 
+- *Effective September 15, 2026*, the CA MUST attempt to corroborate the primary determinations from at least five (5) additional Network Perspectives. 
 
 Table: Quorum Requirements
 
-| # Network Perspectives used | # of Allowed non-Corroborations |
+| # Network Perspectives Used | # of Allowed non-Corroborations |
 | --- | --- |
 | 2-5 |  1  |
 | 6+  |  2  |
