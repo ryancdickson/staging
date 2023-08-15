@@ -773,7 +773,7 @@ If a Random Value is used, the CA SHALL provide a Random Value unique to the Cer
   ii. if the Applicant submitted the Certificate request, the time frame permitted for reuse of validated information relevant to the Certificate (such as in [Section 4.2.1](#421-performing-identification-and-authentication-functions) of these Guidelines or Section 11.14.3 of the EV Guidelines).
 
 CAs using this method MUST implement Multi-Perspective Issuance Corroboration as specified in Section 3.2.2.9. To count as corroborating, a Network Perspective MUST observe:
-- the same challenge information (e.g., Random Value or Request Token) as the Primary Domain Validation Determination; and
+- the same challenge information (i.e. Random Value or Request Token) as the Primary Domain Validation Determination; and
 - evidence confirming the CA's authority to issue as determined by the Primary CAA Validation, as specified in Section 3.2.2.8. 
 
 **Note**: Once the FQDN has been validated using this method, the CA MAY also issue Certificates for other FQDNs that end with all the Domain Labels of the validated FQDN. This method is suitable for validating Wildcard Domain Names.
