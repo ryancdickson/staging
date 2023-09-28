@@ -1107,8 +1107,8 @@ Network Perspectives performing Multi-Perspective Issuance Corroboration:
 
 - SHOULD:
     - Facility & Service Provider Requirements
-      - Be hosted from an ISO/IEC 27001 certified facility or equivalent. 
-      - Rely on services covered in one of the following reports: System and Organization Controls 3 (SOC 3), IASE 3000, ENISA 715, FedRAMP Moderate, C5:2020, CSA STAR CCM, or equivalent.
+      - Be hosted from an ISO/IEC 27001 certified facility or equivalent security framework independently audited and certified or reported. 
+      - Rely on services covered in one of the following reports: System and Organization Controls 2 (SOC 2), IASE 3000, ENISA 715, FedRAMP Moderate, C5:2020, CSA STAR CCM, or equivalent services framework independently audited and certified or reported.
     - Network Hardening
       - Configure each network boundary control (firewall, switch, router, gateway, or other network control device or system) with rules that support only the services, protocols, ports, and communications identified as necessary to its operations.
     - System Hardening
