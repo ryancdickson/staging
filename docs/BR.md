@@ -1007,7 +1007,6 @@ Confirming the Applicant's control over the IP Address by performing the procedu
 
 CAs using this method MUST implement Multi-Perspective Issuance Corroboration as specified in Section 3.2.2.9. To count as corroborating, a Network Perspective MUST observe:
 - the same token as the Primary Network Perspective; and
-- evidence confirming the CA's authority to issue as determined by the Primary Network Perspective, as specified in Section 3.2.2.8. 
 
 ##### 3.2.2.5.7 ACME "tls-alpn-01" method for IP Addresses
 
