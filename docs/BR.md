@@ -977,7 +977,6 @@ The CA MAY resend the email, fax, SMS, or postal mail in its entirety, including
 The Random Value SHALL remain valid for use in a confirming response for no more than 30 days from its creation. The CPS MAY specify a shorter validity period for Random Values, in which case the CA MUST follow its CPS.
 
 CAs using this method MUST implement Multi-Perspective Issuance Corroboration as specified in Section 3.2.2.9. To count as corroborating, a Network Perspective MUST observe the same Domain Name as the Primary Network Perspective.
-- evidence confirming the CA's authority to issue as determined by the Primary Network Perspective, as specified in Section 3.2.2.8. 
 
 ##### 3.2.2.5.3 Reverse Address Lookup
 
