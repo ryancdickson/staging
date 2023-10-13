@@ -1010,7 +1010,6 @@ CAs using this method MUST implement Multi-Perspective Issuance Corroboration as
 Confirming the Applicant's control over the IP Address by performing the procedure documented for a "tls-alpn-01" challenge in draft 04 of "ACME IP Identifier Validation Extension," available at <https://tools.ietf.org/html/draft-ietf-acme-ip-04#section-4>.
 
 CAs using this method MUST implement Multi-Perspective Issuance Corroboration as specified in Section 3.2.2.9. To count as corroborating, a Network Perspective MUST observe the same token as the Primary Network Perspective.
-- the same token as the Primary Network Perspective; and
 
 #### 3.2.2.6 Wildcard Domain Validation
 
