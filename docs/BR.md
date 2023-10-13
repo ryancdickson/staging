@@ -976,7 +976,7 @@ The CA MAY resend the email, fax, SMS, or postal mail in its entirety, including
 
 The Random Value SHALL remain valid for use in a confirming response for no more than 30 days from its creation. The CPS MAY specify a shorter validity period for Random Values, in which case the CA MUST follow its CPS.
 
-CAs using this method MUST implement Multi-Perspective Issuance Corroboration as specified in Section 3.2.2.9. To count as corroborating, a Network Perspective MUST observe the same Domain Name as the Primary Network Perspective.
+CAs using this method MUST implement Multi-Perspective Issuance Corroboration as specified in Section 3.2.2.9. To count as corroborating, a Network Perspective MUST observe the same IP Address Contact as the Primary Network Perspective.
 
 ##### 3.2.2.5.3 Reverse Address Lookup
 
@@ -1637,9 +1637,9 @@ The CA SHALL record at least the following events:
    5. Generation of Certificate Revocation Lists; and 
    6. Signing of OCSP Responses (as described in [Section 4.9](#49-certificate-revocation-and-suspension) and [Section 4.10](#410-certificate-status-services)).
    7. Multi-Perspective Issuance Corroboration attempts from each Network Perspective, minimally recording the following information:
-      a. an identifier that uniquely identifies the Network Perspective used;
-      b. the attempted domain name and/or IP address; and
-      c. the result of the attempt (e.g., "domain validation pass/fail", "CAA permission/prohibition").
+      - a. an identifier that uniquely identifies the Network Perspective used;
+      - b. the attempted domain name and/or IP address; and
+      - c. the result of the attempt (e.g., "domain validation pass/fail", "CAA permission/prohibition").
    8. Multi-Perspective Issuance Corroboration quorum results for each attempted domain name or IP address represented in a Certificate request (i.e., "3/4" which should be interpreted as "Three (3) out of four (4) attempted Network Perspectives corroborated the determinations made by the Primary Network Perspective).
 
 3. Security events, including:
