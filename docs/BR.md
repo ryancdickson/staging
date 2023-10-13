@@ -962,7 +962,6 @@ If a Random Value is used, the CA SHALL provide a Random Value unique to the cer
 
 CAs using this method MUST implement Multi-Perspective Issuance Corroboration as specified in Section 3.2.2.9. To count as corroborating, a Network Perspective MUST observe:
 - the same challenge information (i.e. Random Value or Request Token) as the Primary Network Perspective; and
-- evidence confirming the CA's authority to issue as determined by the Primary Network Perspective, as specified in Section 3.2.2.8. 
   
 ##### 3.2.2.5.2 Email, Fax, SMS, or Postal Mail to IP Address Contact
 
