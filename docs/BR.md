@@ -1011,9 +1011,8 @@ CAs using this method MUST implement Multi-Perspective Issuance Corroboration as
 
 Confirming the Applicant's control over the IP Address by performing the procedure documented for a "tls-alpn-01" challenge in draft 04 of "ACME IP Identifier Validation Extension," available at <https://tools.ietf.org/html/draft-ietf-acme-ip-04#section-4>.
 
-CAs using this method MUST implement Multi-Perspective Issuance Corroboration as specified in Section 3.2.2.9. To count as corroborating, a Network Perspective MUST observe:
+CAs using this method MUST implement Multi-Perspective Issuance Corroboration as specified in Section 3.2.2.9. To count as corroborating, a Network Perspective MUST observe the same token as the Primary Network Perspective.
 - the same token as the Primary Network Perspective; and
-- evidence confirming the CA's authority to issue as determined by the Primary Network Perspective, as specified in Section 3.2.2.8. 
 
 #### 3.2.2.6 Wildcard Domain Validation
 
@@ -1065,8 +1064,8 @@ CAs MUST document potential issuances that were prevented by a CAA record in suf
 Multi-Perspective Issuance Corroboration attempts to corroborate the determinations made by the Primary Network Perspective from multiple additional Network Perspectives before subscriber certificate issuance. This process can improve protection against equally-specific prefix Border Gateway Protocol (BGP) attacks or hijacks.
 
 Each corroborating Network Perspective MUST independently verify: 
-- the presence of the expected 1) Random Value, 2) Request Token, 3) IP Address, or 4) Contact Address, as required by the relied upon validation method specified in Sections 3.2.2.4 and 3.2.2.5, and
-- the CA's authority to issue to the requested domain(s) or IP address(es), as specified in Section 3.2.2.8
+a. the presence of the expected 1) Random Value, 2) Request Token, 3) IP Address, or 4) Contact Address, as required by the relied upon validation method specified in Sections 3.2.2.4 and 3.2.2.5; and
+b. the CA's authority to issue to the requested domain(s), as specified in Section 3.2.2.8.
 
 [Section 3.2.2.4](#3224-validation-of-domain-authorization-or-control) and [Section 3.2.2.5](#3225-authentication-for-an-ip-address) describe the validation methods that require the use of Multi-Perspective Issuance Corroboration and how a Network Perspective can corroborate the outcomes determined by the Primary Network Perspective. A CA MAY use corroborating evidence for CAA record compliance for a period equal to the period of validity for Validation of Domain Authorization or Control specified in [Section 4.2.1](#421-performing-identification-and-authentication-functions).
 
