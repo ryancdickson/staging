@@ -1058,7 +1058,7 @@ CAs MUST document potential issuances that were prevented by a CAA record in suf
 
 #### 3.2.2.9 Multi-Perspective Issuance Corroboration
 
-Multi-Perspective Issuance Corroboration attempts to corroborate the determinations made by the Primary Network Perspective from multiple additional Network Perspectives before subscriber certificate issuance. This process can improve protection against equally-specific prefix Border Gateway Protocol (BGP) attacks or hijacks.
+Multi-Perspective Issuance Corroboration attempts to corroborate the determinations made by the Primary Network Perspective from multiple additional Network Perspectives before Certificate issuance. This process can improve protection against equally-specific prefix Border Gateway Protocol (BGP) attacks or hijacks.
 
 Each corroborating Network Perspective MUST independently verify: 
 a. the presence of the expected 1) Random Value, 2) Request Token, 3) IP Address, or 4) Contact Address, as required by the relied upon validation method specified in Sections 3.2.2.4 and 3.2.2.5; and
