@@ -1066,7 +1066,7 @@ Table: Quorum Requirements
 | 2-5 |  1  |
 | 6+  |  2  |
 
-Network Perspectives performing Multi-Perspective Issuance Corroboration:
+Remote Network Perspectives performing Multi-Perspective Issuance Corroboration:
 
 - MUST:
     - Forward all Internet traffic via a network or set of networks that filter all RPKI-invalid BGP routes as defined by RFC 6811. 
