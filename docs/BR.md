@@ -616,8 +616,6 @@ The CA SHALL publicly disclose its Certificate Policy and/or Certification Pract
 
 The Certificate Policy and/or Certification Practice Statement MUST be structured in accordance with RFC 3647 and MUST include all material required by RFC 3647.
 
-Section 4.2 of a CA's Certificate Policy and/or Certification Practice Statement SHALL state the CA's policy or practice on processing CAA Records for Fully-Qualified Domain Names; that policy shall be consistent with these Requirements. It shall clearly specify the set of Issuer Domain Names that the CA recognizes in CAA "issue" or "issuewild" records as permitting it to issue. The CA SHALL log all actions taken, if any, consistent with its processing practice.
-
 The CA SHALL publicly give effect to these Requirements and represent that it will adhere to the latest published version. The CA MAY fulfill this requirement by incorporating these Requirements directly into its Certificate Policy and/or Certification Practice Statements or by incorporating them by reference using a clause such as the following (which MUST include a link to the official version of these Requirements):
 
 > [Name of CA] conforms to the current version of the Baseline Requirements for the Issuance and Management of Publicly-Trusted Certificates published at <http://www.cabforum.org>. In the event of any inconsistency between this document and those Requirements, those Requirements take precedence over this document.
@@ -1021,7 +1019,7 @@ Databases maintained by the CA, its owner, or its affiliated companies do not qu
 
 #### 3.2.2.8 CAA Records
 
-As part of the Certificate issuance process, the CA MUST retrieve and process CAA records in accordance with RFC 8659 for each `dNSName` in the `subjectAltName` extension that does not contain an Onion Domain Name. If the CA issues, they MUST do so within the TTL of the CAA record, or 8 hours, whichever is greater.
+As part of the Certificate issuance process, the CA MUST retrieve and process CAA records in accordance with RFC 8659 for each `dNSName` in the `subjectAltName` extension that does not contain an Onion Domain Name, and these practices MUST be described in Section 4.2 of the CA's Certificate Policy and/or Certification Practice Statement.
 
 Some methods relied upon for validating the Applicant's ownership or control of the subject domain(s) (see [Section 3.2.2.4](#3224-validation-of-domain-authorization-or-control)) or IP address(es) (see [Section 3.2.2.5](#3225-authentication-for-an-ip-address)) to be listed in a certificate require CAA records to be retrieved and processed from additional Network Perspectives before Certificate issuance. See [Section 3.2.2.9](#3229-multi-perspective-issuance-corroboration).
 
@@ -1029,11 +1027,12 @@ CAs MAY check CAA records at any other time.
 
 When processing CAA records, CAs MUST process the issue, issuewild, and iodef property tags as specified in RFC 8659, although they are not required to act on the contents of the iodef property tag. Additional property tags MAY be supported, but MUST NOT conflict with or supersede the mandatory property tags set out in this document. CAs MUST respect the critical flag and not issue a certificate if they encounter an unrecognized property tag with this flag set.
 
+If the CA issues a certificate after processing a CAA record, it MUST do so within the TTL of the CAA record, or 8 hours, whichever is greater.
+
 RFC 8659 requires that CAs "MUST NOT issue a certificate unless the CA determines that either (1) the certificate request is consistent with the applicable CAA RRset or (2) an exception specified in the relevant CP or CPS applies." For issuances conforming to these Baseline Requirements, CAs MUST NOT rely on any exceptions specified in their CP or CPS unless they are one of the following:
 
 * CAA checking is optional for certificates for which a Certificate Transparency Precertificate (see [Section 7.1.2.9](#7129-precertificate-profile)) was created and logged in at least two public logs, and for which CAA was checked at time of Precertificate issuance.
 * CAA checking is optional for certificates issued by a Technically Constrained Subordinate CA Certificate as set out in [Section 7.1.2.3](#7123-technically-constrained-non-tls-subordinate-ca-certificate-profile) or [Section 7.1.2.5](#7125-technically-constrained-tls-subordinate-ca-certificate-profile), where the lack of CAA checking is an explicit contractual provision in the contract with the Applicant.
-* For certificates issued prior to July 1, 2021, CAA checking is optional if the CA or an Affiliate of the CA is the DNS Operator (as defined in RFC 7719) of the domain's DNS.
 
 CAs are permitted to treat a record lookup failure as permission to issue if:
 
@@ -1041,7 +1040,7 @@ CAs are permitted to treat a record lookup failure as permission to issue if:
 * the lookup has been retried at least once; and
 * the domain's zone does not have a DNSSEC validation chain to the ICANN root.
 
-CAs MUST document potential issuances that were prevented by a CAA record in sufficient detail to provide feedback to the CAB Forum on the circumstances, and SHOULD dispatch reports of such issuance requests to the contact(s) stipulated in the CAA iodef record(s), if present. CAs are not expected to support URL schemes in the iodef record other than mailto: or https:.
+CAs MUST document potential issuances that were prevented by a CAA record in sufficient detail to provide feedback to the CA/Browser Forum on the circumstances, and SHOULD dispatch reports of such issuance requests to the contact(s) stipulated in the CAA iodef record(s), if present. CAs are not expected to support URL schemes in the iodef record other than mailto: or https:.
 
 #### 3.2.2.9 Multi-Perspective Issuance Corroboration
 
@@ -1168,7 +1167,7 @@ After the change to any validation method specified in the Baseline Requirements
 
 The CA SHALL develop, maintain, and implement documented procedures that identify and require additional verification activity for High Risk Certificate Requests prior to the Certificate's approval, as reasonably necessary to ensure that such requests are properly verified under these Requirements.
 
-If a Delegated Third Party fulfills any of the CA's obligations under this section , the CA SHALL verify that the process used by the Delegated Third Party to identify and further verify High Risk Certificate Requests provides at least the same level of assurance as the CA's own processes.
+If a Delegated Third Party fulfills any of the CA's obligations under this section, the CA SHALL verify that the process used by the Delegated Third Party to identify and further verify High Risk Certificate Requests provides at least the same level of assurance as the CA's own processes.
 
 ### 4.2.2 Approval or rejection of certificate applications
 
