@@ -1046,7 +1046,7 @@ CAs MUST document potential issuances that were prevented by a CAA record in suf
 
 Multi-Perspective Issuance Corroboration attempts to corroborate the determinations (i.e., domain validation pass/fail, CAA permission/prohibition) made by the Primary Network Perspective from multiple additional Network Perspectives before Certificate issuance. This process can improve protection against equally-specific prefix Border Gateway Protocol (BGP) attacks or hijacks.
 
-The response returned from each corroborating Network Perspective MUST allow the CA to verify:
+Each corroborating Network Perspective's response MUST provide the CA with the necessary information to allow it to affirmatively assess:
 - a. the presence of the expected 1) Random Value, 2) Request Token, 3) IP Address, or 4) Contact Address, as required by the relied upon validation method specified in Sections 3.2.2.4 and 3.2.2.5; and
 - b. the CA's authority to issue to the requested domain(s), as specified in Section 3.2.2.8.
 
