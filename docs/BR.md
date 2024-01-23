@@ -1059,7 +1059,7 @@ Each corroborating Network Perspective's response MUST provide the CA with the n
 
 [Section 3.2.2.4](#3224-validation-of-domain-authorization-or-control) and [Section 3.2.2.5](#3225-authentication-for-an-ip-address) describe the validation methods that require the use of Multi-Perspective Issuance Corroboration and how a Network Perspective can corroborate the outcomes determined by the Primary Network Perspective. 
 
-A CA MAY use corroborating evidence for CAA record compliance for a period equal to the period of validity for Validation of Domain Authorization or Control specified in [Section 4.2.1](#421-performing-identification-and-authentication-functions). 
+A CA MAY reuse corroborating evidence for CAA record quorum compliance for a maximum of 398 days. Further, after issuing a certificate to a domain, remote Network Perspectives MAY omit retrieving and processing CAA records for its subdomains in subsequent certificate requests from the same applicant.
 
 Results or information obtained from one Network Perspective MUST NOT be reused or cached when performing validation through subsequent Network Perspectives (e.g., different Network Perspectives cannot rely on a shared DNS cache to prevent an adversary with control of traffic from one Network Perspective from poisoning the DNS cache used by other Network Perspectives). The network infrastructure providing Internet connectivity to a Network Perspective MAY be administered by the same organization providing the computational services required to operate the Network Perspective. All communications between a remote Network Perspective and the CA MUST take place over an authenticated and encrypted channel relying on modern protocols (e.g., over HTTPS).
 
