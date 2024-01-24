@@ -1051,7 +1051,7 @@ CAs MUST document potential issuances that were prevented by a CAA record in suf
 
 #### 3.2.2.9 Multi-Perspective Issuance Corroboration
 
-Multi-Perspective Issuance Corroboration attempts to corroborate the determinations (i.e., domain validation pass/fail, CAA permission/prohibition) made by the Primary Network Perspective from multiple additional Network Perspectives before Certificate issuance. This process can improve protection against equally-specific prefix Border Gateway Protocol (BGP) attacks or hijacks.
+Multi-Perspective Issuance Corroboration attempts to corroborate the determinations (i.e., domain validation pass/fail, CAA permission/prohibition) made by the Primary Network Perspective from multiple remote Network Perspectives before Certificate issuance. This process can improve protection against equally-specific prefix Border Gateway Protocol (BGP) attacks or hijacks.
 
 Each corroborating Network Perspective's response MUST provide the CA with the necessary information to allow it to affirmatively assess:
 - a. the presence of the expected 1) Random Value, 2) Request Token, 3) IP Address, or 4) Contact Address, as required by the relied upon validation method specified in Sections 3.2.2.4 and 3.2.2.5; and
@@ -1067,7 +1067,7 @@ CAs MAY immediately retry Multi-Perspective Issuance Corroboration using the sam
 
 The "Quorum Requirements" Table describes quorum requirements related to Multi-Perspective Issuance Corroboration. Network Perspectives are considered distinct when the straight-line distance between the two States, Provinces, or Countries they reside in is at least 500 km. Network Perspectives are considered "remote" when they are distinct from the Primary Network Perspective and the other Network Perspectives represented in a quorum.
 
-A CA MAY reuse corroborating evidence for CAA record quorum compliance for a maximum of 398 days. After issuing a certificate to a domain, remote Network Perspectives MAY omit retrieving and processing CAA records for its subdomains in subsequent certificate requests from the same applicant for up to a maximum of 398 days.
+A CA MAY reuse corroborating evidence for CAA record quorum compliance for a maximum of 398 days. After issuing a Certificate to a domain, remote Network Perspectives MAY omit retrieving and processing CAA records for its subdomains in subsequent Certificate requests from the same Applicant for up to a maximum of 398 days.
 
 Table: Quorum Requirements
 
