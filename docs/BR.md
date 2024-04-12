@@ -1078,26 +1078,25 @@ Table: Quorum Requirements
 | 2-5 |  1  |
 | 6+  |  2  |
 
-Remote Network Perspectives performing Multi-Perspective Issuance Corroboration:
+Remote Network Perspectives performing Multi-Perspective Issuance Corroboration SHOULD:
 
-- MUST:
-    - Under normal operating conditions, forward all Internet traffic via a network or set of networks that filter all or some RPKI-invalid BGP routes as defined by RFC 6811.
- 
-- SHOULD:
-    - Facility & Service Provider Requirements
-      - Be hosted from an ISO/IEC 27001 certified facility or equivalent security framework independently audited and certified or reported. 
-      - Rely on services covered in one of the following reports: System and Organization Controls 2 (SOC 2), IASE 3000, ENISA 715, FedRAMP Moderate, C5:2020, CSA STAR CCM, or equivalent services framework independently audited and certified or reported.
-    - Network Hardening
-      - Configure each network boundary control (firewall, switch, router, gateway, or other network control device or system) with rules that support only the services, protocols, ports, and communications identified as necessary to its operations.
-    - System Hardening
-      - Disable all accounts, applications, services, protocols, and ports that are not used.
-      - Implement multi-factor authentication for all user accounts.
-    - Vulnerability Detection and Patch Management
-      - Implement intrusion detection and prevention controls to protect against common network and system threats.
-      - Document and follow a vulnerability correction process that addresses the identification, review, response, and remediation of vulnerabilities.
-      - Undergo or perform a Vulnerability Scan at least every three (3) months.
-      - Undergo a Penetration Test on at least an annual basis.
-      - Apply recommended security patches within six (6) months of the security patch's availability, unless the CA documents that the security patch would introduce additional vulnerabilities or instabilities that outweigh the benefits of applying the security patch.
+- Facility & Service Provider Requirements
+  - Be hosted from an ISO/IEC 27001 certified facility or equivalent security framework independently audited and certified or reported. 
+  - Rely on services covered in one of the following reports: System and Organization Controls 2 (SOC 2), IASE 3000, ENISA 715, FedRAMP Moderate, C5:2020, CSA STAR CCM, or equivalent services framework independently audited and certified or reported.
+- Vulnerability Detection and Patch Management
+  - Implement intrusion detection and prevention controls to protect against common network and system threats.
+  - Document and follow a vulnerability correction process that addresses the identification, review, response, and remediation of vulnerabilities.
+  - Undergo or perform a Vulnerability Scan at least every three (3) months.
+  - Undergo a Penetration Test on at least an annual basis.
+  - Apply recommended security patches within six (6) months of the security patch's availability, unless the CA documents that the security patch would introduce additional vulnerabilities or instabilities that outweigh the benefits of applying the security patch.
+- System Hardening
+  - Disable all accounts, applications, services, protocols, and ports that are not used.
+  - Implement multi-factor authentication for all user accounts.
+- Network Hardening
+  - Configure each network boundary control (firewall, switch, router, gateway, or other network control device or system) with rules that support only the services, protocols, ports, and communications identified as necessary to its operations.
+  - Under normal operating conditions, forward all Internet traffic via a network or set of networks that filter all or some RPKI-invalid BGP routes as defined by RFC 6811.
+
+*Effective September 15, 2025*, under normal operating conditions, remote Network Perspectives performing Multi-Perspective Issuance Corroboration MUST forward all Internet traffic via a network or set of networks that filter all or some RPKI-invalid BGP routes as defined by RFC 6811.
 
 Beyond the above considerations, computing systems performing Multi-Perspective Issuance Corroboration are considered outside of the audit scope described in Section 8 of these Requirements. 
 
