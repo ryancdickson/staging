@@ -384,7 +384,7 @@ The Definitions found in the CA/Browser Forum's Network and Certificate System S
 
 **Multi-Perspective Issuance Corroboration**: A process by which the determinations made during domain validation and CAA checking by the Primary Network Perspective are corroborated by other Network Perspectives before Certificate issuance. 
 
-**Network Perspective**: Related to Multi-Perspective Issuance Corroboration. A system for sending outbound Internet traffic associated with a domain control validation method and/or CAA check. The location of a Network Perspective is determined by the point where unencapsulated outbound Internet traffic is first handed off to the network infrastructure providing Internet connectivity to that perspective.
+**Network Perspective**: Related to Multi-Perspective Issuance Corroboration. A system (e.g., a cloud-hosted server instance) or collection of network components (e.g., a VPN and corresponding infrastructure) for sending outbound Internet traffic associated with a domain control validation method and/or CAA check. The location of a Network Perspective is determined by the point where unencapsulated outbound Internet traffic is first handed off to the network infrastructure providing Internet connectivity to that perspective.
 
 **Non-Reserved LDH Label**: From RFC 5890 (<http://tools.ietf.org/html/rfc5890>): "The set of valid LDH labels that do not have '`--`' in the third and fourth positions."
 
@@ -1078,8 +1078,13 @@ Table: Quorum Requirements
 | 2-5 |  1  |
 | 6+  |  2  |
 
-Remote Network Perspectives performing Multi-Perspective Issuance Corroboration SHOULD:
+Remote Network Perspectives performing Multi-Perspective Issuance Corroboration:
 
+MUST: 
+- Network Hardening
+   - Rely upon Internet Service Providers or network operators that implement measures to mitigate BGP routing incidents in the global Internet routing system. 
+
+SHOULD:
 - Facility & Service Provider Requirements
   - Be hosted from an ISO/IEC 27001 certified facility or equivalent security framework independently audited and certified or reported. 
   - Rely on services covered in one of the following reports: System and Organization Controls 2 (SOC 2), IASE 3000, ENISA 715, FedRAMP Moderate, C5:2020, CSA STAR CCM, or equivalent services framework independently audited and certified or reported.
@@ -1094,9 +1099,7 @@ Remote Network Perspectives performing Multi-Perspective Issuance Corroboration 
   - Implement multi-factor authentication for all user accounts.
 - Network Hardening
   - Configure each network boundary control (firewall, switch, router, gateway, or other network control device or system) with rules that support only the services, protocols, ports, and communications identified as necessary to its operations.
-  - Under normal operating conditions, forward all Internet traffic via a network or set of networks that filter all or some RPKI-invalid BGP routes as defined by RFC 6811.
-
-*Effective September 15, 2025*, under normal operating conditions, remote Network Perspectives performing Multi-Perspective Issuance Corroboration MUST forward all Internet traffic via a network or set of networks that filter all or some RPKI-invalid BGP routes as defined by RFC 6811.
+  - Rely upon Internet Service Providers or network operators that: 1) use mechanisms based on Secure Inter-Domain Routing (RFC 6480), for example, BGP Prefix Origin Validation (RFC 6811), 2) make use of other non-RPKI route-leak prevention mechanisms (such as RFC 9234), and 3) apply current best practices described in BCP 194. While It is RECOMMENDED that under normal operating conditions Network Perspectives performing Multi-Perspective Issuance Corroboration forward all Internet traffic via a network or set of networks that filter all or some RPKI-invalid BGP routes as defined by RFC 6811, it is NOT REQUIRED.
 
 Beyond the above considerations, computing systems performing Multi-Perspective Issuance Corroboration are considered outside of the audit scope described in Section 8 of these Requirements. 
 
