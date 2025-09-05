@@ -1,11 +1,11 @@
 ---
 title: Baseline Requirements for the Issuance and Management of Publicly-Trusted TLS Server Certificates
 
-subtitle: Version 2.1.7
+subtitle: Version 2.1.8
 author:
   - CA/Browser Forum
 
-date: 25-August-2025
+date: DD-MONTH-2025
 
 copyright: |
   Copyright 2025 CA/Browser Forum
@@ -151,6 +151,8 @@ The following Certificate Policy identifiers are reserved for use by CAs to asse
 | 2.1.5       | SC81        | Introduce Schedule of Reducing Validity and Data Reuse Periods                         | 11-Apr-2025 | 16-May-2025                       |
 | 2.1.6       | SC85        | Require Validation of DNSSEC (when present) for CAA and DCV Lookups                    | 19-Jun-2025 | 21-Jul-2025                       |
 | 2.1.7       | SC089       | Mass Revocation Planning                                                               | 23-Jul-2025 | 25-Aug-2025                       |
+| 2.1.8       | SC088       | DNS TXT Record with Persistent Value DCV Method                                        | DD-MON-2025 | DD-MON-2025                       |
+
 
 \* Effective Date and Additionally Relevant Compliance Date(s)
 
@@ -434,6 +436,8 @@ The Definitions found in the CA/Browser Forum's Network and Certificate System S
 **Parent Company**: A company that Controls a Subsidiary Company.
 
 **Pending Prohibition​​**: The use of a behavior described with this label is highly discouraged, as it is planned to be deprecated and will likely be designated as MUST NOT in the future.
+
+**Persistent DCV TXT Record:** A DNS TXT record identifying an Applicant in accordance with Section 3.2.2.4.22.
 
 **Primary Network Perspective**: The Network Perspective used by the CA to make the determination of 1) the CA's authority to issue a Certificate for the requested domain(s) or IP address(es) and 2) the Applicant's authority and/or domain authorization or control of the requested domain(s) or IP address(es).
 
@@ -847,6 +851,8 @@ If a Random Value is used, the CA SHALL provide a Random Value unique to the Cer
 
 CAs performing validations using this method MUST implement Multi-Perspective Issuance Corroboration as specified in [Section 3.2.2.9](#3229-multi-perspective-issuance-corroboration). To count as corroborating, a Network Perspective MUST observe the same challenge information (i.e. Random Value or Request Token) as the Primary Network Perspective.
 
+If the CA or an Affiliate of the CA operates a DNS zone to which Applicants can delegate (via CNAME) their underscore-prefixed Domain Label, the CA MUST ensure that each Applicant delegates to a unique FQDN within that zone. A CA or Affiliate of a CA SHOULD NOT operate such a service, and SHOULD direct any Applicants using such a service to use the method described in [Section 3.2.2.4.22](#322422-dns-change-with-persistent-value) instead.
+
 **Note**: Once the FQDN has been validated using this method, the CA MAY also issue Certificates for other FQDNs that end with all the Domain Labels of the validated FQDN. This method is suitable for validating Wildcard Domain Names.
 
 ##### 3.2.2.4.8 IP Address
@@ -1030,6 +1036,51 @@ CAs performing validations using this method MUST implement Multi-Perspective Is
 
 **Note**: Once the FQDN has been validated using this method, the CA MAY also issue Certificates for other FQDNs that end with all the Domain Labels of the validated FQDN. This method is suitable for validating Wildcard Domain Names.
 
+##### 3.2.2.4.22 DNS TXT Record with Persistent Value
+
+Confirming the Applicant's control over a FQDN by verifying the presence of a Persistent DCV TXT Record. The record MUST include the Authorization Domain Name being validated prefixed with one "`_validation-persist`" label.
+
+The CA MUST confirm the Persistent DCV TXT Record’s RDATA value fulfills the following requirements:
+
+1. The RDATA value MUST conform to the `issue-value` syntax as defined in RFC 8659, Section 4.2; and
+2. The `issuer-domain-name` value MUST be an Issuer Domain Name disclosed by the CA in Section 4.2 of the CA's Certificate Policy and/or Certification Practices Statement; and
+3. The `issue-value` MUST contain an `accounturi` parameter, where the parameter value is a unique URI (as described by RFC 8657, Section 3) identifying the account of the Applicant which requested validation for this FQDN; and
+4. The `issue-value` MAY contain a `persistUntil` parameter. If present, the parameter value MUST be a base-10 encoded integer representing a UNIX timestamp (the number of seconds since 1970-01-01T00:00:00Z ignoring leap seconds); and
+5. The `issue-value` MAY contain additional parameters. CAs MUST ignore any unknown parameter keys.
+
+If the `persistUntil` parameter is present, the CA MUST evaluate its value. If the time of the check is after the time specified in the `persistUntil` parameter value, the CA MUST NOT use the record as evidence of the Applicant's control over the FQDN.
+
+For example, the DNS TXT record might look like:
+
+```_validation-persist.example.com IN TXT "authority.example; accounturi=https://authority.example/acct/123; persistUntil=1782424856"```
+
+CAs performing validations using this method MUST implement Multi-Perspective Issuance Corroboration as specified in [Section 3.2.2.9](#3229-multi-perspective-issuance-corroboration). To count as corroborating, a Network Perspective MUST observe the same Persistent DCV TXT Record as the Primary Network Perspective.
+
+If the Persistent DCV TXT Record has a TTL less than the validation data reuse period (see [Section 4.2.1](#421-performing-identification-and-authentication-functions)), then the CA MUST consider the validation data reuse period to be equal to the TTL or 8 hours, whichever is greater.
+
+The following table shows how the `persistUntil` parameter affects whether a DNS record can be used for validation at different points in time:
+
+Table: Examples of how the `persistUntil` parameter affects validation
+
+| __Date/time of validation__ | __persistUntil__ | __Usable for validation__ | __Explanation__ |
+|----------------------------|------------------|--------------------------|----------------|
+| 2025-06-15T12:00:00Z | 2026-01-01T00:00:00Z (1767225600) | Yes | Validation time is before persistUntil timestamp, so record is usable |
+| 2025-06-15T12:00:00Z | 2025-01-01T00:00:00Z (1735689600) | No | Validation time is after persistUntil timestamp, so record is not usable |
+| 2025-06-15T12:00:00Z | (not present) | Yes | No persistUntil parameter present, so no time restriction applies |
+
+The following table shows how the Persistent DCV TXT Record TTL affects the validation data reuse period:
+
+Table: Examples of how the TTL affects the validation data reuse period
+
+| __Record TTL__ | __Maximum data reuse period ([Section 4.2.1](#421-performing-identification-and-authentication-functions))__ | __Effective validation data reuse period__ | __Explanation__ |
+|---------------|------------------------------------------------------------------------------------------------------------------------|------------------------------------------|----------------|
+| 14400 (4 hours) | 200 days | 28800 seconds (8 hours) | TTL is below 8-hour minimum, so minimum 8 hours applies |
+| 86400 (24 hours) | 200 days | 86400 seconds (24 hours) | TTL is greater than minimum but less than maximum, so TTL applies |
+| 20736000 (240 days) | 200 days | 17280000 seconds (200 days) | TTL exceeds 200-day maximum, so maximum 200 days applies |
+
+**Note**: Once the FQDN has been validated using this method, the CA MAY also issue Certificates for other FQDNs that end with all the Domain Labels of the validated FQDN. This method is suitable for validating Wildcard Domain Names. 
+
+
 #### 3.2.2.5 Authentication for an IP Address
 
 This section defines the permitted processes and procedures for validating the Applicant’s ownership or control of an IP Address listed in a Certificate.
@@ -1172,7 +1223,7 @@ The CA MAY use either the same set, or different sets of Network Perspectives wh
 
 The set of responses from the relied upon Network Perspectives MUST provide the CA with the necessary information to allow it to affirmatively assess:
 
-* a. the presence of the expected 1) Random Value, 2) Request Token, 3) IP Address, or 4) Contact Address, as required by the relied upon validation method specified in Sections 3.2.2.4 and 3.2.2.5; and
+* a. the presence of the expected 1) Random Value, 2) Request Token, 3) IP Address, 4) Contact Address, or 5) Persistent DCV TXT Record as required by the relied upon validation method specified in Sections 3.2.2.4 and 3.2.2.5; and
 * b. the CA's authority to issue to the requested domain(s), as specified in Section 3.2.2.8.
 
 [Section 3.2.2.4](#3224-validation-of-domain-authorization-or-control) and [Section 3.2.2.5](#3225-authentication-for-an-ip-address) describe the validation methods that require the use of Multi-Perspective Issuance Corroboration and how a Network Perspective can corroborate the outcomes determined by the Primary Network Perspective. 
