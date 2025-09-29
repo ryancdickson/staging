@@ -3594,6 +3594,7 @@ Table: crlEntryExtensions Component
 | Any other value           | NOT RECOMMENDED | - |
 
 For any certificate revoked on or after 20XX-XX-XX, the reasonCode extension, if present, MUST contain one of the values specified below. The extension MUST be included for all permitted reasons except for unspecified (0).
+
 Table: Permitted reasonCode Values
 
 | __RFC 5280 reasonCode__   | __RFC 5280 reasonCode value__ |
