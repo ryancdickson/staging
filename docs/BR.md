@@ -3533,7 +3533,7 @@ The following Certificate Policy identifiers are reserved for use by CAs as an o
 
 ## 7.2 CRL profile
 
-Prior to 20XX-XX-XX, the CA SHALL issue CRLs in accordance with the profile specified in these Requirements or the profile specified in version 2.0.X of the Baseline Requirements for the Issuance and Management of Publicly-Trusted Certificates. Effective 20XX-XX-XX, the CA SHALL issue Certificates in accordance with the profile specified in these Requirements.
+Prior to 2024‐03‐15, the CA SHALL issue CRLs in accordance with the profile specified in these Requirements or the profile specified in Version 1.8.7 of the Baseline Requirements for the Issuance and Management of Publicly‐Trusted Certificates. Effective 2024‐03‐15, the CA SHALL issue CRLs in accordance with the profile specified in these Requirements.
 
 If the CA asserts compliance with these Baseline Requirements, all CRLs that it issues MUST comply with the following CRL profile, which incorporates, and is derived from [RFC 5280](https://tools.ietf.org/html/rfc5280). Except as explicitly noted, all normative requirements imposed by RFC 5280 shall apply, in addition to the normative requirements imposed by this document. CAs SHOULD examine [RFC 5280, Appendix B](https://tools.ietf.org/html/rfc5280#appendix-B) for further issues to be aware of.
 
@@ -3593,6 +3593,7 @@ Table: crlEntryExtensions Component
 | `reasonCode`              | *               | When present (OID 2.5.29.21), MUST NOT be marked critical and MUST indicate the most appropriate reason for revocation of the Certificate. <br><br> MUST be present unless the reason for revocation (i.e., reasonCode) is unspecified (0). <br><br>See Section 4.9.1 for additional requirements. |
 | Any other value           | NOT RECOMMENDED | - |
 
+For any certificate revoked on or after 20XX-XX-XX, the reasonCode extension, if present, MUST contain one of the values specified below. The extension MUST be included for all permitted reasons except for unspecified (0).
 Table: Permitted reasonCode Values
 
 | __RFC 5280 reasonCode__   | __RFC 5280 reasonCode value__ |
@@ -3600,7 +3601,6 @@ Table: Permitted reasonCode Values
 | unspecified               | 0    | 
 | keyCompromise             | 1    | 
 | affiliationChanged        | 3    | 
-| superseded                | 4    | 
 | cessationOfOperation      | 5    | 
 | privilegeWithdrawn        | 9    | 
 
