@@ -1492,13 +1492,13 @@ The CA MAY support revocation of Short-lived Subscriber Certificates.
 
 With the exception of Short-lived Subscriber Certificates, the CA MUST revoke a Certificate in accordance with the following:
 
-| **Revocation ID** | **Description of Revocation Event** | **Revocation Timeline** | **RFC 5280 `reasonCode`** |
-| :---: | --- | --- | :---: |
-| 1 | The CA obtains evidence of either: <br><br>(A) the Subscriber's Private Key corresponding to the Public Key in the Certificate suffered a Key Compromise <br><br>OR<br><br>(B) a demonstrated or proven method that can easily compute the Subscriber's Private Key based on the Public Key in the Certificate. | MUST within 24 hours | `keyCompromise` (1) |
-| 2 | The CA obtains evidence that either of the following should not be relied upon: <br><br>(A) the validation of domain authorization or control for any fully‐qualified domain name or IP address in the Certificate <br><br>OR<br><br> (B) the CA's authority to issue a Certificate for the requested domain(s) or IP address(es) in the Certificate. | MUST within 24 hours | `privilegeWithdrawn` (9) |
-| 3 | The CA is made aware that the Certificate was not issued in accordance with either: <br><br>(A) these Requirements<br><br>OR<br><br>(B) the CA's Certificate Policy or Certification Practice Statement. | SHOULD within 24 hours, but MUST within 5 days | `cessationOfOperation` (5) |
-| 4 | The CA is made aware that the Subscriber's request, issuance, or use of a resulting Certificate has violated one or more of its material obligations under the Subscriber Agreement or Terms of Use. | SHOULD within 24 hours, but MUST within 5 days | `affiliationChanged` (3) |
-| 5 | Either:<br><br>(A) The Subscriber requests revocation in writing, without specifying a CRLreason, and the circumstances for the request do not meet the immediately above criteria <br><br>OR<br><br>(B) for any other reason, and the circumstances for the request do not meet the immediately above criteria. | SHOULD within 24 hours, but MUST within 5 days | `unspecified` (0) |
+**Description of Revocation Event** | **Revocation Timeline** | **RFC 5280 `reasonCode`** |
+| :---: | --- | :---: |
+| The CA obtains evidence of either: <br><br>(A) the Subscriber's Private Key corresponding to the Public Key in the Certificate suffered a Key Compromise <br><br>OR<br><br>(B) a demonstrated or proven method that can easily compute the Subscriber's Private Key based on the Public Key in the Certificate. | MUST within 24 hours | `keyCompromise` (1) |
+| The CA obtains evidence that either of the following should not be relied upon: <br><br>(A) the validation of domain authorization or control for any fully‐qualified domain name or IP address in the Certificate <br><br>OR<br><br> (B) the CA's authority to issue a Certificate for the requested domain(s) or IP address(es) in the Certificate. | MUST within 24 hours | `privilegeWithdrawn` (9) |
+| The CA is made aware that the Certificate was not issued in accordance with either: <br><br>(A) these Requirements<br><br>OR<br><br>(B) the CA's Certificate Policy or Certification Practice Statement. | SHOULD within 24 hours, but MUST within 5 days | `cessationOfOperation` (5) |
+| The CA is made aware that the Subscriber's request, issuance, or use of a resulting Certificate has violated one or more of its material obligations under the Subscriber Agreement or Terms of Use. | SHOULD within 24 hours, but MUST within 5 days | `affiliationChanged` (3) |
+| Either:<br><br>(A) The Subscriber requests revocation in writing, without specifying a CRLreason, and the circumstances for the request do not meet the immediately above criteria <br><br>OR<br><br>(B) for any other reason, and the circumstances for the request do not meet the immediately above criteria. | SHOULD within 24 hours, but MUST within 5 days | `unspecified` (0) |
    
 #### 4.9.1.2 Reasons for Revoking a Subordinate CA Certificate
 
