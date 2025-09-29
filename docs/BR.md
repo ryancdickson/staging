@@ -1493,12 +1493,12 @@ The CA MAY support revocation of Short-lived Subscriber Certificates.
 With the exception of Short-lived Subscriber Certificates, the CA SHALL revoke a Certificate within 24 hours and use the corresponding CRLReason (see Section 7.2.2) if one or more of the following occurs:
 
 1. The CA obtains evidence that the Subscriber's Private Key corresponding to the Public Key in the Certificate suffered a Key Compromise OR the CA is made aware of a demonstrated or proven method that can easily compute the Subscriber's Private Key based on the Public Key in the Certificate. (CRLReason #1, keyCompromise)
-2. The CA obtains evidence that the validation of domain authorization, control for any Fully-Qualified Domain Name or IP address in the Certificate, or CA Authorization Record relied upon during issuance should not be relied upon. (CRLReason #3, affiliationChanged)
+2. The CA obtains evidence that the validation of domain authorization, control for any Fully-Qualified Domain Name or IP address in the Certificate, or CA Authorization Record relied upon during issuance should not be relied upon. CRLReason #9, privilegeWithdrawn)
 
 With the exception of Short-lived Subscriber Certificates, the CA SHOULD revoke a certificate within 24 hours and MUST revoke a Certificate within 5 days and use the corresponding CRLReason (see Section 7.2.2) if one or more of the following occurs:
 
 3. The CA is made aware that the Certificate was not issued in accordance with these Requirements or the CA's Certificate Policy or Certification Practice Statement. (CRLReason #5, cessationOfOperation)
-4. The CA is made aware that the Subscriber's request, issuance, or use of a resulting Certificate has violated one or more of its material obligations under the Subscriber Agreement or Terms of Use. (CRLReason #9, privilegeWithdrawn) 
+4. The CA is made aware that the Subscriber's request, issuance, or use of a resulting Certificate has violated one or more of its material obligations under the Subscriber Agreement or Terms of Use. (CRLReason #3, affiliationChanged)
 5. The Subscriber requests in writing, without specifying a CRLreason, that the CA revoke the Certificate, or for any other purpose. (CRLReason #0, unspecified)
    
 #### 4.9.1.2 Reasons for Revoking a Subordinate CA Certificate
