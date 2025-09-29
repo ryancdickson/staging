@@ -3609,6 +3609,8 @@ The Subscriber Agreement, or an online resource referenced therein, MUST inform 
 
 The privilegeWithdrawn reasonCode SHOULD NOT be made available to the Subscriber as a revocation reason option, because the use of this reasonCode is determined by the CA and not the Subscriber.
 
+In cases where multiple reasonCodes are considered appropriate for a revocation, keyCompromise and affiliationChange reasons MUST take precedence, and in that order.
+
 When a CA obtains verifiable evidence of Key Compromise for a Certificate whose CRL entry does not contain a reasonCode extension or has a reasonCode extension with a non-keyCompromise reason, the CA SHOULD update the CRL entry to enter keyCompromise as the CRLReason in the reasonCode extension. 
 
 #### 7.2.2.1 CRL Issuing Distribution Point
