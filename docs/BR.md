@@ -3605,13 +3605,11 @@ Table: Permitted reasonCode Values
 | cessationOfOperation      | 5    | 
 | privilegeWithdrawn        | 9    | 
 
-In cases where multiple reasonCodes are considered appropriate for a revocation, keyCompromise and affiliationChange reasons MUST take precedence, and in that order.
+In cases where multiple reasonCodes are considered appropriate for a revocation, keyCompromise and privilegeWithdrawn reasons MUST take precedence, and in that order.
 
 When a CA obtains verifiable evidence of Key Compromise for a Certificate whose CRL entry does not contain a reasonCode extension or has a reasonCode extension with a non-keyCompromise reason, the CA SHOULD update the CRL entry to enter keyCompromise as the CRLReason in the reasonCode extension. 
 
 The Subscriber Agreement, or an online resource referenced therein, MUST inform Subscribers about the revocation reason options listed above and provide explanation about when to choose each option. Tools that the CA provides to the Subscriber MUST allow for these options to be easily specified when the Subscriber requests revocation of their Certificate, with the default value being that no revocation reason is provided (i.e. the default corresponds to the CRLReason "unspecified (0)" which results in no reasonCode extension being provided in the CRL). 
-
-The privilegeWithdrawn reasonCode SHOULD NOT be made available to the Subscriber as a revocation reason option, because the use of this reasonCode is determined by the CA and not the Subscriber.
 
 #### 7.2.2.1 CRL Issuing Distribution Point
 
