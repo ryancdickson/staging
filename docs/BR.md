@@ -152,7 +152,7 @@ The following Certificate Policy identifiers are reserved for use by CAs to asse
 | 2.1.6       | SC085       | Require Validation of DNSSEC (when present) for CAA and DCV Lookups                    | 19-Jun-2025 | 21-Jul-2025                       |
 | 2.1.7       | SC089       | Mass Revocation Planning                                                               | 23-Jul-2025 | 25-Aug-2025                       |
 | 2.1.8       | SC092       | Sunset Precertificate Signing CAs                                                      | 03-Oct-2025 | 04-Nov-2025                       |
-| 2.1.X       | SC0XX       | Sunset Technically-constrained CAs and Promote Use of TLS-dedicated Hierarchies        | DD-MON-YEAR | DD-MON-YEAR                       |
+| 2.1.X       | SC0XX       | Promote Use of TLS-dedicated PKI Hierarchies                                           | DD-MON-YEAR | DD-MON-YEAR                       |
 
 \* Effective Date and Additionally Relevant Compliance Date(s)
 
@@ -223,7 +223,8 @@ The following Certificate Policy identifiers are reserved for use by CAs to asse
 | 2026-03-15     | 7.1.2.4                   | CAs MUST NOT use Precertificate Signing CAs to issue Precertificates. CAs MUST NOT issue certificates using the Technically Constrained Precertificate Signing CA Certificate Profile specified in Section 7.1.2.4.    |
 | 2027-03-15     | 4.2.1                     | Domain Name and IP Address validation maximum data reuse period is 100 days.    |
 | 2027-03-15     | 6.3.2                     | Maximum validity period of Subscriber Certificates is 100 days.   |
-| 2027-09-15     | Section 7                 | Align all hierarchies adhering to this policy to only support TLS use cases.
+| 2027-03-15     | Section 7                 | CAs MUST NOT use legacy Subordinate CA Certificate Profiles to issue CA Certificates.   |
+| 2028-03-15     | Section 7                 | Subordinate CA Certificates MUST be dedicated to TLS use-cases.   |
 | 2029-03-15     | 4.2.1                     | Domain Name and IP Address validation maximum data reuse period is 10 days. |
 | 2029-03-15     | 6.3.2                     | Maximum validity period of Subscriber Certificates is 47 days.    |
 
@@ -2130,7 +2131,7 @@ The CA SHALL meet the technical requirements set forth in [Section 6.1.5 - Key S
 
 Prior to 2023-09-15, the CA SHALL issue Certificates in accordance with the profile specified in these Requirements or the profile specified in version 1.8.6 of the Baseline Requirements for the Issuance and Management of Publicly-Trusted Certificates. Effective 2023-09-15, the CA SHALL issue Certificates in accordance with the profile specified in these Requirements.
 
-Effective 2026-09-15, the CA SHALL only issue Subordinate CA Certificates adhering to [Section 7.1.2.7 - Server Authentication Subordinate CA Certificate Profile](#7127-server-authentication-subordinate-ca-certificate-profile) and [Section 7.1.2.8 - Server and Client Authentication Subordinate CA Certificate Profile](#7128-server-and-client-authentication-subordinate-ca-certificate-profile).
+Effective 2027-03-15, the CA SHALL only issue Subordinate CA Certificates adhering to [Section 7.1.2.7 - Server Authentication Subordinate CA Certificate Profile](#7127-server-authentication-subordinate-ca-certificate-profile) and [Section 7.1.2.8 - Server and Client Authentication Subordinate CA Certificate Profile](#7128-server-and-client-authentication-subordinate-ca-certificate-profile).
 
 Any Subordinate CA certificate that does not conform to [Section 7.1.2.7 - Server Authentication Subordinate CA Certificate Profile](#7127-server-authentication-subordinate-ca-certificate-profile) or [Section 7.1.2.8 - Server and Client Authentication Subordinate CA Certificate Profile](#7128-server-and-client-authentication-subordinate-ca-certificate-profile) MUST be revoked prior to 2028-03-15.
 
@@ -2216,7 +2217,9 @@ If the CA asserts compliance with these Baseline Requirements, all certificates 
 
 #### 7.1.2.2 Cross-Certified Subordinate CA Certificate Profile
 
-Effective March 15, 2026, this Certificate Profile MUST NOT be used to issue new CA Certificates.
+Effective March 15, 2026, this Certificate Profile SHOULD NOT be used to issue new CA Certificates.
+
+Effective March 15, 2027, this Certificate Profile MUST NOT be used to issue new CA Certificates.
 
 This Certificate Profile MAY be used when issuing a CA Certificate using the same Subject Name and Subject Public Key Information as one or more existing CA Certificate(s), whether a Root CA Certificate or Subordinate CA Certificate.
 
@@ -2378,7 +2381,9 @@ Table: Permitted `policyQualifiers`
 
 #### 7.1.2.3 Technically Constrained Non-TLS Subordinate CA Certificate Profile
 
-Effective March 15, 2026, this Certificate Profile MUST NOT be used to issue new CA Certificates.
+Effective March 15, 2026, this Certificate Profile SHOULD NOT be used to issue new CA Certificates.
+
+Effective March 15, 2027, this Certificate Profile MUST NOT be used to issue new CA Certificates.
 
 This Certificate Profile MAY be used when issuing a CA Certificate that will be considered Technically Constrained, and which will not be used to issue TLS certificates directly or transitively.
 
@@ -2511,11 +2516,11 @@ Effective March 15, 2026:
 
 #### 7.1.2.5 Technically Constrained TLS Subordinate CA Certificate Profile
 
-Effective March 15, 2026, this Certificate Profile MUST NOT be used.
+Effective March 15, 2026, this Certificate Profile SHOULD NOT be used to issue new CA Certificates.
+
+Effective March 15, 2027, this Certificate Profile MUST NOT be used to issue new CA Certificates.
 
 This Certificate Profile MAY be used when issuing a CA Certificate that will be considered Technically Constrained, and which will be used to issue TLS certificates directly or transitively.
-
-Effective March 15, 2026, this Certificate Profile MUST NOT be used to issue new CA certificates.
 
 | __Field__                  | __Description__ |
 | ----                       | ------          |
@@ -2592,7 +2597,9 @@ CAs SHALL NOT include additional names unless the CA is aware of a reason for in
 
 #### 7.1.2.6 TLS Subordinate CA Certificate Profile
 
-Effective March 15, 2026, this Certificate Profile MUST NOT be used to issue new CA Certificates.
+Effective March 15, 2026, this Certificate Profile SHOULD NOT be used to issue new CA Certificates.
+
+Effective March 15, 2027, this Certificate Profile MUST NOT be used to issue new CA Certificates.
 
 
 | __Field__                  | __Description__ |
