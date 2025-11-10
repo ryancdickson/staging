@@ -2131,6 +2131,10 @@ The CA SHALL meet the technical requirements set forth in [Section 6.1.5 - Key S
 
 Prior to 2023-09-15, the CA SHALL issue Certificates in accordance with the profile specified in these Requirements or the profile specified in version 1.8.6 of the Baseline Requirements for the Issuance and Management of Publicly-Trusted Certificates. Effective 2023-09-15, the CA SHALL issue Certificates in accordance with the profile specified in these Requirements.
 
+Effective 2027-09-15, the CA SHALL only issue Subordinate CA Certificates adhering to [Section 7.1.2.7 - Server Authentication Subordinate CA Certificate Profile](#7127-server-authentication-subordinate-ca-certificate-profile) and [Section 7.1.2.8 - Server and Client Authentication Subordinate CA Certificate Profile](#7128-server--and-client-authentication-subordinate-ca-certificate-profile).
+
+Any Subordinate CA certificate that does not conform to [Section 7.1.2.7 - Server Authentication Subordinate CA Certificate Profile](#7127-server-authentication-subordinate-ca-certificate-profile) or [Section 7.1.2.8 - Server and Client Authentication Subordinate CA Certificate Profile](#7128-server--and-client-authentication-subordinate-ca-certificate-profile) MUST be revoked prior to 2028-06-15.
+
 ### 7.1.1 Version number(s)
 
 Certificates MUST be of type X.509 v3.
@@ -2154,7 +2158,7 @@ If the CA asserts compliance with these Baseline Requirements, all certificates 
       * [Section 7.1.2.8 - Server and Client Authentication Subordinate CA Certificate Profile](#7128-server--and-client-authentication-subordinate-ca-certificate-profile)
   * [Section 7.1.2.9 - Subscriber (End-Entity) Certificate Profile](#7127-subscriber-server-certificate-profile)
   * [Section 7.1.2.10 - OCSP Responder Certificate Profile](#7128-ocsp-responder-certificate-profile)
-  * [Section 7.1.2.11 - Precertificate Profile](#7129-precertificate-profile)
+  * [Section 7.1.2.11 - Precertificate Profile](#7129-precertificate-profile)  
 
 #### 7.1.2.1 Root CA Certificate Profile
 
@@ -3177,6 +3181,8 @@ This section contains several fields that are common among multiple CA Certifica
 | --          | ----        | ----        |
 | `notBefore` | One day prior to the time of signing | The time of signing |
 | `notAfter`  | The time of signing | Unspecified |
+
+Effective YYYY-MM-DD, the maximum `notAfter` value MUST NOT exceed 3 years from the time of signing.
 
 ##### 7.1.2.10.2 CA Certificate Naming
 
