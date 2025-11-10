@@ -2145,7 +2145,7 @@ If the CA asserts compliance with these Baseline Requirements, all certificates 
 
   * CA Certificates
     * [Section 7.1.2.1 - Root CA Certificate Profile](#7121-root-ca-certificate-profile)
-    * Legacy Subordinate CA Certificates
+    * Legacy Subordinate CA Certificate Profiles
       * Cross Certificates
         * [Section 7.1.2.2 - Cross-Certified Subordinate CA Certificate Profile](#7122-cross-certified-subordinate-ca-certificate-profile)
       * Technically Constrained CA Certificates
@@ -2153,7 +2153,7 @@ If the CA asserts compliance with these Baseline Requirements, all certificates 
         * [Section 7.1.2.4 - Technically-Constrained Precertificate Signing CA Certificate Profile](#7124-technically-constrained-precertificate-signing-ca-certificate-profile)
         * [Section 7.1.2.5 - Technically-Constrained TLS Subordinate CA Certificate Profile](#7125-technically-constrained-tls-subordinate-ca-certificate-profile)
       * [Section 7.1.2.6 - TLS Subordinate CA Certificate Profile](#7126-tls-subordinate-ca-certificate-profile)
-    * TLS Dedicated Subordinate CA Certificates
+    * TLS-dedicated Hierarchy Subordinate CA Certificate Profiles
       * [Section 7.1.2.7 - Server Authentication Subordinate CA Certificate Profile](#7127-server-authentication-subordinate-ca-certificate-profile)
       * [Section 7.1.2.8 - Server and Client Authentication Subordinate CA Certificate Profile](#7128-server--and-client-authentication-subordinate-ca-certificate-profile)
   * [Section 7.1.2.9 - Subscriber (End-Entity) Certificate Profile](#7127-subscriber-server-certificate-profile)
