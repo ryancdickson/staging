@@ -1140,7 +1140,6 @@ If the CA issues a certificate after processing a CAA record, it MUST do so with
 RFC 8659 requires that CAs "MUST NOT issue a certificate unless the CA determines that either (1) the certificate request is consistent with the applicable CAA RRset or (2) an exception specified in the relevant CP or CPS applies." For issuances conforming to these Baseline Requirements, CAs MUST NOT rely on any exceptions specified in their CP or CPS unless they are one of the following:
 
 * CAA checking is optional for certificates for which a Certificate Transparency Precertificate (see [Section 7.1.2.11](#7129-precertificate-profile)) was created and logged in at least two public logs, and for which CAA was checked at time of Precertificate issuance.
-* CAA checking is optional for certificates issued by a Technically Constrained Subordinate CA Certificate as set out in [Section 7.1.2.3](#7123-technically-constrained-non-tls-subordinate-ca-certificate-profile) or [Section 7.1.2.5](#7125-technically-constrained-tls-subordinate-ca-certificate-profile), where the lack of CAA checking is an explicit contractual provision in the contract with the Applicant.
 
 CAs are permitted to treat a record lookup failure as permission to issue if:
 
@@ -2510,6 +2509,8 @@ Effective March 15, 2026:
 
 This Certificate Profile MAY be used when issuing a CA Certificate that will be considered Technically Constrained, and which will be used to issue TLS certificates directly or transitively.
 
+Effective March 15, 2026, this Certificate Profile MUST NOT be used to issue new CA certificates.
+
 | __Field__                  | __Description__ |
 | ----                       | ------          |
 | `tbsCertificate`           | |
@@ -3748,7 +3749,11 @@ The CA SHALL at all times:
 
 ## 8.1 Frequency or circumstances of assessment
 
-Certificates that are capable of being used to issue new certificates MUST either be Technically Constrained in line with [Section 7.1.2.3](#7123-technically-constrained-non-tls-subordinate-ca-certificate-profile), [Section 7.1.2.4](#7124-technically-constrained-precertificate-signing-ca-certificate-profile), or [Section 7.1.2.5](#7125-technically-constrained-tls-subordinate-ca-certificate-profile), as well as audited in line with [Section 8.7](#87-self-audits) only, or Unconstrained and fully audited in line with all remaining requirements from this section. A Certificate is deemed as capable of being used to issue new certificates if it contains an X.509v3 `basicConstraints` extension, with the `cA` boolean set to true and is therefore by definition a Root CA Certificate or a Subordinate CA Certificate.
+Prior to YYYY-MM-DD, Certificates that are capable of being used to issue new certificates MUST either be Technically Constrained in line with [Section 7.1.2.3](#7123-technically-constrained-non-tls-subordinate-ca-certificate-profile), [Section 7.1.2.4](#7124-technically-constrained-precertificate-signing-ca-certificate-profile), or [Section 7.1.2.5](#7125-technically-constrained-tls-subordinate-ca-certificate-profile), as well as audited in line with [Section 8.7](#87-self-audits) only, or Unconstrained and fully audited in line with all remaining requirements from this section. 
+
+Effective YYYY-MM-DD, Certificates that are capable of being used to issue new certificates MUST be fully audited in line with all remaining requirements from this section.
+
+A Certificate is deemed as capable of being used to issue new certificates if it contains an X.509v3 `basicConstraints` extension, with the `cA` boolean set to true and is therefore by definition a Root CA Certificate or a Subordinate CA Certificate.
 
 The period during which the CA issues Certificates SHALL be divided into an unbroken sequence of audit periods. An audit period MUST NOT exceed one year in duration.
 
