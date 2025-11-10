@@ -2216,6 +2216,8 @@ If the CA asserts compliance with these Baseline Requirements, all certificates 
 
 #### 7.1.2.2 Cross-Certified Subordinate CA Certificate Profile
 
+Effective March 15, 2026, this Certificate Profile MUST NOT be used to issue new CA Certificates.
+
 This Certificate Profile MAY be used when issuing a CA Certificate using the same Subject Name and Subject Public Key Information as one or more existing CA Certificate(s), whether a Root CA Certificate or Subordinate CA Certificate.
 
 Before issuing a Cross-Certified Subordinate CA, the Issuing CA MUST confirm that the existing CA Certificate(s) are subject to these Baseline Requirements and were issued in compliance with the then-current version of the Baseline Requirements at time of issuance.
@@ -2376,6 +2378,8 @@ Table: Permitted `policyQualifiers`
 
 #### 7.1.2.3 Technically Constrained Non-TLS Subordinate CA Certificate Profile
 
+Effective March 15, 2026, this Certificate Profile MUST NOT be used to issue new CA Certificates.
+
 This Certificate Profile MAY be used when issuing a CA Certificate that will be considered Technically Constrained, and which will not be used to issue TLS certificates directly or transitively.
 
 | __Field__                  | __Description__ |
@@ -2507,6 +2511,8 @@ Effective March 15, 2026:
 
 #### 7.1.2.5 Technically Constrained TLS Subordinate CA Certificate Profile
 
+Effective March 15, 2026, this Certificate Profile MUST NOT be used.
+
 This Certificate Profile MAY be used when issuing a CA Certificate that will be considered Technically Constrained, and which will be used to issue TLS certificates directly or transitively.
 
 Effective March 15, 2026, this Certificate Profile MUST NOT be used to issue new CA certificates.
@@ -2585,6 +2591,9 @@ Any `otherName`, if present:
 CAs SHALL NOT include additional names unless the CA is aware of a reason for including the data in the Certificate.
 
 #### 7.1.2.6 TLS Subordinate CA Certificate Profile
+
+Effective March 15, 2026, this Certificate Profile MUST NOT be used to issue new CA Certificates.
+
 
 | __Field__                  | __Description__ |
 | ----                        | ------          |
