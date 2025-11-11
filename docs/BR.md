@@ -2155,7 +2155,7 @@ If the CA asserts compliance with these Baseline Requirements, all certificates 
       * [Section 7.1.2.6 - TLS Subordinate CA Certificate Profile](#7126-tls-subordinate-ca-certificate-profile)
     * TLS-dedicated Hierarchy Subordinate CA Certificate Profiles
       * [Section 7.1.2.7 - Server Authentication Subordinate CA Certificate Profile](#7127-server-authentication-subordinate-ca-certificate-profile)
-      * [Section 7.1.2.8 - Server and Client Authentication Subordinate CA Certificate Profile](#7128-server--and-client-authentication-subordinate-ca-certificate-profile)
+      * [Section 7.1.2.8 - Server and Client Authentication Subordinate CA Certificate Profile](#7128-server-and-client-authentication-subordinate-ca-certificate-profile)
   * [Section 7.1.2.9 - Subscriber (End-Entity) Certificate Profile](#7127-subscriber-server-certificate-profile)
   * [Section 7.1.2.10 - OCSP Responder Certificate Profile](#71210-ocsp-responder-certificate-profile)
   * [Section 7.1.2.11 - Precertificate Profile](#7129-precertificate-profile)  
