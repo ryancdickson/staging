@@ -2133,7 +2133,7 @@ Prior to 2023-09-15, the CA SHALL issue Certificates in accordance with the prof
 
 Effective 2027-03-15, the CA SHALL only issue Subordinate CA Certificates adhering to [Section 7.1.2.7 - Server Authentication Subordinate CA Certificate Profile](#7127-server-authentication-subordinate-ca-certificate-profile) and [Section 7.1.2.8 - Server and Client Authentication Subordinate CA Certificate Profile](#7128-server-and-client-authentication-subordinate-ca-certificate-profile).
 
-Any Subordinate CA certificate that does not conform to [Section 7.1.2.7 - Server Authentication Subordinate CA Certificate Profile](#7127-server-authentication-subordinate-ca-certificate-profile) or [Section 7.1.2.8 - Server and Client Authentication Subordinate CA Certificate Profile](#7128-server-and-client-authentication-subordinate-ca-certificate-profile) MUST be revoked prior to 2028-03-15.
+Prior to 2028-03-15, any Subordinate CA certificate that does not conform to [Section 7.1.2.7 - Server Authentication Subordinate CA Certificate Profile](#7127-server-authentication-subordinate-ca-certificate-profile) or [Section 7.1.2.8 - Server and Client Authentication Subordinate CA Certificate Profile](#7128-server-and-client-authentication-subordinate-ca-certificate-profile) MUST be revoked.
 
 ### 7.1.1 Version number(s)
 
