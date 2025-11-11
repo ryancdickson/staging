@@ -1615,7 +1615,7 @@ The following SHALL apply for communicating the status of *all* Certificates for
 OCSP responses MUST conform to RFC6960 and/or RFC5019. OCSP responses MUST either:
 
 1. be signed by the CA that issued the Certificates whose revocation status is being checked, or
-2. be signed by an OCSP Responder which complies with the OCSP Responder Certificate Profile in [Section 7.1.2.10](#7128-ocsp-responder-certificate-profile).
+2. be signed by an OCSP Responder which complies with the OCSP Responder Certificate Profile in [Section 7.1.2.10](#71210-ocsp-responder-certificate-profile).
 
 OCSP responses for Subscriber Certificates MUST have a validity interval greater than or equal to eight hours and less than or equal to ten days.
 
@@ -2157,7 +2157,7 @@ If the CA asserts compliance with these Baseline Requirements, all certificates 
       * [Section 7.1.2.7 - Server Authentication Subordinate CA Certificate Profile](#7127-server-authentication-subordinate-ca-certificate-profile)
       * [Section 7.1.2.8 - Server and Client Authentication Subordinate CA Certificate Profile](#7128-server--and-client-authentication-subordinate-ca-certificate-profile)
   * [Section 7.1.2.9 - Subscriber (End-Entity) Certificate Profile](#7127-subscriber-server-certificate-profile)
-  * [Section 7.1.2.10 - OCSP Responder Certificate Profile](#7128-ocsp-responder-certificate-profile)
+  * [Section 7.1.2.10 - OCSP Responder Certificate Profile](#71210-ocsp-responder-certificate-profile)
   * [Section 7.1.2.11 - Precertificate Profile](#7129-precertificate-profile)  
 
 #### 7.1.2.1 Root CA Certificate Profile
