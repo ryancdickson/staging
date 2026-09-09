@@ -2743,7 +2743,7 @@ There are four types of Subscriber Certificates that may be issued, which vary b
 | **Type**                    | **Description**                                       |
 | ----                        | ------                                                |
 | Domain Validated (DV)       | See [Section 7.1.2.7.2](#71272-domain-validated)       |
-| Individual Validated (IV)   | See [Section 7.1.2.7.3](#71273-individual-validated)   |
+| Individual Validated (IV)   | See [Section 7.1.2.7.3](#71273-individual-validated). Beginning $DATE, this Certificate Profile MUST NOT be used. |
 | Organization Validated (OV) | See [Section 7.1.2.7.4](#71274-organization-validated) |
 | Extended Validation (EV)    | See [Section 7.1.2.7.5](#71275-extended-validation)    |
 
@@ -2773,7 +2773,9 @@ Table: Domain Validated `subject` Attributes
 
 ##### 7.1.2.7.3 Individual Validated
 
-For a Subscriber Certificate to be Individual Validated, it MUST meet the following profile:
+Beginning $DATE, this Certificate Profile MUST NOT be used.
+
+Prior to $DATE, for a Subscriber Certificate to be Individual Validated, it MUST meet the following profile:
 
 | **Field**             | **Requirements**     |
 | --                    | -------              |
@@ -3648,6 +3650,8 @@ The following Certificate Policy identifiers are reserved for use by CAs as an o
 `{joint-iso-itu-t(2) international-organizations(23) ca-browser-forum(140) certificate-policies(1) baseline-requirements(2) individual-validated(3)} (2.23.140.1.2.3)`
 
 `{joint-iso-itu-t(2) international-organizations(23) ca-browser-forum(140) certificate-policies(1) ev-guidelines(1)} (2.23.140.1.1)`
+
+Beginning $DATE, the `2.23.140.1.2.3` policy identifier MUST NOT appear in newly issued Certificates.
 
 ### 7.1.7 Usage of Policy Constraints extension
 
