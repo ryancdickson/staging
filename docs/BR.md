@@ -1445,6 +1445,10 @@ Due to the complexity involved in implementing Certificate Profiles that conform
 
 Effective 2025-03-15, the CA SHALL implement such a Linting process.
 
+Effective $DATE_2, the CA's Linting process SHOULD verify that each to-be-signed artifact conforms to the specific closed-world Certificate Profile (identified by its unique Profile Identifier) disclosed in Section 7.1 of the CA's published Certificate Policy and/or Certification Practice Statement, and SHOULD prevent the signing or issuance of any non-conforming Precertificate or Certificate.
+
+Effective $DATE_3, the CA's Linting process SHALL verify that each to-be-signed artifact conforms to the specific closed-world Certificate Profile (identified by its unique Profile Identifier) disclosed in Section 7.1 of the CA's published Certificate Policy and/or Certification Practice Statement. The CA SHALL NOT sign or issue any Certificate or Precertificate that violates the linting rules enforcing its applicable disclosed Certificate Profile.
+
 Methods used to produce a certificate containing the to-be-signed Certificate content include, but are not limited to:
 
 1. Sign the `tbsCertificate` with a "dummy" Private Key whose Public Key component is not certified by a Certificate that chains to a publicly-trusted CA Certificate; or
@@ -1462,7 +1466,9 @@ CAs are encouraged to contribute to open-source Linting projects, such as by:
 
 #### 4.3.1.3 Linting of issued Certificates
 
-CAs MAY use a Linting process to test each issued Certificate.
+Prior to $DATE_1, CAs MAY use a Linting process to test each issued Certificate.
+
+Effective $DATE_1, the CA SHALL maintain automated closed-world profile linting rules enforcing each Certificate Profile disclosed in Section 7.1 of its CP/CPS, and SHALL use an automated Linting process to test 100% of issued Certificates for technical conformity with their applicable disclosed Certificate Profile.
 
 ### 4.3.2 Notification to subscriber by the CA of issuance of certificate
 
@@ -3848,7 +3854,9 @@ The Audit Report MUST be available as a PDF, and SHALL be text searchable for al
 
 During the period in which the CA issues Certificates, the CA SHALL monitor adherence to its Certificate Policy, Certification Practice Statement and these Requirements and strictly control its service quality by performing self audits on at least a quarterly basis against a randomly selected sample of the greater of one certificate or at least three percent of the Certificates issued by it during the period commencing immediately after the previous self-audit sample was taken.
 
-Effective 2025-03-15, the CA SHOULD use a Linting process to verify the technical accuracy of Certificates within the selected sample set independently of previous linting performed on the same Certificates.
+Effective 2025-03-15, the CA SHOULD use a Linting process to verify the technical accuracy of Certificates within the selected sample set independently of previous linting performed on the same Certificates. 
+
+Effective $DATE_1, the CA's quarterly self-audit SHALL include automated Linting of 100% of Certificates issued during the quarter (not a 3% sample) to verify technical conformity against both these Requirements and the applicable closed-world Certificate Profile disclosed in Section 7.1 of its CP/CPS.
 
 Except for Delegated Third Parties that undergo an annual audit that meets the criteria specified in [Section 8.4](#84-topics-covered-by-assessment), the CA SHALL strictly control the service quality of Certificates issued or containing information verified by a Delegated Third Party by having a Validation Specialist employed by the CA perform ongoing quarterly audits against a randomly selected sample of at least the greater of one certificate or three percent of the Certificates verified by the Delegated Third Party in the period beginning immediately after the last sample was taken. The CA SHALL review each Delegated Third Party's practices and procedures to ensure that the Delegated Third Party is in compliance with these Requirements and the relevant Certificate Policy and/or Certification Practice Statement.
 
