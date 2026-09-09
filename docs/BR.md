@@ -2240,6 +2240,12 @@ The CA SHALL meet the technical requirements set forth in [Section 6.1.5](#615-k
 
 The CA SHALL issue Certificates in accordance with the profile specified in these Requirements.
 
+The CA SHALL issue Certificates and Precertificates that strictly conform to the certificate profile(s) disclosed in Section 7.1 of its published Certificate Policy and/or Certification Practice Statement.
+
+The disclosed certificate profile(s) SHALL unambiguously specify all permitted fields, extensions, and attribute values. A Certificate or Precertificate SHALL NOT contain any field, extension, extension criticality, or attribute value that is not explicitly permitted by the applicable disclosed profile.
+
+Any Certificate or Precertificate issued containing an extension, attribute, or value not explicitly permitted by a disclosed profile is considered misissued and was not issued in accordance with these Requirements.
+
 ### 7.1.1 Version number(s)
 
 Certificates MUST be of type X.509 v3.
