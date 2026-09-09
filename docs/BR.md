@@ -1885,10 +1885,11 @@ The CA SHALL record at least the following events:
    1. Key generation, backup, storage, recovery, archival, and destruction;
    2. Certificate requests, renewal, and re-key requests, and revocation;
    3. Approval and rejection of certificate requests;
-   4. Cryptographic device lifecycle management events;
-   5. Generation of Certificate Revocation Lists;
-   6. Signing of OCSP Responses (as described in [Section 4.9](#49-certificate-revocation-and-suspension) and [Section 4.10](#410-certificate-status-services)); and
-   7. Introduction of new Certificate Profiles and retirement of existing Certificate Profiles.
+   4. Issuance of CA Certificates, including the unique identifier of the disclosed Certificate Profile (as specified in Section 7.1 of the CA's Certificate Policy and/or Certification Practice Statement) used to issue the Certificate;
+   5. Cryptographic device lifecycle management events;
+   6. Generation of Certificate Revocation Lists;
+   7. Signing of OCSP Responses (as described in [Section 4.9](#49-certificate-revocation-and-suspension) and [Section 4.10](#410-certificate-status-services)); and
+   8. Introduction of new Certificate Profiles and retirement of existing Certificate Profiles.
 
 2. Subscriber Certificate lifecycle management events, including:
 
@@ -1898,7 +1899,7 @@ The CA SHALL record at least the following events:
       2. the ADN used (if applicable and different from the applied-for FQDN); and
       3. the validation method used (e.g., the BRs section number or the registered label of an ACME validation method);
    3. Approval and rejection of certificate requests;
-   4. Issuance of Certificates;
+   4. Issuance of Certificates, including the unique identifier of the disclosed Certificate Profile (as specified in Section 7.1 of the CA's Certificate Policy and/or Certification Practice Statement) used to issue the Certificate;
    5. Generation of Certificate Revocation Lists; and
    6. Signing of OCSP Responses (as described in [Section 4.9](#49-certificate-revocation-and-suspension) and [Section 4.10](#410-certificate-status-services)).
    7. Multi-Perspective Issuance Corroboration attempts from each Network Perspective, minimally recording the following information:
@@ -2238,13 +2239,13 @@ The CA MAY perform Linting on the corpus of its unexpired, un-revoked Subscriber
 
 The CA SHALL meet the technical requirements set forth in [Section 6.1.5](#615-key-sizes) - Key Sizes, and [Section 6.1.6](#616-public-key-parameters-generation-and-quality-checking) - Public Key Parameters Generation and Quality Checking.
 
-The CA SHALL issue Certificates and Precertificates that strictly conform to both the applicable profile specified in these Requirements and the corresponding certificate profile(s) disclosed in Section 7.1 of its published Certificate Policy and/or Certification Practice Statement.
+The CA SHALL issue Certificates that strictly conform to both the applicable profile specified in these Requirements and the corresponding certificate profile(s) disclosed in Section 7.1 of its published Certificate Policy and/or Certification Practice Statement.
 
-Each disclosed certificate profile SHALL be assigned a unique identifier and SHALL unambiguously specify all permitted fields, extensions (including OID and criticality), ASN.1 encodings, and fixed or enumerated values, as well as the syntax and constraints for any variable values. A Certificate or Precertificate SHALL NOT contain any field, extension, extension criticality, encoding, or value that is not explicitly permitted by the applicable disclosed profile.
+Each disclosed certificate profile SHALL be assigned a unique identifier and SHALL unambiguously specify all permitted fields, extensions (including OID and criticality), ASN.1 encodings, and fixed or enumerated values, as well as the syntax and constraints for any variable values. A Certificate SHALL NOT contain any field, extension, extension criticality, encoding, or value that is not explicitly permitted by the applicable disclosed profile.
 
 The CA SHALL maintain in Section 7.1 of its Certificate Policy and/or Certification Practice Statement (or in a publicly accessible repository referenced therein) an accurate mapping of each Issuing CA (identified by Subject Distinguished Name, Subject Key Identifier, and SHA-256 certificate fingerprint) to the unique identifier(s) of the disclosed certificate profile(s) that the Issuing CA is configured and authorized to issue. To prevent manual transposition errors, CAs SHOULD generate disclosed profile specifications directly from their active Certificate System configurations.
 
-Any Certificate or Precertificate issued containing a field, extension, extension criticality, encoding, or value not explicitly permitted by the applicable disclosed profile, or issued by an Issuing CA not mapped to that profile, is considered misissued and was not issued in accordance with these Requirements.
+Any Certificate issued containing a field, extension, extension criticality, encoding, or value not explicitly permitted by the applicable disclosed profile, or issued by an Issuing CA not mapped to that profile, is considered misissued and was not issued in accordance with these Requirements.
 
 ### 7.1.1 Version number(s)
 
