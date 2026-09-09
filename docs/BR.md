@@ -2238,13 +2238,13 @@ The CA MAY perform Linting on the corpus of its unexpired, un-revoked Subscriber
 
 The CA SHALL meet the technical requirements set forth in [Section 6.1.5](#615-key-sizes) - Key Sizes, and [Section 6.1.6](#616-public-key-parameters-generation-and-quality-checking) - Public Key Parameters Generation and Quality Checking.
 
-The CA SHALL issue Certificates in accordance with the profile specified in these Requirements.
+The CA SHALL issue Certificates and Precertificates that strictly conform to both the applicable profile specified in these Requirements and the corresponding certificate profile(s) disclosed in Section 7.1 of its published Certificate Policy and/or Certification Practice Statement.
 
-The CA SHALL issue Certificates and Precertificates that strictly conform to the certificate profile(s) disclosed in Section 7.1 of its published Certificate Policy and/or Certification Practice Statement.
+Each disclosed certificate profile SHALL be assigned a unique identifier and SHALL unambiguously specify all permitted fields, extensions (including OID and criticality), ASN.1 encodings, and fixed or enumerated values, as well as the syntax and constraints for any variable values. A Certificate or Precertificate SHALL NOT contain any field, extension, extension criticality, encoding, or value that is not explicitly permitted by the applicable disclosed profile.
 
-The disclosed certificate profile(s) SHALL unambiguously specify all permitted fields, extensions, and attribute values. A Certificate or Precertificate SHALL NOT contain any field, extension, extension criticality, or attribute value that is not explicitly permitted by the applicable disclosed profile.
+The CA SHALL maintain in Section 7.1 of its Certificate Policy and/or Certification Practice Statement (or in a publicly accessible repository referenced therein) an accurate mapping of each Issuing CA (identified by Subject Distinguished Name, Subject Key Identifier, and SHA-256 certificate fingerprint) to the unique identifier(s) of the disclosed certificate profile(s) that the Issuing CA is configured and authorized to issue. To prevent manual transposition errors, CAs SHOULD generate disclosed profile specifications directly from their active Certificate System configurations.
 
-Any Certificate or Precertificate issued containing an extension, attribute, or value not explicitly permitted by a disclosed profile is considered misissued and was not issued in accordance with these Requirements.
+Any Certificate or Precertificate issued containing a field, extension, extension criticality, encoding, or value not explicitly permitted by the applicable disclosed profile, or issued by an Issuing CA not mapped to that profile, is considered misissued and was not issued in accordance with these Requirements.
 
 ### 7.1.1 Version number(s)
 
