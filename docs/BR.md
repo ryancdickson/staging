@@ -2748,7 +2748,7 @@ For a Subscriber Certificate to be Domain Validated (DV), it MUST strictly confo
 |   ↳ **`subject:countryName`** | `2.5.4.6` | MAY | - | `PrintableString` (2 chars). Two-letter ISO 3166-1 alpha-2 country code (or `XX` if not represented by an official code) verified per [Section 3.2.2.3](#3223-verification-of-country). |
 |   ↳ **`subject:commonName`** | `2.5.4.3` | NOT RECOMMENDED | - | `UTF8String` or `PrintableString` (max 64 chars). If present, MUST contain exactly one entry derived from `subjectAltName` encoded per [Section 7.1.4.3](#7143-subscriber-certificate-common-name-attribute). |
 |   ↳ **`subject:<any other attribute>`** | - | MUST NOT | - | MUST NOT be present. |
-| **`tbsCertificate.subjectPublicKeyInfo`** | - | MUST | - | Encoded per [Section 7.1.3.1](#7131-subjectpublickeyinfo) for RSA ($2048\text{--}4096$ bits, odd public exponent $\ge 65537$) or ECDSA (`P-256`, `P-384`, `P-521`). |
+| **`tbsCertificate.subjectPublicKeyInfo`** | - | MUST | - | Encoded per [Section 7.1.3.1](#7131-subjectpublickeyinfo) and [Section 6.1.5](#615-key-sizes): **RSA (`1.2.840.113549.1.1.1`):** modulus ≥ 2048 bits evenly divisible by 8, odd public exponent ≥ 3 (SHOULD be 2¹⁶ + 1 to 2²⁵⁶ − 1), explicit `NULL` parameters; or **ECDSA (`1.2.840.10045.2.1`):** `namedCurve` NIST `P-256`, `P-384`, or `P-521`, uncompressed point format (`0x04`). |
 | **`tbsCertificate.issuerUniqueID`** | - | MUST NOT | - | MUST NOT be present. |
 | **`tbsCertificate.subjectUniqueID`** | - | MUST NOT | - | MUST NOT be present. |
 | **`authorityInformationAccess`** | `1.3.6.1.5.5.7.1.1` | MUST | N | `SEQUENCE` of `AccessDescription` entries. Only the access methods listed below are permitted: |
@@ -2804,7 +2804,7 @@ For a Subscriber Certificate to be Organization Validated (OV), it MUST strictly
 |   ↳ **`subject:organizationalUnitName`** | `2.5.4.11` | MUST NOT | - | MUST NOT be present. |
 |   ↳ **`subject:commonName`** | `2.5.4.3` | NOT RECOMMENDED | - | `UTF8String` or `PrintableString` (max 64 chars). If present, MUST contain a single value derived from `subjectAltName` per [Section 7.1.4.3](#7143-subscriber-certificate-common-name-attribute). |
 |   ↳ **`subject:<any other attribute>`** | - | NOT RECOMMENDED | - | See [Section 7.1.4.4](#7144-other-subject-attributes). |
-| **`tbsCertificate.subjectPublicKeyInfo`** | - | MUST | - | Encoded per [Section 7.1.3.1](#7131-subjectpublickeyinfo) for RSA ($2048\text{--}4096$ bits, odd public exponent $\ge 65537$) or ECDSA (`P-256`, `P-384`, `P-521`). |
+| **`tbsCertificate.subjectPublicKeyInfo`** | - | MUST | - | Encoded per [Section 7.1.3.1](#7131-subjectpublickeyinfo) and [Section 6.1.5](#615-key-sizes): **RSA (`1.2.840.113549.1.1.1`):** modulus ≥ 2048 bits evenly divisible by 8, odd public exponent ≥ 3 (SHOULD be 2¹⁶ + 1 to 2²⁵⁶ − 1), explicit `NULL` parameters; or **ECDSA (`1.2.840.10045.2.1`):** `namedCurve` NIST `P-256`, `P-384`, or `P-521`, uncompressed point format (`0x04`). |
 | **`tbsCertificate.issuerUniqueID`** | - | MUST NOT | - | MUST NOT be present. |
 | **`tbsCertificate.subjectUniqueID`** | - | MUST NOT | - | MUST NOT be present. |
 | **`authorityInformationAccess`** | `1.3.6.1.5.5.7.1.1` | MUST | N | `SEQUENCE` of `AccessDescription` entries. Only the access methods listed below are permitted: |
@@ -2866,7 +2866,7 @@ For a Subscriber Certificate to be Extended Validation (EV), it MUST strictly co
 |   ↳ **`subject:organizationIdentifier`** | `2.5.4.97` | MAY | - | `UTF8String` or `PrintableString`. Registration scheme identifier per EV Guidelines Section 9.2.8. |
 |   ↳ **`subject:commonName`** | `2.5.4.3` | NOT RECOMMENDED | - | `UTF8String` or `PrintableString` (max 64 chars). If present, MUST contain a single value derived from `subjectAltName` per [Section 7.1.4.3](#7143-subscriber-certificate-common-name-attribute). |
 |   ↳ **`subject:<any other attribute>`** | - | NOT RECOMMENDED | - | See EV Guidelines Section 9.2.9 and [Section 7.1.4.4](#7144-other-subject-attributes). |
-| **`tbsCertificate.subjectPublicKeyInfo`** | - | MUST | - | Encoded per [Section 7.1.3.1](#7131-subjectpublickeyinfo) for RSA ($2048\text{--}4096$ bits, odd public exponent $\ge 65537$) or ECDSA (`P-256`, `P-384`, `P-521`). |
+| **`tbsCertificate.subjectPublicKeyInfo`** | - | MUST | - | Encoded per [Section 7.1.3.1](#7131-subjectpublickeyinfo) and [Section 6.1.5](#615-key-sizes): **RSA (`1.2.840.113549.1.1.1`):** modulus ≥ 2048 bits evenly divisible by 8, odd public exponent ≥ 3 (SHOULD be 2¹⁶ + 1 to 2²⁵⁶ − 1), explicit `NULL` parameters; or **ECDSA (`1.2.840.10045.2.1`):** `namedCurve` NIST `P-256`, `P-384`, or `P-521`, uncompressed point format (`0x04`). |
 | **`tbsCertificate.issuerUniqueID`** | - | MUST NOT | - | MUST NOT be present. |
 | **`tbsCertificate.subjectUniqueID`** | - | MUST NOT | - | MUST NOT be present. |
 | **`authorityInformationAccess`** | `1.3.6.1.5.5.7.1.1` | MUST | N | `SEQUENCE` of `AccessDescription` entries. Only the access methods listed below are permitted: |
