@@ -2268,9 +2268,9 @@ Prior to $DATE_1, CAs MAY issue Certificates conforming either to the Certificat
 
 A Root CA Certificate or PKI hierarchy claiming adherence to these Requirements SHALL be dedicated exclusively to public TLS use cases.
 
-Effective $DATE, all newly issued Subordinate CA Certificates chaining to a Root CA Certificate subject to these Requirements MUST conform to either the Server Authentication Subordinate CA Certificate Profile (Section 7.1.2.1.2) or the Server and Client Authentication Subordinate CA Certificate Profile (Section 7.1.2.1.3).
+Effective $DATE_1, all newly issued Subordinate CA Certificates chaining to a Root CA Certificate subject to these Requirements MUST conform to either the **Server Authentication Subordinate CA Certificate Profile** ([Section 7.1.2.1.2](#71212-server-authentication-subordinate-ca-certificate-profile)) or the **Server and Client Authentication Subordinate CA Certificate Profile** ([Section 7.1.2.1.3](#71213-server-and-client-authentication-subordinate-ca-certificate-profile)).
 
-Effective $DATE, all time-valid and unrevoked Subordinate CA Certificates chaining to a Root CA Certificate subject to these Requirements MUST conform to either the **Server Authentication Subordinate CA Certificate Profile (Section 7.1.2.1.2) or the Server and Client Authentication Subordinate CA Certificate Profile (Section 7.1.2.1.3). On or after $DATE, any unexpired, unrevoked Subordinate CA Certificate chaining to a Root CA Certificate subject to these Requirements that does not conform to Section 7.1.2.1.2 or Section 7.1.2.1.3 (including any Subordinate CA Certificate intended to comply with other Baseline Requirements policies such as S/MIME or Code Signing) is in violation of these Requirements and MUST be revoked.
+Effective $DATE_3, all time-valid and unrevoked Subordinate CA Certificates chaining to a Root CA Certificate subject to these Requirements MUST conform to either the **Server Authentication Subordinate CA Certificate Profile** ([Section 7.1.2.1.2](#71212-server-authentication-subordinate-ca-certificate-profile)) or the **Server and Client Authentication Subordinate CA Certificate Profile** ([Section 7.1.2.1.3](#71213-server-and-client-authentication-subordinate-ca-certificate-profile)). On or after $DATE_3, any unexpired, unrevoked Subordinate CA Certificate chaining to a Root CA Certificate subject to these Requirements that does not conform to [Section 7.1.2.1.2](#71212-server-authentication-subordinate-ca-certificate-profile) or [Section 7.1.2.1.3](#71213-server-and-client-authentication-subordinate-ca-certificate-profile) (including any Subordinate CA Certificate intended to comply with other Baseline Requirements policies such as S/MIME or Code Signing) is in violation of these Requirements and MUST be revoked.
 
 #### 7.1.2.1.1 Self-Signed Root CA Certificate Profile
 
@@ -2329,7 +2329,7 @@ The table below defines the baseline technical profile for Self-Signed Root CA C
 | **`signatureAlgorithm`** | — | **MUST** | — | Outer `AlgorithmIdentifier`. MUST be byte-for-byte identical to `tbsCertificate.signature`. |
 | **`signature`** | — | **MUST** | — | Cryptographic signature bit string over `tbsCertificate`. |
 
-[^sha1_sunset]: Effective 2026-09-15, `RSASSA-PKCS1-v1_5 with SHA-1` (`300d06092a864886f70d0101050500`) MUST NOT be used to sign any Certificate, Precertificate, CRL, or OCSP response. Prior to 2026-09-15, the CA SHALL revoke any unexpired Subordinate CA Certificate containing `RSASSA-PKCS1-v1_5 with SHA-1`.
+[^sha1_sunset]: Effective 2026-09-15, `RSASSA-PKCS1-v1_5 with SHA-1` (`300d06092a864886f70d0101050500`) MUST NOT be used to sign any Certificate, Precertificate, CRL, or OCSP response, and any unexpired Subordinate CA Certificate containing an `RSASSA-PKCS1-v1_5 with SHA-1` signature MUST be revoked.
 
 #### 7.1.2.1.2 Server Authentication Subordinate CA Certificate Profile
 
