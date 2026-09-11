@@ -1430,13 +1430,13 @@ Certificate issuance by the Root CA SHALL require an individual authorized by th
 
 #### 4.3.1.2 Linting of to-be-signed Certificate content
 
-Due to the complexity involved in implementing Certificate Profiles that conform to these Requirements, it is considered best practice for the CA to implement a Linting process to test the technical conformity of each to-be-signed artifact prior to signing it. When a Precertificate has undergone Linting, it is not necessary for the corresponding to-be-signed Certificate to also undergo Linting, provided that the CA has a technical control to verify that the to-be-signed Certificate corresponds to the to-be-signed Precertificate in the manner described by [RFC 6962, Section 3.2](https://datatracker.ietf.org/doc/html/rfc6962#section-3.2).
+Due to the complexity involved in implementing Certificate Profiles that conform to these Requirements, it is considered best practice for the CA to implement a Linting process to test the technical conformity of each to-be-signed artifact prior to signing it. When a Precertificate has undergone Linting, it is not necessary for the corresponding to-be-signed Certificate to also undergo Linting prior to signing, provided that the CA has a technical control to verify that the to-be-signed Certificate corresponds to the to-be-signed Precertificate in the manner described by [RFC 6962, Section 3.2](https://datatracker.ietf.org/doc/html/rfc6962#section-3.2).
 
 Effective 2025-03-15, the CA SHALL implement such a Linting process.
 
-Effective $DATE_1, the CA's Linting process SHOULD verify that each to-be-signed artifact conforms to the specific closed-world Certificate Profile (identified by its unique Profile Identifier) disclosed in Section 7.1 of the CA's published Certificate Policy and/or Certification Practice Statement, and SHOULD prevent the signing or issuance of any non-conforming Precertificate or Certificate.
+Effective $DATE_1, the CA's Linting process SHOULD verify that each to-be-signed Precertificate (or to-be-signed Certificate, if no Precertificate is issued) conforms to the specific closed-world Certificate Profile (identified by its unique Profile Identifier) disclosed in Section 7.1 of the CA's published Certificate Policy and/or Certification Practice Statement, and SHOULD prevent the signing or issuance of any non-conforming Precertificate or Certificate.
 
-Effective $DATE_2, the CA's Linting process SHALL verify that each to-be-signed artifact conforms to the specific closed-world Certificate Profile (identified by its unique Profile Identifier) disclosed in Section 7.1 of the CA's published Certificate Policy and/or Certification Practice Statement. The CA SHALL NOT sign or issue any Certificate or Precertificate that violates the linting rules enforcing its applicable disclosed Certificate Profile.
+Effective $DATE_2, the CA's Linting process SHALL verify that 100% of to-be-signed Precertificates (and to-be-signed Certificates for which no Precertificate is issued) conform to the specific closed-world Certificate Profile (identified by its unique Profile Identifier) disclosed in Section 7.1 of the CA's published Certificate Policy and/or Certification Practice Statement. The CA SHALL NOT sign or issue any Precertificate or Certificate that violates the linting rules enforcing its applicable disclosed Certificate Profile.
 
 Methods used to produce a certificate containing the to-be-signed Certificate content include, but are not limited to:
 
@@ -1453,11 +1453,11 @@ CAs are encouraged to contribute to open-source Linting projects, such as by:
 - updating documentation of existing lints, and
 - generating test certificates for positive/negative tests of specific lints.
 
-#### 4.3.1.3 Linting of issued Certificates
+#### 4.3.1.3 Linting of final Certificates prior to delivery
 
-Prior to $DATE_2, CAs MAY use a Linting process to test each issued Certificate.
+Prior to $DATE_2, CAs MAY use a Linting process to test each final Certificate prior to delivery to the Subscriber.
 
-Effective $DATE_2, the CA SHALL maintain automated closed-world profile linting rules enforcing each Certificate Profile disclosed in Section 7.1 of its Certificate Policy and/or Certification Practice Statement, and SHALL use an automated Linting process to test 100% of issued Certificates for technical conformity with their applicable disclosed Certificate Profile.
+Effective $DATE_2, the CA SHALL maintain automated closed-world profile linting rules enforcing each Certificate Profile disclosed in Section 7.1 of its Certificate Policy and/or Certification Practice Statement, and SHOULD use an automated Linting process to test 100% of final Certificates prior to delivery to the Subscriber for technical conformity with their applicable disclosed Certificate Profile.
 
 ### 4.3.2 Notification to subscriber by the CA of issuance of certificate
 
@@ -2231,7 +2231,7 @@ The CA SHALL meet the technical requirements set forth in [Section 6.1.5](#615-k
 
 The CA SHALL issue Certificates that strictly conform to both the applicable profile specified in these Requirements and the corresponding certificate profile(s) disclosed in Section 7.1 of its published Certificate Policy and/or Certification Practice Statement.
 
-Each disclosed certificate profile ("Closed-World Certificate Profile") SHALL be assigned a unique identifier ("Profile Identifier") and SHALL unambiguously specify all permitted fields, extensions (including OID and criticality), ASN.1 encodings, and fixed or enumerated values, as well as the syntax and constraints for any variable values. A Certificate SHALL NOT contain any field, extension, extension criticality, encoding, or value that is not explicitly permitted by the applicable disclosed profile.
+Each disclosed certificate profile ("Closed-World Certificate Profile") SHALL be assigned a unique identifier ("Profile Identifier") and SHALL unambiguously specify all permitted fields, extensions (including OID and criticality), ASN.1 encodings, and fixed or enumerated values, as well as the syntax and constraints for any variable values. A Certificate SHALL NOT contain any field, extension, extension criticality, encoding, or value that is not explicitly permitted by the applicable disclosed profile. A single disclosed Closed-World Certificate Profile MAY define both the Precertificate variant (including the critical CT Precertificate Poison extension `1.3.6.1.4.1.11129.2.4.3`) and the corresponding final Certificate variant (including the embedded Signed Certificate Timestamp List extension `1.3.6.1.4.1.11129.2.4.2`).
 
 The CA SHALL maintain in Section 7.1 of its Certificate Policy and/or Certification Practice Statement (or in a publicly accessible repository referenced therein) an accurate mapping of each Issuing CA (identified by Subject Distinguished Name and Subject Key Identifier, or SHA-256 certificate fingerprint) to the unique identifier(s) of the disclosed certificate profile(s) that the Issuing CA is configured and authorized to issue. To prevent manual transposition errors, CAs SHOULD generate disclosed profile specifications directly from their active Certificate System configurations.
 
@@ -2906,7 +2906,7 @@ During the period in which the CA issues Certificates, the CA SHALL monitor adhe
 
 Effective 2025-03-15, the CA SHOULD use a Linting process to verify the technical accuracy of Certificates within the selected sample set independently of previous linting performed on the same Certificates. 
 
-Effective $DATE_2, the CA's quarterly self-audit SHALL include automated Linting of 100% of Certificates issued during the quarter (not a 3% sample) to verify technical conformity against both these Requirements and the applicable closed-world Certificate Profile disclosed in Section 7.1 of its Certificate Policy and/or Certification Practice Statement.
+Effective $DATE_2, the CA's quarterly self-audit SHALL include automated offline Linting of 100% of final Certificates issued during the quarter (not a 3% sample) to verify technical conformity against both these Requirements and the applicable closed-world Certificate Profile disclosed in Section 7.1 of its Certificate Policy and/or Certification Practice Statement.
 
 Except for Delegated Third Parties that undergo an annual audit that meets the criteria specified in [Section 8.4](#84-topics-covered-by-assessment), the CA SHALL strictly control the service quality of Certificates issued or containing information verified by a Delegated Third Party by having a Validation Specialist employed by the CA perform ongoing quarterly audits against a randomly selected sample of at least the greater of one certificate or three percent of the Certificates verified by the Delegated Third Party in the period beginning immediately after the last sample was taken. The CA SHALL review each Delegated Third Party's practices and procedures to ensure that the Delegated Third Party is in compliance with these Requirements and the relevant Certificate Policy and/or Certification Practice Statement.
 
