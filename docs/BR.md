@@ -1455,9 +1455,9 @@ CAs are encouraged to contribute to open-source Linting projects, such as by:
 
 #### 4.3.1.3 Linting of final Certificates prior to delivery
 
-Prior to $DATE_2, CAs MAY use a Linting process to test each final Certificate prior to delivery to the Subscriber.
+CAs MAY use a Linting process to test each issued Certificate.
 
-Effective $DATE_2, the CA SHALL maintain automated closed-world profile linting rules enforcing each Certificate Profile disclosed in Section 7.1 of its Certificate Policy and/or Certification Practice Statement, and SHOULD use an automated Linting process to test 100% of final Certificates prior to delivery to the Subscriber for technical conformity with their applicable disclosed Certificate Profile.
+Effective $DATE_2, the CA SHOULD use an automated Linting process to test 100% of final Certificates prior to delivery to the Subscriber for technical conformity with their applicable disclosed Certificate Profile.
 
 ### 4.3.2 Notification to subscriber by the CA of issuance of certificate
 
