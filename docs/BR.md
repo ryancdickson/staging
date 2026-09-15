@@ -2706,7 +2706,7 @@ If the Issuing CA does not directly sign OCSP responses, it MAY make use of an O
 | **`tbsCertificate.subjectUniqueID`** | — | **MUST NOT** | — | MUST NOT be present. |
 | **`tbsCertificate.extensions`** | — | **MUST** | — | X.509v3 extensions `SEQUENCE`. No extension OID may appear more than once. |
 | **`authorityKeyIdentifier` (AKI)** | `2.5.29.35` | **MUST** | **N** | `keyIdentifier` MUST be present and identical to the `subjectKeyIdentifier` field of the Issuing CA. `authorityCertIssuer` and `authorityCertSerialNumber` MUST NOT be present. |
-| **`basicConstraints`** | `2.5.29.19` | **MAY** | **Y** | If present, `cA` MUST be `FALSE` and `pathLenConstraint` MUST NOT be present. Due to DER encoding rules regarding DEFAULT values within OPTIONAL fields, the `extnValue` `OCTET STRING` MUST be exactly the hex-encoded bytes `3000`, the encoded representation of an empty ASN.1 `SEQUENCE`. |
+| **`basicConstraints`** | `2.5.29.19` | **MUST NOT** | — | MUST NOT be present. |
 | **`keyUsage`** | `2.5.29.15` | **MUST** | **Y** | `digitalSignature` **MUST** be asserted. All other key usage bits **MUST NOT** be asserted. |
 | **`extKeyUsage` (EKU)** | `2.5.29.37` | **MUST** | **Y** or **N** | MUST contain `id-kp-OCSPSigning` (`1.3.6.1.5.5.7.3.9`). MUST NOT contain any other `KeyPurposeId`. |
 | **`id-pkix-ocsp-nocheck`** | `1.3.6.1.5.5.7.48.1.5` | **MUST** | **N** | The `extnValue` `OCTET STRING` MUST be exactly the hex-encoded bytes `0500`, the encoded representation of the ASN.1 `NULL` value, as specified in [RFC 6960, Section 4.2.2.2.1](https://datatracker.ietf.org/doc/html/rfc6960#section-4.2.2.2.1). |
