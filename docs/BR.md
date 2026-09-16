@@ -1875,7 +1875,7 @@ The CA SHALL record at least the following events:
    1. Key generation, backup, storage, recovery, archival, and destruction;
    2. Certificate requests, renewal, and re-key requests, and revocation;
    3. Approval and rejection of certificate requests;
-   4. Issuance of CA Certificates, including the unique identifier of the disclosed Certificate Profile (as specified in Section 7.1 of the CA's Certificate Policy and/or Certification Practice Statement) used to issue the Certificate;
+   4. Issuance of CA Certificates (effective $DATE_1, including the unique identifier of the disclosed Certificate Profile, as specified in Section 7.1 of the CA's Certificate Policy and/or Certification Practice Statement, used to issue the Certificate);
    5. Cryptographic device lifecycle management events;
    6. Generation of Certificate Revocation Lists;
    7. Signing of OCSP Responses (as described in [Section 4.9](#49-certificate-revocation-and-suspension) and [Section 4.10](#410-certificate-status-services)); and
