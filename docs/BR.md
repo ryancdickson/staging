@@ -2266,7 +2266,7 @@ Prior to $DATE_1, CAs MAY issue Certificates conforming either to the Certificat
 
 ### 7.1.2.1 CA Certificate Profiles
 
-A Root CA Certificate or PKI hierarchy claiming adherence to these Requirements SHALL be dedicated exclusively to public TLS use cases.
+A Root CA Certificate or PKI hierarchy claiming adherence to these Requirements SHALL be dedicated exclusively to TLS on the public Internet.
 
 Effective $DATE_1, all newly issued Subordinate CA Certificates chaining to a Root CA Certificate subject to these Requirements MUST conform to either the **Server Authentication Subordinate CA Certificate Profile** ([Section 7.1.2.1.2](#71212-server-authentication-subordinate-ca-certificate-profile)) or the **Server and Client Authentication Subordinate CA Certificate Profile** ([Section 7.1.2.1.3](#71213-server-and-client-authentication-subordinate-ca-certificate-profile)).
 
