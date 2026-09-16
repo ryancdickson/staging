@@ -2235,7 +2235,7 @@ Each disclosed certificate profile SHALL be assigned a unique identifier ("Profi
 
 The CA SHALL maintain in Section 7.1 of its Certificate Policy and/or Certification Practice Statement (or in a publicly accessible repository referenced therein) an accurate mapping of each Issuing CA (identified by Subject Distinguished Name and Subject Key Identifier, or SHA-256 certificate fingerprint) to the unique identifier(s) of the disclosed certificate profile(s) that the Issuing CA is configured and authorized to issue. To prevent manual transposition errors, CAs SHOULD generate disclosed profile specifications directly from their active Certificate System configurations.
 
-Any Certificate issued containing a field, extension, extension criticality, encoding, or value not explicitly permitted by the applicable disclosed profile, or issued by an Issuing CA not mapped to that profile, is considered misissued and was not issued in accordance with these Requirements.
+Any Certificate issued containing a field, extension, extension criticality, encoding, or value not explicitly permitted by the applicable disclosed profile, or issued by an Issuing CA not mapped to that profile, is considered not issued in accordance with these Requirements.
 
 ### 7.1.1 Version number(s)
 
