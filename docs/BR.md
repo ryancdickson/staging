@@ -1889,7 +1889,7 @@ The CA SHALL record at least the following events:
       2. the ADN used (if applicable and different from the applied-for FQDN); and
       3. the validation method used (e.g., the BRs section number or the registered label of an ACME validation method);
    3. Approval and rejection of certificate requests;
-   4. Issuance of Certificates, including the unique identifier of the disclosed Certificate Profile (as specified in Section 7.1 of the CA's Certificate Policy and/or Certification Practice Statement) used to issue the Certificate;
+   4. Issuance of Certificates (effective $DATE_1, including the unique identifier of the disclosed Certificate Profile, as specified in Section 7.1 of the CA's Certificate Policy and/or Certification Practice Statement, used to issue the Certificate);
    5. Generation of Certificate Revocation Lists; and
    6. Signing of OCSP Responses (as described in [Section 4.9](#49-certificate-revocation-and-suspension) and [Section 4.10](#410-certificate-status-services)).
    7. Multi-Perspective Issuance Corroboration attempts from each Network Perspective, minimally recording the following information:
