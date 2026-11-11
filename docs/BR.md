@@ -200,6 +200,7 @@ The following Certificate Policy identifiers are reserved for use by CAs to asse
 | 2027-03-15 | [6.3.2](#632-certificate-operational-periods-and-key-pair-usage-periods) | Maximum validity period of Subscriber Certificates is 100 days. |
 | 2027-03-15 | [4.2.2.1.2](#42212-caa-parameters) | CAs MUST process the `accounturi` and `validationmethods` parameters as specified in [RFC 8657](https://datatracker.ietf.org/doc/html/rfc8657). |
 | 2027-03-15 | [4.2.2.1.2](#42212-caa-parameters) | If the CA does not identify the Subscriber account via an ACME Account URL as described in [RFC 8555](https://datatracker.ietf.org/doc/html/rfc8555), the CA MUST define the supported format of the `accounturi` in Section 4.2 of their CP and/or CPS, and SHOULD comply with the `acct` URI scheme defined in [RFC 7565](https://datatracker.ietf.org/doc/html/rfc7565) |
+| 2027-09-15 | [4.2.1](#421-performing-identification-and-authentication-functions) | After a Certificate is revoked, CAs SHALL NOT reuse earlier Domain Name or IP Address validations that were relied upon for it or that cover the names it contains. |
 | 2028-03-15 | [3.2.2.4](#3224-validation-of-domain-authorization-or-control) and [3.2.2.5](#3225-authentication-for-an-ip-address) | CAs MUST NOT rely on Methods 3.2.2.4.4, 3.2.2.4.13, and 3.2.2.4.14 to issue Subscriber Certificates. |
 | 2029-03-15 | [4.2.1](#421-performing-identification-and-authentication-functions) | Domain Name and IP Address validation maximum data reuse period is 10 days. |
 | 2029-03-15 | [6.3.2](#632-certificate-operational-periods-and-key-pair-usage-periods) | Maximum validity period of Subscriber Certificates is 47 days. |
@@ -1324,6 +1325,15 @@ Table: Domain Name and IP Address validation data reuse periods
 | 2029-03-15 |            | 10 days  |
 
 In no case may a prior validation be reused if any data or document used in the prior validation was obtained more than the maximum time permitted for reuse of the data or document prior to issuing the Certificate.
+
+Effective 2027-09-15, once the CA has recorded a Certificate as revoked, the CA SHALL NOT rely on any data, document, or completed validation under [Section 3.2.2.4](#3224-validation-of-domain-authorization-or-control) or [Section 3.2.2.5](#3225-authentication-for-an-ip-address) that was obtained or completed before that time and that meets either of the following descriptions:
+
+1. It was relied upon to issue the revoked Certificate.
+2. It would otherwise be relied upon for a Fully-Qualified Domain Name, Wildcard Domain Name or IP address contained in the revoked Certificate.
+
+This prohibition applies regardless of the CRLReason and regardless of the Applicant for which the validation was performed. Before issuing a Certificate that contains an affected Fully-Qualified Domain Name, Wildcard Domain Name or IP address, the CA SHALL complete a new validation for it.
+
+The same prohibition applies where the CA obtains the evidence described in [Section 4.9.1.1(5)](#4911-reasons-for-revoking-a-subscriber-certificate) for a Certificate that it has not revoked, such as a Short-lived Subscriber Certificate. In that case the prohibition applies from the time the CA obtains the evidence.
 
 After the change to any validation method specified in the Baseline Requirements or EV Guidelines, a CA may continue to reuse validation data or documents collected prior to the change, or the validation itself, for the period stated in [Section 4.2.1](#421-performing-identification-and-authentication-functions) unless otherwise specifically provided in a ballot.
 
