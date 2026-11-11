@@ -200,8 +200,11 @@ The following Certificate Policy identifiers are reserved for use by CAs to asse
 | 2027-03-15 | [6.3.2](#632-certificate-operational-periods-and-key-pair-usage-periods) | Maximum validity period of Subscriber Certificates is 100 days. |
 | 2027-03-15 | [4.2.2.1.2](#42212-caa-parameters) | CAs MUST process the `accounturi` and `validationmethods` parameters as specified in [RFC 8657](https://datatracker.ietf.org/doc/html/rfc8657). |
 | 2027-03-15 | [4.2.2.1.2](#42212-caa-parameters) | If the CA does not identify the Subscriber account via an ACME Account URL as described in [RFC 8555](https://datatracker.ietf.org/doc/html/rfc8555), the CA MUST define the supported format of the `accounturi` in Section 4.2 of their CP and/or CPS, and SHOULD comply with the `acct` URI scheme defined in [RFC 7565](https://datatracker.ietf.org/doc/html/rfc7565) |
+| 2027-06-15 | [4.9.7](#497-crl-issuance-frequency) and [4.9.9](#499-on-line-revocationstatus-checking-availability) | CAs MUST publish the revocation of a Subscriber Certificate within four (4) hours of recording it, in a CRL and, where the Certificate has an AIA OCSP pointer, in an OCSP response. CAs MUST verify the signature on each CRL before publishing it. |
+| 2027-06-15 | [4.9.9](#499-on-line-revocationstatus-checking-availability) and [7.2](#72-crl-profile) | Maximum validity of CRLs covering Subscriber Certificates and of Subscriber Certificate OCSP responses is 72 hours. |
 | 2027-09-15 | [4.2.1](#421-performing-identification-and-authentication-functions) | After a Certificate is revoked, CAs SHALL NOT reuse earlier Domain Name or IP Address validations that were relied upon for it or that cover the names it contains. |
 | 2028-03-15 | [3.2.2.4](#3224-validation-of-domain-authorization-or-control) and [3.2.2.5](#3225-authentication-for-an-ip-address) | CAs MUST NOT rely on Methods 3.2.2.4.4, 3.2.2.4.13, and 3.2.2.4.14 to issue Subscriber Certificates. |
+| 2028-03-15 | [4.9.9](#499-on-line-revocationstatus-checking-availability) and [7.2](#72-crl-profile) | Maximum validity of CRLs covering Subscriber Certificates and of Subscriber Certificate OCSP responses is 24 hours. |
 | 2029-03-15 | [4.2.1](#421-performing-identification-and-authentication-functions) | Domain Name and IP Address validation maximum data reuse period is 10 days. |
 | 2029-03-15 | [6.3.2](#632-certificate-operational-periods-and-key-pair-usage-periods) | Maximum validity period of Subscriber Certificates is 47 days. |
 
@@ -1671,19 +1674,23 @@ No stipulation.
 
 ### 4.9.7 CRL issuance frequency
 
-CRLs MUST be available via a publicly-accessible HTTP URL (i.e., "published").
+CRLs MUST be available via a publicly-accessible HTTP URL (i.e., "published"). Effective 2027-06-15, a CRL is published only when every request to that URL, regardless of network perspective or serving endpoint, returns that CRL or a CRL issued after it.
+
+Effective 2027-06-15, the CA MUST verify the signature on each CRL using the Public Key of the Issuing CA before publishing the CRL.
 
 Within twenty-four (24) hours of issuing its first Certificate, the CA MUST generate and publish either:
 
 - a full and complete CRL; OR
 - partitioned (i.e., "sharded") CRLs that, when aggregated, represent the equivalent of a full and complete CRL.
 
-CAs issuing Subscriber Certificates:
+Prior to 2027-06-15, CAs issuing Subscriber Certificates:
 
 1. MUST update and publish a new CRL at least every:
     - seven (7) days if all Certificates include an Authority Information Access extension with an `id-ad-ocsp` accessMethod ("AIA OCSP pointer"); or
     - four (4) days in all other cases;
 2. MUST update and publish a new CRL within twenty-four (24) hours after recording a Certificate as revoked.
+
+Effective 2027-06-15, CAs issuing Subscriber Certificates MUST update and publish a new CRL before one-half of the period between the `thisUpdate` and the `nextUpdate` of the CRL that it replaces has elapsed. Within four (4) hours after recording a Certificate as revoked, these CAs MUST also update and publish a new CRL whose scope includes that Certificate.
 
 CAs issuing CA Certificates:
 
@@ -1717,8 +1724,10 @@ OCSP responders operated by the CA SHALL support the HTTP GET method, as describ
 For the status of a Subscriber Certificate or its corresponding Precertificate:
 
 - Effective 2025-01-15, an authoritative OCSP response MUST be available (i.e. the responder MUST NOT respond with the "unknown" status) starting no more than 15 minutes after the Certificate or Precertificate is first published or otherwise made available.
-- For OCSP responses with validity intervals less than sixteen hours, the CA SHALL provide an updated OCSP response prior to one-half of the validity period before the `nextUpdate`.
-- For OCSP responses with validity intervals greater than or equal to sixteen hours, the CA SHALL provide an updated OCSP response at least eight hours prior to the `nextUpdate`, and no later than four days after the `thisUpdate`.
+- Prior to 2027-06-15, for OCSP responses with validity intervals less than sixteen hours, the CA SHALL provide an updated OCSP response prior to one-half of the validity period before the `nextUpdate`.
+- Prior to 2027-06-15, for OCSP responses with validity intervals greater than or equal to sixteen hours, the CA SHALL provide an updated OCSP response at least eight hours prior to the `nextUpdate`, and no later than four days after the `thisUpdate`.
+- Effective 2027-06-15, the CA SHALL provide an updated OCSP response before one-half of the validity interval of the previous response has elapsed.
+- Effective 2027-06-15, within four (4) hours after recording a Certificate as revoked, the CA SHALL provide an updated OCSP response such that every OCSP request for that Certificate, regardless of network perspective or serving endpoint, results in a response with a `certStatus` of `revoked`.
 
 For the status of a Subordinate CA Certificate, the CA SHALL provide an updated OCSP response at least every twelve months, and within 24 hours after revoking the Certificate.
 
@@ -1729,7 +1738,7 @@ OCSP responses MUST conform to [RFC 6960](https://datatracker.ietf.org/doc/html/
 1. be signed by the CA that issued the Certificates whose revocation status is being checked, or
 2. be signed by an OCSP Responder which complies with the OCSP Responder Certificate Profile in [Section 7.1.2.8](#7128-ocsp-responder-certificate-profile).
 
-OCSP responses for Subscriber Certificates MUST have a validity interval greater than or equal to eight hours and less than or equal to ten days.
+OCSP responses for Subscriber Certificates MUST have a validity interval greater than or equal to eight hours. The validity interval MUST be less than or equal to ten days for responses produced before 2027-06-15, seventy-two (72) hours for responses produced on or after 2027-06-15 and before 2028-03-15, and twenty-four (24) hours for responses produced on or after 2028-03-15.
 
 If the OCSP responder receives a request for the status of a certificate serial number that is "unassigned", then the responder SHOULD NOT respond with a "good" status. If the OCSP responder is for a CA that is not Technically Constrained in line with [Section 7.1.2.3](#7123-technically-constrained-non-tls-subordinate-ca-certificate-profile) or [Section 7.1.2.5](#7125-technically-constrained-tls-subordinate-ca-certificate-profile), the responder MUST NOT respond with a "good" status for such requests.
 
@@ -3689,7 +3698,7 @@ Table: CRL Fields
 |     `signature`            | MUST            | See [Section 7.1.3.2](#7132-signature-algorithmidentifier) |
 |     `issuer`               | MUST            | MUST be byte-for-byte identical to the `subject` field of the Issuing CA. |
 |     `thisUpdate`           | MUST            | Indicates the issue date of the CRL. |
-|     `nextUpdate`           | MUST            | Indicates the date by which the next CRL will be issued. For CRLs covering Subscriber Certificates, at most 10 days after the `thisUpdate`. For other CRLs, at most 12 months after the `thisUpdate`. |
+|     `nextUpdate`           | MUST            | Indicates the date by which the next CRL will be issued. For CRLs covering Subscriber Certificates, at most 10 days after the `thisUpdate` for CRLs issued before 2027-06-15, at most seventy-two (72) hours after the `thisUpdate` for CRLs issued on or after 2027-06-15 and before 2028-03-15, and at most twenty-four (24) hours after the `thisUpdate` for CRLs issued on or after 2028-03-15. For other CRLs, at most 12 months after the `thisUpdate`. |
 |     `revokedCertificates`  | *               | MUST be present if the CA has issued a Certificate that has been revoked and the corresponding entry has yet to appear on at least one regularly scheduled CRL beyond the revoked Certificate's validity period. The CA SHOULD remove an entry for a corresponding Certificate after it has appeared on at least one regularly scheduled CRL beyond the revoked Certificate's validity period. See the "revokedCertificates Component" table for additional requirements.  |
 |     `extensions`           | MUST            | See the "CRL Extensions" table for additional requirements. |
 | `signatureAlgorithm`       | MUST            | Encoded value MUST be byte-for-byte identical to the `tbsCertList.signature`. |
